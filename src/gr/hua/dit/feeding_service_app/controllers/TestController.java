@@ -11,5 +11,10 @@ public class TestController {
 		return "home";
 	}
 	
+	@RequestMapping("/admin")
+	public String showAdminPage() {
+		return "admin";
+	}
+	
 
 }
