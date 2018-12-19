@@ -36,8 +36,8 @@ public class Admin {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
-	@Column(name = "IdentityCardNO")
-	private String IdentityCardNO;
+	@Column(name = "identityCardNO")
+	private String identityCardNO;
 
 	@Column(name = "email")
 	private String email;
@@ -56,7 +56,7 @@ public class Admin {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
-		IdentityCardNO = identityCardNO;
+		this.identityCardNO = identityCardNO;
 		this.email = email;
 		this.phone = phone;
 	}
@@ -116,11 +116,11 @@ public class Admin {
 	}
 
 	public String getIdentityCardNO() {
-		return IdentityCardNO;
+		return identityCardNO;
 	}
 
 	public void setIdentityCardNO(String identityCardNO) {
-		IdentityCardNO = identityCardNO;
+		this.identityCardNO = identityCardNO;
 	}
 
 	public String getEmail() {
@@ -142,7 +142,7 @@ public class Admin {
 	@Override
 	public String toString() {
 		return "Admin [id=" + id + ", username=" + username + ", pass=" + pass + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", IdentityCardNO=" + IdentityCardNO
+				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", identityCardNO=" + identityCardNO
 				+ ", email=" + email + ", phone=" + phone + "]";
 	}
 

@@ -37,8 +37,8 @@ public class Supervisor {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
-	@Column(name = "IdentityCardNO")
-	private String IdentityCardNO;
+	@Column(name = "identityCardNO")
+	private String identityCardNO;
 
 	@Column(name = "email")
 	private String email;
@@ -60,7 +60,7 @@ public class Supervisor {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dateOfBirth = dateOfBirth;
-		IdentityCardNO = identityCardNO;
+		this.identityCardNO = identityCardNO;
 		this.email = email;
 		this.phone = phone;
 		this.supervising_dept = supervising_dept;
@@ -121,11 +121,11 @@ public class Supervisor {
 	}
 
 	public String getIdentityCardNO() {
-		return IdentityCardNO;
+		return identityCardNO;
 	}
 
 	public void setIdentityCardNO(String identityCardNO) {
-		IdentityCardNO = identityCardNO;
+		this.identityCardNO = identityCardNO;
 	}
 
 	public String getEmail() {
@@ -155,7 +155,7 @@ public class Supervisor {
 	@Override
 	public String toString() {
 		return "Supervisor [id=" + id + ", username=" + username + ", pass=" + pass + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", IdentityCardNO=" + IdentityCardNO
+				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", identityCardNO=" + identityCardNO
 				+ ", email=" + email + ", phone=" + phone + ", supervising_dept=" + supervising_dept + "]";
 	}
 
