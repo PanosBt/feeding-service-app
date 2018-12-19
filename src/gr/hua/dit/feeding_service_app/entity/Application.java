@@ -33,6 +33,9 @@ public class Application {
 	@Column(name = "num_siblings")
 	private int num_siblings;
 
+	@Column(name = "origin_city")
+	private String origin_city;
+
 	@Column(name = "approved")
 	private boolean approved;
 
@@ -42,15 +45,26 @@ public class Application {
 	public Application() {
 	}
 
-	public Application(int appl_id, Student student, Clerk clerk, int familyIncome, int num_siblings, boolean approved,
-			int score) {
+	public Application(int appl_id, Student student, Clerk clerk, int familyIncome, int num_siblings,
+			String origin_city, boolean approved, int score) {
+		super();
 		this.appl_id = appl_id;
 		this.student = student;
 		this.clerk = clerk;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
+		this.origin_city = origin_city;
 		this.approved = approved;
 		this.score = score;
+	}
+
+	public Application(int appl_id, Student student, int familyIncome, int num_siblings, String origin_city) {
+		super();
+		this.appl_id = appl_id;
+		this.student = student;
+		this.familyIncome = familyIncome;
+		this.num_siblings = num_siblings;
+		this.origin_city = origin_city;
 	}
 
 	public Application(int appl_id, Student student, int familyIncome, int num_siblings) {
@@ -100,6 +114,14 @@ public class Application {
 		this.num_siblings = num_siblings;
 	}
 
+	public String getOrigin_city() {
+		return origin_city;
+	}
+
+	public void setOrigin_city(String origin_city) {
+		this.origin_city = origin_city;
+	}
+
 	public boolean isApproved() {
 		return approved;
 	}
@@ -119,7 +141,8 @@ public class Application {
 	@Override
 	public String toString() {
 		return "Application [appl_id=" + appl_id + ", student=" + student + ", clerk=" + clerk + ", familyIncome="
-				+ familyIncome + ", num_siblings=" + num_siblings + ", approved=" + approved + ", score=" + score + "]";
+				+ familyIncome + ", num_siblings=" + num_siblings + ", origin_city=" + origin_city + ", approved="
+				+ approved + ", score=" + score + "]";
 	}
 
 }
