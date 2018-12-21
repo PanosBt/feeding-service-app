@@ -1,8 +1,7 @@
 package gr.hua.dit.feeding_service_app.utilites;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,51 +11,65 @@ import gr.hua.dit.feeding_service_app.entity.Application;
 
 public class Utilities {
 
-	public static class DateUtil {
-		private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	/**
+	 * = 10000 the score that an application gets when the student who submitted it
+	 * deserves feeding no matter what
+	 */
+	public static final int ABSOLUTE_SCORE = 10000;
 
-		// read a date string and parse/convert to a date
-		public static Date parseDate(String dateStr) throws ParseException {
-			return formatter.parse(dateStr);
-		}
+	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-		// read a date and format/convert to a string
-		public static String formatDate(Date theDate) {
-			if (theDate != null)
-				return formatter.format(theDate);
-			return null;
-		}
+	// read a date string and parse/convert to a date
+	public static Date parseDate(String dateStr) throws ParseException {
+		return formatter.parse(dateStr);
 	}
 
-	public static class ScoringUtil {
+	// read a date and format/convert to a string
+	public static String formatDate(Date date) {
+		if (date != null)
+			return formatter.format(date);
+		return null;
+	}
 
-		public static int scoreApplication(Application application) {
+	/**
+	 * Scores the given application based on social criteria for feeding service
+	 * 
+	 * @param application The application to be scored. "score" field will be
+	 *                    updated upon success
+	 * @return the applied score upon success, or -1 upon failure
+	 */
+	public static int scoreApplication(Application application) {
+		int score = 0;
 
-			// TODO add unemployed parents BL
-
-			int score = 0;
-
+		if ((application.getFamilyIncome() == 0) && !application.isMother_employeed()
+				&& !application.isFather_employeed())
+			score = ABSOLUTE_SCORE;
+		else {
+			// calculate score based on income
 			if (application.getFamilyIncome() < 10000)
 				score += 100;
 			else if (application.getFamilyIncome() < 15000)
 				score += 30;
 			score += application.getNum_siblings() * 20;
 
+			// read university city to compare w/ student's origin city
 			Properties prop = new Properties();
-
 			String city;
 
-			try (FileInputStream in = new FileInputStream("bl")) {
+			try (InputStream in = Utilities.class.getClassLoader().getResourceAsStream("city.properties")) {
 				prop.load(in);
 				city = prop.getProperty("city");
 			} catch (IOException e) {
 				e.printStackTrace();
-				city = "";
+				return -1;
 			}
+
 			if (!application.getOrigin_city().equals(city))
 				score += 50;
-
-			return score;
 		}
+
+		application.setScore(score);
+		return score;
 	}
+
 }

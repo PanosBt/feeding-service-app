@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.entity.Student;
-import gr.hua.dit.feeding_service_app.utilites.Utilities.DateUtil;
+import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Controller
 @RequestMapping("/student")
@@ -33,7 +33,7 @@ public class StudentController {
 		
 		Date date;
 		try {
-			date = DateUtil.parseDate("01/05/2018");
+			date = Utilities.parseDate("01/05/2018");
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return "redirect:/customer/list";
