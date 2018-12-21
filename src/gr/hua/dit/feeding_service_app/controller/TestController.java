@@ -17,7 +17,7 @@ public class TestController {
 	}
 
 	@RequestMapping("/testscore")
-	public String showAdminPage(Model model) {
+	public String testScore(Model model) {
 		Application appl = new Application(new Student(), 0, 1, "Other", false, false);
 		int score = Utilities.scoreApplication(appl);
 		
