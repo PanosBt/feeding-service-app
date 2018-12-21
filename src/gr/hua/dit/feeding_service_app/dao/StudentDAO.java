@@ -6,4 +6,5 @@ import gr.hua.dit.feeding_service_app.entity.Student;
 
 public interface StudentDAO {
 	public List<Student> getAllStudents();
+	public void saveStudent(Student student);
 }

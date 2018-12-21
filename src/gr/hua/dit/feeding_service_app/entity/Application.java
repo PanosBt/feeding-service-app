@@ -47,7 +47,6 @@ public class Application {
 
 	public Application(int appl_id, Student student, Clerk clerk, int familyIncome, int num_siblings,
 			String origin_city, boolean approved, int score) {
-		super();
 		this.appl_id = appl_id;
 		this.student = student;
 		this.clerk = clerk;
@@ -59,19 +58,11 @@ public class Application {
 	}
 
 	public Application(int appl_id, Student student, int familyIncome, int num_siblings, String origin_city) {
-		super();
 		this.appl_id = appl_id;
 		this.student = student;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
 		this.origin_city = origin_city;
-	}
-
-	public Application(int appl_id, Student student, int familyIncome, int num_siblings) {
-		this.appl_id = appl_id;
-		this.student = student;
-		this.familyIncome = familyIncome;
-		this.num_siblings = num_siblings;
 	}
 
 	public int getAppl_id() {
