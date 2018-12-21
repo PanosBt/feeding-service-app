@@ -28,4 +28,12 @@ public class StudentDAOImpl implements StudentDAO {
 		return query.getResultList();
 	}
 
+	//We will probably do this in a different way after we learn Services @ the lab
+	@Override
+	@Transactional
+	public void saveStudent(Student student) {
+		Session curSession = sessionFactory.getCurrentSession();	
+		curSession.save(student);
+	}
+
 }

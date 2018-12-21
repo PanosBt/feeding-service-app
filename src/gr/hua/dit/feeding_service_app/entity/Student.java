@@ -18,7 +18,7 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 
 	@Column(name = "username")
 	private String username;
@@ -54,9 +54,9 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(int id, String username, String pass, String firstName, String lastName, Date dateOfBirth,
+	public Student(String username, String pass, String firstName, String lastName, Date dateOfBirth,
 			String identityCardNO, String email, String phone, int academicID, String dept) {
-		this.id = id;
+		this.id = null;
 		this.username = username;
 		this.pass = pass;
 		this.firstName = firstName;
@@ -69,8 +69,8 @@ public class Student {
 		this.dept = dept;
 	}
 
-	public Student(int id, String username, String pass) {
-		this.id = id;
+	public Student(String username, String pass) {
+		this.id = null;
 		this.username = username;
 		this.pass = pass;
 	}

@@ -17,7 +17,7 @@ public class Application {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "appl_id")
-	private int appl_id;
+	private Integer appl_id;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "student_id")
@@ -36,6 +36,12 @@ public class Application {
 	@Column(name = "origin_city")
 	private String origin_city;
 
+	@Column(name = "mother_employeed")
+	private boolean mother_employeed;
+
+	@Column(name = "father_employeed")
+	private boolean father_employeed;
+
 	@Column(name = "approved")
 	private boolean approved;
 
@@ -45,41 +51,33 @@ public class Application {
 	public Application() {
 	}
 
-	public Application(int appl_id, Student student, Clerk clerk, int familyIncome, int num_siblings,
-			String origin_city, boolean approved, int score) {
-		super();
-		this.appl_id = appl_id;
+	public Application(Student student, Clerk clerk, int familyIncome, int num_siblings, String origin_city,
+			boolean mother_employeed, boolean father_employeed, boolean approved, int score) {
+		this.appl_id = null;
 		this.student = student;
 		this.clerk = clerk;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
 		this.origin_city = origin_city;
+		this.mother_employeed = mother_employeed;
+		this.father_employeed = father_employeed;
 		this.approved = approved;
 		this.score = score;
 	}
 
-	public Application(int appl_id, Student student, int familyIncome, int num_siblings, String origin_city) {
-		super();
-		this.appl_id = appl_id;
+	public Application(Student student, int familyIncome, int num_siblings, String origin_city,
+			boolean mother_employeed, boolean father_employeed) {
+		this.appl_id = null;
 		this.student = student;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
 		this.origin_city = origin_city;
+		this.mother_employeed = mother_employeed;
+		this.father_employeed = father_employeed;
 	}
 
-	public Application(int appl_id, Student student, int familyIncome, int num_siblings) {
-		this.appl_id = appl_id;
-		this.student = student;
-		this.familyIncome = familyIncome;
-		this.num_siblings = num_siblings;
-	}
-
-	public int getAppl_id() {
+	public Integer getAppl_id() {
 		return appl_id;
-	}
-
-	public void setAppl_id(int appl_id) {
-		this.appl_id = appl_id;
 	}
 
 	public Student getStudent() {
@@ -122,6 +120,22 @@ public class Application {
 		this.origin_city = origin_city;
 	}
 
+	public boolean isMother_employeed() {
+		return mother_employeed;
+	}
+
+	public void setMother_employeed(boolean mother_employeed) {
+		this.mother_employeed = mother_employeed;
+	}
+
+	public boolean isFather_employeed() {
+		return father_employeed;
+	}
+
+	public void setFather_employeed(boolean father_employeed) {
+		this.father_employeed = father_employeed;
+	}
+
 	public boolean isApproved() {
 		return approved;
 	}
@@ -141,7 +155,8 @@ public class Application {
 	@Override
 	public String toString() {
 		return "Application [appl_id=" + appl_id + ", student=" + student + ", clerk=" + clerk + ", familyIncome="
-				+ familyIncome + ", num_siblings=" + num_siblings + ", origin_city=" + origin_city + ", approved="
+				+ familyIncome + ", num_siblings=" + num_siblings + ", origin_city=" + origin_city
+				+ ", mother_employeed=" + mother_employeed + ", father_employeed=" + father_employeed + ", approved="
 				+ approved + ", score=" + score + "]";
 	}
 
