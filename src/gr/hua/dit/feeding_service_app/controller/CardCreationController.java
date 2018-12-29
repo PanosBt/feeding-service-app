@@ -16,17 +16,17 @@ import gr.hua.dit.feeding_service_app.Objects.StudentObject;
 
 @Controller
 public class CardCreationController {
-	@GetMapping("/CardCreation")
+	@GetMapping("/card-creation")
 	public String CardCreated(Model model) {
-		model.addAttribute("CardCreationForm", new StudentObject());
-		return "CardCreationForm";
+		model.addAttribute("card-creation-form", new StudentObject());
+		return "card-creation-form";
 	
 	}
 	
-	@PostMapping("/CardCreationComplete")
+	@PostMapping("/card-creation-complete")
 	public String CardCreation(@ModelAttribute StudentObject student,ModelMap model) {
 		model.addAttribute("firstName",student.getFirstName());
-		return "CardCreated";
+		return "card-created";
 	}
 	
 
