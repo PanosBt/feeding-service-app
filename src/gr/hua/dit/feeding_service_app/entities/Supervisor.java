@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.entity;
+package gr.hua.dit.feeding_service_app.entities;
 
 import java.util.Date;
 
@@ -52,9 +52,8 @@ public class Supervisor {
 	public Supervisor() {
 	}
 
-	public Supervisor(int id, String username, String pass, String firstName, String lastName, Date dateOfBirth,
+	public Supervisor(String username, String pass, String firstName, String lastName, Date dateOfBirth,
 			String identityCardNO, String email, String phone, String supervising_dept) {
-		this.id = id;
 		this.username = username;
 		this.pass = pass;
 		this.firstName = firstName;
@@ -66,18 +65,13 @@ public class Supervisor {
 		this.supervising_dept = supervising_dept;
 	}
 
-	public Supervisor(int id, String username, String pass) {
-		this.id = id;
+	public Supervisor(String username, String pass) {
 		this.username = username;
 		this.pass = pass;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUsername() {

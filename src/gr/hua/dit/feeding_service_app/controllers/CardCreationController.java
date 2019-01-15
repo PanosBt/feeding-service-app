@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 

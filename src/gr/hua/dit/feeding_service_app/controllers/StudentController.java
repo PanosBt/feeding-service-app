@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
-import gr.hua.dit.feeding_service_app.entity.Student;
+import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Controller
@@ -38,7 +38,7 @@ public class StudentController {
 			e.printStackTrace();
 			return "redirect:/customer/list";
 		}
-		Student student = new Student("test1", "test", "test", "test", date, "test", "test", "test", 123, "dit");
+		Student student = new Student("test4", "test", "test", "test", date, "test", "test", "test", 123, "dit");
 		studentDAO.saveStudent(student);	
 		return "redirect:/student/list";
 	}

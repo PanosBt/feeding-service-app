@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.entity;
+package gr.hua.dit.feeding_service_app.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +17,7 @@ public class Application {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "appl_id")
-	private Integer appl_id;
+	private int appl_id;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "student_id")
@@ -53,7 +53,6 @@ public class Application {
 
 	public Application(Student student, Clerk clerk, int familyIncome, int num_siblings, String origin_city,
 			boolean mother_employeed, boolean father_employeed, boolean approved, int score) {
-		this.appl_id = null;
 		this.student = student;
 		this.clerk = clerk;
 		this.familyIncome = familyIncome;
@@ -67,7 +66,6 @@ public class Application {
 
 	public Application(Student student, int familyIncome, int num_siblings, String origin_city,
 			boolean mother_employeed, boolean father_employeed) {
-		this.appl_id = null;
 		this.student = student;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
@@ -76,7 +74,7 @@ public class Application {
 		this.father_employeed = father_employeed;
 	}
 
-	public Integer getAppl_id() {
+	public int getAppl_id() {
 		return appl_id;
 	}
 

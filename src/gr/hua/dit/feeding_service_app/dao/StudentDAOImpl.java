@@ -10,7 +10,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gr.hua.dit.feeding_service_app.entity.Student;
+import gr.hua.dit.feeding_service_app.entities.Student;
+import gr.hua.dit.feeding_service_app.user.User;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
@@ -29,11 +30,19 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	//We will probably do this in a different way after we learn Services @ the lab
+	// TODO remove when tests not needed
 	@Override
 	@Transactional
 	public void saveStudent(Student student) {
 		Session curSession = sessionFactory.getCurrentSession();	
 		curSession.save(student);
+	}
+
+	@Override
+	public void createStudentFromUser(User user) {
+		Session curSession = sessionFactory.getCurrentSession();
+			
+		curSession.save(new Student(user.getUsername(), user.getPassword()));
 	}
 
 }

@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

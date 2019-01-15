@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-import gr.hua.dit.feeding_service_app.entity.Application;
+import gr.hua.dit.feeding_service_app.entities.Application;
 
 public class Utilities {
 

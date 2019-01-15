@@ -1,11 +1,11 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import gr.hua.dit.feeding_service_app.entity.Application;
-import gr.hua.dit.feeding_service_app.entity.Student;
+import gr.hua.dit.feeding_service_app.entities.Application;
+import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Controller
