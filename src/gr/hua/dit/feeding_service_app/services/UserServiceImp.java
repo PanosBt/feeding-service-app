@@ -31,4 +31,15 @@ public class UserServiceImp implements UserService {
 		
 	}
 
+	@Override
+	public User searchUser(String username) {
+		// TODO Auto-generated method stub
+		
+		//TODO This will be better implemented through security
+		// I can: search a user in security db to get role
+		// -> get+create corresponding user object based on role
+		
+		return null;
+	}
+
 }

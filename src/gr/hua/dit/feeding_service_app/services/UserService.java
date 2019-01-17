@@ -4,4 +4,5 @@ import gr.hua.dit.feeding_service_app.user.User;
 
 public interface UserService {
 	public void createUser(User user);
+	public User searchUser(String username);
 }

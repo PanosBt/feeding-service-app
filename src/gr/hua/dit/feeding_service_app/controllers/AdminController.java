@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.user.User;
@@ -22,6 +23,7 @@ public class AdminController {
 	public String getAdminHomePage(Model model) {
 		User user = new User();
 		model.addAttribute("user", user);
+		model.addAttribute("username", new String());
 		return "admin-home";
 	}
 	
@@ -30,6 +32,20 @@ public class AdminController {
 		userService.createUser(user);
 		return "redirect:/admin";
 		
+	}
+	
+	@PostMapping("/modify_user")
+	public String searchUser(@RequestParam("username") String username) {
+		//TODO implement searchUser
+		
+		userService.searchUser(username);
+		return "unimplemented";
+	}
+	
+	@PostMapping("/delete_user")
+	public String deleteUser(@RequestParam("username") String username) {
+		//TODO implement searchUser
+		return "unimplemented";
 	}
 
 }

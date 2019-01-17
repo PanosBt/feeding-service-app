@@ -15,33 +15,69 @@
 
 	<div class="admin-functions">
 		<h4>Επιλογές Διαχειριστή</h4>
-		<br />
-		<br /> 
-		Δημιουργία νέου χρήστη
-		<br />
-		<br />
-		<form:form method="POST" action="admin/create_user" modelAttribute="user">
-			<tr>
-				<td><form:label path="username">username</form:label></td>
-				<td><form:input path="username" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="password">password</form:label></td>
-				<td><form:password path="password" /></td>
-			</tr>
-			<tr>
-				<td><form:label path="userType">user type</form:label></td>
-				<td>
-					<form:select path="userType">
-						<form:option value="student">Student</form:option>
-						<form:option value="clerk">Clerk</form:option>
-						<form:option value="supervisor">Supervisor</form:option>
-					</form:select>
-				</td>
-				<td><input type="submit" value="CREATE"/></td>
-			</tr>
 
-		</form:form>
+		<h5>Δημιουργία νέου χρήστη</h5> 
+		<div class="admin-create-form">
+			<form:form method="POST" action="admin/create_user"
+				modelAttribute="user">
+				<table>
+					<tr>
+						<td><form:label path="username">Όνομα χρήστη</form:label></td>
+						<td><form:input path="username" /></td>
+					</tr>
+					<tr>
+						<td><form:label path="password">Κωδικός</form:label></td>
+						<td><form:password path="password" /></td>
+					</tr>
+					<tr>
+						<td><form:label path="userType">Τύπος χρήστη</form:label></td>
+						<td><form:select path="userType">
+								<form:option value="student">Student</form:option>
+								<form:option value="clerk">Clerk</form:option>
+								<form:option value="supervisor">Supervisor</form:option>
+							</form:select>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="ΔΗΜΙΟΥΡΓΙΑ" /></td>
+					</tr>
+				</table>
+	
+			</form:form>
+		</div>
+		<br />
+		<hr>
+		<h5>Τροποποίηση Στοιχείων Χρήστη</h5>
+
+		<div class="admin-search-user-for-mod">
+			<form method="POST" action="admin/modify_user">
+				<table>
+					<tr>
+						<td>Όνομα χρήστη</td>
+						<td><input type="text" name="username"></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="ΑΝΑΖΗΤΗΣΗ"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<br />		
+		<hr>
+		<h5>Διαγραφή Χρήση</h5>
+		<div class="admin-delete-user">
+			<form method="POST" action="admin/delete_user">
+				<table>
+					<tr>
+						<td>Όνομα χρήστη</td>
+						<td><input type="text" name="username"></td>
+					</tr>
+					<tr>
+						<td><input type="submit" value="ΔΙΑΓΡΑΦΗ"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
 
 	</div>
 </body>
