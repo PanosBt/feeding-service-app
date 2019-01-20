@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -45,21 +47,27 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	//Basic security configuration
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
-            .anyRequest().authenticated()
-            .and()
-            .formLogin()//.loginPage("/login")	//TODO Comment this out for custom login form
-            .loginProcessingUrl("/authUser")
-            .permitAll()
-            //TODO Comment this out for custom 403 page when implemented
+    	//Add filter for supporting utf-8 encoding on POST requests 
+    	CharacterEncodingFilter filter = new CharacterEncodingFilter();
+    	filter.setEncoding("UTF-8");
+    	filter.setForceEncoding(true);
+    	http.addFilterBefore(filter, CsrfFilter.class);
+    	
+        http.authorizeRequests()
+        .anyRequest().authenticated()
+        .and()
+        .formLogin()//.loginPage("/login")	//TODO Comment this out for custom login form
+        .loginProcessingUrl("/authUser")
+        .permitAll()
+        //TODO Comment this out for custom 403 page when implemented
 //            .and()
 //            .exceptionHandling()
 //			.accessDeniedPage("/403")
-            .and()
-            .logout().permitAll();
+        .and()
+        .logout().permitAll();
     }
     
-    //Allow unauthenticated access for home page, resources api access
+    //Allow unauthenticated access for home page, resources and api access
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		

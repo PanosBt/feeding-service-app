@@ -10,6 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h4>Τροποίηση στοιχείων χρήστη</h5>
+	<br />
+	
 	<form:form method="POST"
 		action="${pageContext.request.contextPath}/admin/modify_user"
 		modelAttribute="user_modified">
@@ -17,6 +20,10 @@
 			<tr>
 				<td>Τύπος Χρήστη</td>
 				<td>${role}</td>
+			</tr>
+			<tr>
+				<td>Username</td>
+				<td>${user.username}</td>
 			</tr>
 			<tr>
 				<td><form:label path="firstName">Όνομα</form:label></td>

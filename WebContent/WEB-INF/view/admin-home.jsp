@@ -62,7 +62,7 @@
 		<hr>
 		<h5>Τροποποίηση Στοιχείων Χρήστη</h5>
 
-		<div class="admin-search-user-for-mod">
+		<div class="${pageContext.request.contextPath}/admin-search-user-for-mod">
 			<form method="POST" action="admin/modify_user_search">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
@@ -87,7 +87,7 @@
 		<hr>
 		<h5>Διαγραφή Χρήση</h5>
 		<div class="admin-delete-user">
-			<form method="POST" action="admin/delete_user">
+			<form method="POST" action="${pageContext.request.contextPath}/admin/delete_user">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<table>
