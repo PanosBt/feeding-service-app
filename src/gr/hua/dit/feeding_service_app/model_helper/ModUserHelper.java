@@ -1,7 +1,15 @@
 package gr.hua.dit.feeding_service_app.model_helper;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+/**
+ * Helper class for admin modify-user form
+ * @author panos
+ *
+ */
 public class ModUserHelper {
 
 	private String username;
@@ -10,8 +18,8 @@ public class ModUserHelper {
 
 	private String lastName;
 
-	private Date dateOfBirth;
-
+	private String dateOfBirth;
+	
 	private String identityCardNO;
 
 	private String email;
@@ -52,14 +60,14 @@ public class ModUserHelper {
 		this.lastName = lastName;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
+	
 	public String getIdentityCardNO() {
 		return identityCardNO;
 	}
@@ -106,6 +114,17 @@ public class ModUserHelper {
 
 	public void setDept(String dept) {
 		this.dept = dept;
+	}
+	
+	public Date getDateOfBirthAsDate() {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		// see https://stackoverflow.com/questions/22929237/convert-java-time-localdate-into-java-util-date-type
+		return Date.from(
+				LocalDate.parse(dateOfBirth, dtf)
+				.atStartOfDay(ZoneId.systemDefault())
+				.toInstant()
+				);
 	}
 	
 }

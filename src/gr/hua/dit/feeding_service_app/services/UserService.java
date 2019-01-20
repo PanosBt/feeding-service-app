@@ -20,5 +20,5 @@ public interface UserService {
 	
 	public boolean deleteUser(String username);
 	
-	public void updateUser(ModUserHelper modUser, String role);
+	public void updateUser(ModUserHelper modUser);
 }

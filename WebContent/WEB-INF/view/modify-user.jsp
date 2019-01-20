@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -14,7 +16,7 @@
 	<br />
 	
 	<form:form method="POST"
-		action="${pageContext.request.contextPath}/admin/modify_user"
+		action="${pageContext.request.contextPath}/admin/modify_user/${user.username}"
 		modelAttribute="user_modified">
 		<table border="1">
 			<tr>
@@ -37,7 +39,7 @@
 			</tr>
 			<tr>
 				<td><form:label path="dateOfBirth">Ημ/νία Γέννησης</form:label></td>
-				<td><c:out value="${user.dateOfBirth}" /></td>
+				<td><fmt:formatDate value="${user.dateOfBirth}" pattern="dd-MM-yyyy" /></td>
 				<td><form:input type="date" path="dateOfBirth" /></td>
 			</tr>
 			<tr>
@@ -79,6 +81,16 @@
 		<br />
 		<input type="submit" value="ΑΠΟΘΗΚΕΥΣΗ"/>
 	</form:form>
+	<c:if test="${not empty userUpdated}">
+		<c:choose>
+			<c:when test="${userUpdated}">
+				<div>Ο χρήστης ενημερώθηκε!</div>
+			</c:when>
+			<c:otherwise>
+				<div class="error">Η ενημέρωση απέτυχε</div>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
 
 </body>
 </html>

@@ -11,11 +11,6 @@ import gr.hua.dit.feeding_service_app.utilites.Utilities;
 @Controller
 public class TestController {
 
-	@RequestMapping("/")
-	public String showHome() {
-		return "home";
-	}
-
 	@RequestMapping("/testscore")
 	public String testScore(Model model) {
 		Application appl = new Application(new Student(), 0, 1, "Other", false, false);

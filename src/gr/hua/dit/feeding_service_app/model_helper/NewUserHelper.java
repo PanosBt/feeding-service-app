@@ -3,6 +3,11 @@ package gr.hua.dit.feeding_service_app.model_helper;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+/**
+ * Helper class for admin new user form
+ * @author panos
+ *
+ */
 public class NewUserHelper {
 	
 	@NotBlank(message = "Please enter a username")

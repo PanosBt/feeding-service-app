@@ -131,8 +131,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void updateUser(ModUserHelper modUser, String role) {
+	public void updateUser(ModUserHelper modUser) {
 		
+		String role = getUserHigherRole(modUser.getUsername());
+		
+		switch (role) {
+		case AuthorityUtilities.ADMIN_ROLE:
+			adminDAO.update(modUser);
+			break;
+		case AuthorityUtilities.CLERK_ROLE:
+		case AuthorityUtilities.SUPERVISOR_ROLE:
+			clerkDAO.update(modUser);
+			break;
+		case AuthorityUtilities.STUDENT_ROLE:
+			studentDAO.update(modUser);
+			break;
+		default:
+			//return false;
+		}
 		
 	}
 
