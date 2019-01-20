@@ -4,25 +4,25 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gr.hua.dit.feeding_service_app.entities.Clerk;
+import gr.hua.dit.feeding_service_app.entities.Admin;
 
 @Repository
-public class ClerkDAOImpl implements ClerkDAO {
+public class AdminDAOImpl implements AdminDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
 	@Override
-	public void createClerk(String username) {
+	public void createAdmin(String username) {
 		sessionFactory.getCurrentSession()
-		.save(new Clerk(username));
-
+		.save(new Admin(username));
+		
 	}
 
 	@Override
-	public Clerk searchForClerk(String username) {
+	public Admin searchForAdmin(String username) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Clerk WHERE username = :username", Clerk.class)
+				.createQuery("FROM Admin WHERE username = :username", Admin.class)
 				.setParameter("username", username)
 				.uniqueResult();
 	}
@@ -30,9 +30,10 @@ public class ClerkDAOImpl implements ClerkDAO {
 	@Override
 	public int delete(String username) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("DELETE FROM Clerk WHERE username = :username")
+				.createQuery("DELETE FROM Admin WHERE username = :username")
 				.setParameter("username", username)
 				.executeUpdate();
 	}
+
 
 }

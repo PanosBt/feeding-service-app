@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gr.hua.dit.feeding_service_app.entities.Student;
-import gr.hua.dit.feeding_service_app.user.User;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
@@ -29,20 +28,36 @@ public class StudentDAOImpl implements StudentDAO {
 		return query.getResultList();
 	}
 
-	//We will probably do this in a different way after we learn Services @ the lab
+	// We will probably do this in a different way after we learn Services @ the lab
 	// TODO remove when tests not needed
 	@Override
 	@Transactional
 	public void saveStudent(Student student) {
-		Session curSession = sessionFactory.getCurrentSession();	
+		Session curSession = sessionFactory.getCurrentSession();
 		curSession.save(student);
 	}
 
 	@Override
-	public void createStudentFromUser(User user) {
-		Session curSession = sessionFactory.getCurrentSession();
-			
-		curSession.save(new Student(user.getUsername(), user.getPassword()));
+	public void createStudent(String username) {
+		sessionFactory.getCurrentSession()
+		.save(new Student(username));
+
+	}
+
+	@Override
+	public Student searchForStudent(String username) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM Student WHERE username = :username", Student.class)
+				.setParameter("username", username)
+				.uniqueResult();
+	}
+
+	@Override
+	public int delete(String username) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("DELETE FROM Student WHERE username = :username")
+				.setParameter("username", username)
+				.executeUpdate();
 	}
 
 }

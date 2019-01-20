@@ -1,14 +1,23 @@
-package gr.hua.dit.feeding_service_app.user;
+package gr.hua.dit.feeding_service_app.utilites;
 
-public class User {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+public class NewUserUtil {
+	
+	@NotBlank(message = "Please enter a username")
 	private String username;
+	
+	@NotBlank(message = "Please enter a password")
+	@Size(min = 6, max = 15, message = "Your password must be between 6 and 15 characters")
 	private String password;
+
 	private String userType;
 
-	public User() {
+	public NewUserUtil() {
 	}
 
-	public User(String username, String password, String userType) {
+	public NewUserUtil(String username, String password, String userType) {
 		this.username = username;
 		this.password = password;
 		this.userType = userType;

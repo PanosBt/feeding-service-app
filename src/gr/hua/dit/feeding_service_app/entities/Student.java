@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements UserInterface{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,6 @@ public class Student {
 
 	@Column(name = "username")
 	private String username;
-
-	@Column(name = "pass")
-	private String pass;
 
 	@Column(name = "firstName")
 	private String firstName;
@@ -53,25 +50,9 @@ public class Student {
 
 	public Student() {
 	}
-
-	public Student(String username, String pass, String firstName, String lastName, Date dateOfBirth,
-			String identityCardNO, String email, String phone, int academicID, String dept) {
+	
+	public Student(String username) {
 		this.username = username;
-		this.pass = pass;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.identityCardNO = identityCardNO;
-		this.email = email;
-		this.phone = phone;
-		this.academicID = academicID;
-		this.dept = dept;
-	}
-
-	public Student(String username, String pass) {
-//		this.id = null;
-		this.username = username;
-		this.pass = pass;
 	}
 
 	public int getId() {
@@ -84,14 +65,6 @@ public class Student {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 
 	public String getFirstName() {
@@ -156,13 +129,6 @@ public class Student {
 
 	public void setDept(String dept) {
 		this.dept = dept;
-	}
-
-	@Override
-	public String toString() {
-		return "Student [id=" + id + ", username=" + username + ", pass=" + pass + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", identityCardNO=" + identityCardNO
-				+ ", email=" + email + ", phone=" + phone + ", academicID=" + academicID + ", dept=" + dept + "]";
 	}
 
 }

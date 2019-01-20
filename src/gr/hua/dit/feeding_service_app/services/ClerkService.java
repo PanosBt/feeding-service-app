@@ -1,7 +1,7 @@
 package gr.hua.dit.feeding_service_app.services;
 
+import gr.hua.dit.feeding_service_app.entities.Clerk;
 
-//Will this be used? We shall see...
 public interface ClerkService {
-
+	public Clerk searchForClerk(String username);
 }
