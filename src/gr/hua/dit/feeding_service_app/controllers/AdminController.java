@@ -1,6 +1,8 @@
 package gr.hua.dit.feeding_service_app.controllers;
 
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 import javax.validation.Valid;
 
@@ -19,12 +21,13 @@ import gr.hua.dit.feeding_service_app.entities.Admin;
 import gr.hua.dit.feeding_service_app.entities.Clerk;
 import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.entities.User;
+import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
+import gr.hua.dit.feeding_service_app.model_helper.NewUserHelper;
 import gr.hua.dit.feeding_service_app.services.AdminService;
 import gr.hua.dit.feeding_service_app.services.ClerkService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
-import gr.hua.dit.feeding_service_app.utilites.NewUserUtil;
 
 @Controller
 @RequestMapping("/admin")
@@ -45,7 +48,7 @@ public class AdminController {
 
 	@GetMapping
 	public String getAdminHomePage(Model model, @RequestParam Map<String, String> params) {
-		NewUserUtil user = new NewUserUtil();
+		NewUserHelper user = new NewUserHelper();
 		model.addAttribute("user", user);
 		model.addAttribute("username", new String());
 		
@@ -63,7 +66,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/create_user")
-	public String createUser(@Valid @ModelAttribute("user") NewUserUtil newUser, BindingResult result, Model model) {
+	public String createUser(@Valid @ModelAttribute("user") NewUserHelper newUser, BindingResult result, Model model) {
 		if (result.hasErrors())
 			return "admin-home";
 
@@ -91,7 +94,6 @@ public class AdminController {
 			if ((admin = adminService.searchForAdmin(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", admin);
-			model.addAttribute("user_modified", admin);
 			break;
 		case AuthorityUtilities.CLERK_ROLE:
 		case AuthorityUtilities.SUPERVISOR_ROLE:
@@ -99,14 +101,12 @@ public class AdminController {
 			if ((clerk = clerkService.searchForClerk(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", clerk);
-			model.addAttribute("user_modified", clerk);
 			break;
 		case AuthorityUtilities.STUDENT_ROLE:
 			Student student;
 			if ((student = studentService.searchForStudent(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", student);
-			model.addAttribute("user_modified", student);
 			break;
 		default:
 			return userNotFoundRed;
@@ -114,28 +114,45 @@ public class AdminController {
 
 		// if everything went well
 		// add user role to the model and return
-		model.addAttribute("role", normaliseRole(role));
+		model.addAttribute("role", normalizeRole(role));
+		model.addAttribute("user_modified", new ModUserHelper(username));
 		return "modify-user";
 	}
 
-	private String normaliseRole(String role) {
-		switch (role) {
-		case AuthorityUtilities.ADMIN_ROLE:
-			return "Administrator";
-		case AuthorityUtilities.CLERK_ROLE:
-			return "Clerk";
-		case AuthorityUtilities.STUDENT_ROLE:
-			return "Student";
-		case AuthorityUtilities.SUPERVISOR_ROLE:
-			return "Supervisor";
-		default:
-			return "";
+	// Normalize role names for prettier output
+	private String normalizeRole(String role) {
+		return AuthorityUtilities.NORMALIΖED_ROLES.containsKey(role) 
+				? AuthorityUtilities.NORMALIΖED_ROLES.get(role)
+				: "";
+	}
+	
+	// invert the result of normalizeRole()
+	private String deNormalizeRole(String role) {
+		String deNormRole;
+		try {
+			deNormRole = AuthorityUtilities.NORMALIΖED_ROLES.entrySet()
+					.stream()
+					.filter(entry -> Objects.equals(entry.getValue(), role))
+					.findFirst()
+					.get()
+					.getKey();
 		}
+		catch(NullPointerException | NoSuchElementException | IllegalStateException ex) {
+			ex.printStackTrace();
+			deNormRole = "";
+		}
+		return deNormRole;
+
 	}
 
 	@PostMapping("/modify_user")
-	public String modifyUser(@ModelAttribute("user_modified") Object user, @ModelAttribute("role") String role) {
-		// TODO implement dah!
+	public String modifyUser(@ModelAttribute("user_modified") ModUserHelper modUser, @ModelAttribute("role") String role) {
+		String redStr = "redirect:/admin/modify_user_search?userUpdated=";
+		
+		if ((userService.searchUser(modUser.getUsername()) == null))
+			return redStr + "false";
+		
+		userService.updateUser(modUser, deNormalizeRole(role));
 		return "unimplemented";
 	}
 

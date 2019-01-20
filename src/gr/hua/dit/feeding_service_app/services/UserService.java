@@ -1,10 +1,11 @@
 package gr.hua.dit.feeding_service_app.services;
 
 import gr.hua.dit.feeding_service_app.entities.User;
-import gr.hua.dit.feeding_service_app.utilites.NewUserUtil;
+import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
+import gr.hua.dit.feeding_service_app.model_helper.NewUserHelper;
 
 public interface UserService {
-	public boolean createUser(NewUserUtil newUser);
+	public boolean createUser(NewUserHelper newUser);
 	public User searchUser(String username);
 	
 	/**
@@ -18,4 +19,6 @@ public interface UserService {
 	public String getUserHigherRole(String username);
 	
 	public boolean deleteUser(String username);
+	
+	public void updateUser(ModUserHelper modUser, String role);
 }

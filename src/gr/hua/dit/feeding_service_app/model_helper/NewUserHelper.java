@@ -1,9 +1,9 @@
-package gr.hua.dit.feeding_service_app.utilites;
+package gr.hua.dit.feeding_service_app.model_helper;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class NewUserUtil {
+public class NewUserHelper {
 	
 	@NotBlank(message = "Please enter a username")
 	private String username;
@@ -14,10 +14,10 @@ public class NewUserUtil {
 
 	private String userType;
 
-	public NewUserUtil() {
+	public NewUserHelper() {
 	}
 
-	public NewUserUtil(String username, String password, String userType) {
+	public NewUserHelper(String username, String password, String userType) {
 		this.username = username;
 		this.password = password;
 		this.userType = userType;

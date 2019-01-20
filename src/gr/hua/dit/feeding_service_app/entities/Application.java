@@ -1,5 +1,8 @@
 package gr.hua.dit.feeding_service_app.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -47,6 +51,9 @@ public class Application {
 
 	@Column(name = "score")
 	private int score;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
+	private Set<AccompanyingDocument> authorities = new HashSet<>();
 
 	public Application() {
 	}

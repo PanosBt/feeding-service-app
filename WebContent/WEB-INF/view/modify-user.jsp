@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4>Τροποίηση στοιχείων χρήστη</h5>
+	<h4>Τροποποίηση στοιχείων χρήστη</h5>
 	<br />
 	
 	<form:form method="POST"

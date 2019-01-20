@@ -15,8 +15,9 @@ import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.dao.UserDAO;
 import gr.hua.dit.feeding_service_app.entities.Authority;
 import gr.hua.dit.feeding_service_app.entities.User;
+import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
+import gr.hua.dit.feeding_service_app.model_helper.NewUserHelper;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
-import gr.hua.dit.feeding_service_app.utilites.NewUserUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public boolean createUser(NewUserUtil newUser) {
+	public boolean createUser(NewUserHelper newUser) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
@@ -126,6 +127,13 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return true;
+	}
+
+	@Override
+	@Transactional
+	public void updateUser(ModUserHelper modUser, String role) {
+		
+		
 	}
 
 }
