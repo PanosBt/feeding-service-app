@@ -68,6 +68,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring().antMatchers("/resources/**");
 
 		web.ignoring().antMatchers("/api/**");
+		//Comment this out to exclude /clerk from security check
+//		web.ignoring().antMatchers("/clerk/**");
 
 	}
 
