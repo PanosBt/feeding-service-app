@@ -24,7 +24,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		PasswordEncoder encoder = new BCryptPasswordEncoder(10); /*
+																10 is the default value for rounds according to 
+		 														the documentation. I assign the value just for reference
+		 														when testing w/ bcrypt calculators etc...	
+	 															*/
 		return encoder;
 	}
 
