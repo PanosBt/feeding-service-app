@@ -1,4 +1,7 @@
-package gr.hua.dit.feeding_service_app.entity;
+package gr.hua.dit.feeding_service_app.entities;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,7 +21,7 @@ public class Application {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "appl_id")
-	private Integer appl_id;
+	private int appl_id;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "student_id")
@@ -47,13 +51,15 @@ public class Application {
 
 	@Column(name = "score")
 	private int score;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
+	private Set<AccompanyingDocument> authorities = new HashSet<>();
 
 	public Application() {
 	}
 
 	public Application(Student student, Clerk clerk, int familyIncome, int num_siblings, String origin_city,
 			boolean mother_employeed, boolean father_employeed, boolean approved, int score) {
-		this.appl_id = null;
 		this.student = student;
 		this.clerk = clerk;
 		this.familyIncome = familyIncome;
@@ -67,7 +73,6 @@ public class Application {
 
 	public Application(Student student, int familyIncome, int num_siblings, String origin_city,
 			boolean mother_employeed, boolean father_employeed) {
-		this.appl_id = null;
 		this.student = student;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
@@ -76,7 +81,7 @@ public class Application {
 		this.father_employeed = father_employeed;
 	}
 
-	public Integer getAppl_id() {
+	public int getAppl_id() {
 		return appl_id;
 	}
 

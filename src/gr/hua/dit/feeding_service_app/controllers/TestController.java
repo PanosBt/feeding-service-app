@@ -1,21 +1,24 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import gr.hua.dit.feeding_service_app.entity.Application;
-import gr.hua.dit.feeding_service_app.entity.Student;
+import gr.hua.dit.feeding_service_app.entities.Application;
+import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Controller
 public class TestController {
 
+<<<<<<< HEAD:src/gr/hua/dit/feeding_service_app/controller/TestController.java
 	@RequestMapping("/")
 	public String showHome() { 
 		return "home";
 	}
 
+=======
+>>>>>>> 189e3e0a5d168a2c5fc2806d621061110db5f53d:src/gr/hua/dit/feeding_service_app/controllers/TestController.java
 	@RequestMapping("/testscore")
 	public String testScore(Model model) {
 		Application appl = new Application(new Student(), 0, 1, "Other", false, false);

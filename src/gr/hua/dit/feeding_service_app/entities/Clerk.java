@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.entity;
+package gr.hua.dit.feeding_service_app.entities;
 
 import java.util.Date;
 
@@ -11,10 +11,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-//TODO Maybe this should be a subclass of Clerk (if yes, changes needed in db too)
 @Entity
-@Table(name = "supervisor")
-public class Supervisor {
+@Table(name = "clerk")
+public class Clerk implements UserInterface{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +22,6 @@ public class Supervisor {
 
 	@Column(name = "username")
 	private String username;
-
-	@Column(name = "pass")
-	private String pass;
 
 	@Column(name = "firstName")
 	private String firstName;
@@ -49,35 +45,15 @@ public class Supervisor {
 	@Column(name = "supervising_dept")
 	private String supervising_dept;
 
-	public Supervisor() {
+	public Clerk() {
 	}
 
-	public Supervisor(int id, String username, String pass, String firstName, String lastName, Date dateOfBirth,
-			String identityCardNO, String email, String phone, String supervising_dept) {
-		this.id = id;
+	public Clerk(String username) {
 		this.username = username;
-		this.pass = pass;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.identityCardNO = identityCardNO;
-		this.email = email;
-		this.phone = phone;
-		this.supervising_dept = supervising_dept;
-	}
-
-	public Supervisor(int id, String username, String pass) {
-		this.id = id;
-		this.username = username;
-		this.pass = pass;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUsername() {
@@ -86,14 +62,6 @@ public class Supervisor {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 
 	public String getFirstName() {
@@ -150,13 +118,6 @@ public class Supervisor {
 
 	public void setSupervising_dept(String supervising_dept) {
 		this.supervising_dept = supervising_dept;
-	}
-
-	@Override
-	public String toString() {
-		return "Supervisor [id=" + id + ", username=" + username + ", pass=" + pass + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", identityCardNO=" + identityCardNO
-				+ ", email=" + email + ", phone=" + phone + ", supervising_dept=" + supervising_dept + "]";
 	}
 
 }

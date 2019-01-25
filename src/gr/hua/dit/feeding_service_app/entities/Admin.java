@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.entity;
+package gr.hua.dit.feeding_service_app.entities;
 
 import java.util.Date;
 
@@ -12,8 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "clerk")
-public class Clerk {
+@Table(name = "admin")
+public class Admin implements UserInterface{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,6 @@ public class Clerk {
 
 	@Column(name = "username")
 	private String username;
-
-	@Column(name = "pass")
-	private String pass;
 
 	@Column(name = "firstName")
 	private String firstName;
@@ -45,39 +42,15 @@ public class Clerk {
 	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "supervising_dept")
-	private String supervising_dept;
-
-	public Clerk() {
+	public Admin() {
 	}
 
-	public Clerk(int id, String username, String pass, String firstName, String lastName, Date dateOfBirth,
-			String identityCardNO, String email, String phone, String supervising_dept) {
-		this.id = id;
+	public Admin(String username) {
 		this.username = username;
-		this.pass = pass;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.identityCardNO = identityCardNO;
-		this.email = email;
-		this.phone = phone;
-		this.supervising_dept = supervising_dept;
-	}
-
-	public Clerk(int id, String username, String pass, String supervising_dept) {
-		this.id = id;
-		this.username = username;
-		this.pass = pass;
-		this.supervising_dept = supervising_dept;
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getUsername() {
@@ -86,14 +59,6 @@ public class Clerk {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
 	}
 
 	public String getFirstName() {
@@ -142,21 +107,6 @@ public class Clerk {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public String getSupervising_dept() {
-		return supervising_dept;
-	}
-
-	public void setSupervising_dept(String supervising_dept) {
-		this.supervising_dept = supervising_dept;
-	}
-
-	@Override
-	public String toString() {
-		return "Clerk [id=" + id + ", username=" + username + ", pass=" + pass + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", identityCardNO=" + identityCardNO
-				+ ", email=" + email + ", phone=" + phone + ", supervising_dept=" + supervising_dept + "]";
 	}
 
 }
