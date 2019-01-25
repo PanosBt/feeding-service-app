@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import gr.hua.dit.feeding_service_app.Objects.StudentLimit;
 import gr.hua.dit.feeding_service_app.Objects.StudentObject;
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.dao.StudentDAOImpl;
-import gr.hua.dit.feeding_service_app.entity.Student;
+import gr.hua.dit.feeding_service_app.entities.Student;
 
 @Controller
 @RequestMapping(value = "/clerk")

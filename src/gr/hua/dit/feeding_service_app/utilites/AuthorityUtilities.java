@@ -13,7 +13,7 @@ public class AuthorityUtilities {
 	 * Each possible user role mapped to a more normalized
 	 * string for usage in prettier output
 	 */
-	public static final Map<String, String> NORMALIΖED_ROLES = new HashMap<String, String>() {
+	public static final Map<String, String> NORMALIZED_ROLES = new HashMap<String, String>() {
 		/**
 		 * In case we want to serialize this
 		 */

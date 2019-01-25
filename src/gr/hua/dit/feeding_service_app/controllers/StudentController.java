@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.controller;
+package gr.hua.dit.feeding_service_app.controllers;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -10,12 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
-<<<<<<< HEAD:src/gr/hua/dit/feeding_service_app/controller/StudentController.java
 import gr.hua.dit.feeding_service_app.dao.StudentDAOImpl;
-import gr.hua.dit.feeding_service_app.entity.Student;
-=======
 import gr.hua.dit.feeding_service_app.entities.Student;
->>>>>>> 189e3e0a5d168a2c5fc2806d621061110db5f53d:src/gr/hua/dit/feeding_service_app/controllers/StudentController.java
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Controller

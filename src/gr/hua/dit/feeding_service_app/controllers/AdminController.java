@@ -134,8 +134,8 @@ public class AdminController {
 
 	// Normalize role names for prettier output
 	private String normalizeRole(String role) {
-		return AuthorityUtilities.NORMALIΖED_ROLES.containsKey(role) 
-				? AuthorityUtilities.NORMALIΖED_ROLES.get(role)
+		return AuthorityUtilities.NORMALIZED_ROLES.containsKey(role) 
+				? AuthorityUtilities.NORMALIZED_ROLES.get(role)
 				: "";
 	}
 	

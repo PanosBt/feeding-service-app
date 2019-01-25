@@ -11,14 +11,15 @@ import gr.hua.dit.feeding_service_app.utilites.Utilities;
 @Controller
 public class TestController {
 
-<<<<<<< HEAD:src/gr/hua/dit/feeding_service_app/controller/TestController.java
-	@RequestMapping("/")
-	public String showHome() { 
-		return "home";
-	}
-
-=======
->>>>>>> 189e3e0a5d168a2c5fc2806d621061110db5f53d:src/gr/hua/dit/feeding_service_app/controllers/TestController.java
+// Why is this here though?	
+//<<<<<<< HEAD:src/gr/hua/dit/feeding_service_app/controller/TestController.java
+//	@RequestMapping("/")
+//	public String showHome() { 
+//		return "home";
+//	}
+//
+//=======
+//>>>>>>> 189e3e0a5d168a2c5fc2806d621061110db5f53d:src/gr/hua/dit/feeding_service_app/controllers/TestController.java
 	@RequestMapping("/testscore")
 	public String testScore(Model model) {
 		Application appl = new Application(new Student(), 0, 1, "Other", false, false);
