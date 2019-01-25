@@ -12,7 +12,7 @@ import gr.hua.dit.feeding_service_app.utilites.Utilities;
 public class TestController {
 
 	@RequestMapping("/")
-	public String showHome() {
+	public String showHome() { 
 		return "home";
 	}
 
