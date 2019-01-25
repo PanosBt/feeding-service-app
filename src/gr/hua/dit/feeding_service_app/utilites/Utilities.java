@@ -9,6 +9,11 @@ import java.util.Properties;
 
 import gr.hua.dit.feeding_service_app.entities.Application;
 
+/**
+ * Utility classes for basic functions of our application 
+ * @author panos
+ *
+ */
 public class Utilities {
 
 	/**
@@ -19,12 +24,22 @@ public class Utilities {
 
 	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-	// read a date string and parse/convert to a date
+	
+	/**
+	 * read a date string formated as "dd/MM/yyyy" and parse/convert to a date
+	 * @param dateStr the string to convert
+	 * @return the Date object
+	 * @throws ParseException if the string is not formated as dd/MM/yyyy
+	 */
 	public static Date parseDate(String dateStr) throws ParseException {
 		return formatter.parse(dateStr);
 	}
 
-	// read a date and format/convert to a string
+	/**
+	 * read a Date and format/convert it to a string
+	 * @param date
+	 * @return the string formated as dd/MM/yyyy or null if passed Date is null
+	 */
 	public static String formatDate(Date date) {
 		if (date != null)
 			return formatter.format(date);
@@ -50,6 +65,7 @@ public class Utilities {
 				score += 100;
 			else if (application.getFamilyIncome() < 15000)
 				score += 30;
+			// increase score based on num_siblings, if any
 			score += application.getNum_siblings() * 20;
 
 			// read university city to compare w/ student's origin city

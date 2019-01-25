@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Limit Changed</title>
 </head>
 <body>
-<p>hello ${firstName}</p>
+	New limit is: ${newLimit}
 </body>
 </html>

@@ -62,8 +62,8 @@
 		<hr>
 		<h5>Τροποποίηση Στοιχείων Χρήστη</h5>
 
-		<div class="${pageContext.request.contextPath}/admin-search-user-for-mod">
-			<form method="POST" action="admin/modify_user_search">
+		<div class="admin-search-user-for-mod">
+			<form method="POST" action="${pageContext.request.contextPath}/admin/modify_user_search">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<table>
