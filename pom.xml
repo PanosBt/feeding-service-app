@@ -6,6 +6,8 @@
 	<artifactId>feeding-service-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<url>https://github.com/PanosBt/feeding-service-app</url>
+	<description>A university feeding service applications managment system.</description>
 	<properties>
 		<org.springframework.version>5.1.3.RELEASE</org.springframework.version>
 		<hibernate.version>5.3.7.Final</hibernate.version>
