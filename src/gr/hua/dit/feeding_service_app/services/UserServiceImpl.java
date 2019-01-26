@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User(newUser.getUsername(), encoder.encode(newUser.getPassword()), true);
 		userDAO.createUser(user);
 //		System.out.println("Password is: " + newUser.getPassword());
-
+		
 		// create new table tuple and new authorities based on user type
 		switch (newUser.getUserType()) {
 		case "student":
@@ -151,5 +151,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 	}
+	
+
 
 }

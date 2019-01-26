@@ -2,6 +2,7 @@ package gr.hua.dit.feeding_service_app.controllers;
 
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -15,9 +16,11 @@ import gr.hua.dit.feeding_service_app.Objects.StudentObject;
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.dao.StudentDAOImpl;
 import gr.hua.dit.feeding_service_app.entities.Student;
+import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
 
 @Controller
 @RequestMapping(value = "/clerk")
+@Secured(AuthorityUtilities.CLERK_ROLE)
 public class ClerkController {
 	
 	@Autowired

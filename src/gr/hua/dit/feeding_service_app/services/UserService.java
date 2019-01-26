@@ -14,7 +14,7 @@ public interface UserService {
 	 * has both SUPERVISOR_ROLE and CLERK_ROLE
 	 * or null if user doesn't exist or has no role
 	 * @param username
-	 * @return
+	 * @return requested user highest role
 	 */
 	public String getUserHigherRole(String username);
 	
