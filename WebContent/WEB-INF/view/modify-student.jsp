@@ -70,6 +70,9 @@
 			<br />
 			<input type="submit" value="ΑΠΟΘΗΚΕΥΣΗ" />
 		</form:form>
+		<form action="${pageContext.request.contextPath}/clerk/studentlist" method="get">
+			<button type="submit">Πίσω</button><br>
+		</form>
 		<c:if test="${not empty studentUpdated}">
 			<c:choose>
 				<c:when test="${studentUpdated}">
