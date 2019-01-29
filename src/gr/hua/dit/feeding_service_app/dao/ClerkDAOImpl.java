@@ -76,6 +76,8 @@ public class ClerkDAOImpl implements ClerkDAO {
 		if (!StringUtils.isBlank(modUser.getPhone()))
 			clerk.setPhone(modUser.getPhone());
 
+		if (!StringUtils.isBlank(modUser.getSupervising_dept()))
+			clerk.setSupervising_dept(modUser.getSupervising_dept());
 	}
 
 }

@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${students}
+Clerk Home Page
+
+	<br />
+	
+	<br />
+
+  
+  <a href ="${pageContext.request.contextPath}/clerk/studentlist">Νέα Καρτέλα Φοιτητή</a>
+
+
+
 </body>
 </html>

@@ -1,5 +1,7 @@
 package gr.hua.dit.feeding_service_app.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,10 @@ public class StudentServiceImpl implements StudentService {
 	public Student searchForStudent(String username) {
 		return studentDAO.searchForStudent(username);
 	}
-
+	
+	@Override
+	@Transactional
+	public List<Student> getAllStudents() {
+		return studentDAO.getAllStudents();
+	}
 }

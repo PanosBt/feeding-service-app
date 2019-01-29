@@ -92,7 +92,14 @@ public class StudentDAOImpl implements StudentDAO {
 
 		if (!StringUtils.isBlank(modUser.getPhone()))
 			student.setPhone(modUser.getPhone());
+		
+		if (modUser.getAcademicID() > 0)
+			student.setAcademicID(modUser.getAcademicID());
+		
+		if (!StringUtils.isBlank(modUser.getDept()))
+			student.setDept(modUser.getDept());
 
 	}
+
 
 }

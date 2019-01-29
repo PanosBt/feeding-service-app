@@ -1,5 +1,7 @@
 package gr.hua.dit.feeding_service_app.controllers;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -143,14 +145,24 @@ public class AdminController {
 	public String modifyUser(@ModelAttribute("user_modified") ModUserHelper modUser, 
 			@PathVariable("username") String username) {
 		
+		String mod_username = username;
+		String userUpdated = "true";
+		
+		try {
+			mod_username = URLEncoder.encode(mod_username, "UTF-8"); //encode username to UTF-8 so usernames with greek characters are supported in redirect link
+		} catch (UnsupportedEncodingException e) {
+			userUpdated = "false";
+			e.printStackTrace();
+		}
+		
 		// redirection string when finished
 		String redStr = "redirect:/admin/modify_user_search?"
-						+ "username=" + username
+						+ "username=" + mod_username
 						+ "&userUpdated=";
 	
 		modUser.setUsername(username);
 		userService.updateUser(modUser);
-		return redStr + "true";
+		return redStr + userUpdated;
 	}
 
 	@PostMapping("/delete_user")
