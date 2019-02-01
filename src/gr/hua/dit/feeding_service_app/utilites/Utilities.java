@@ -1,5 +1,8 @@
 package gr.hua.dit.feeding_service_app.utilites;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -87,5 +90,87 @@ public class Utilities {
 		application.setScore(score);
 		return score;
 	}
+	
+	/**
+	 * Returns the max students that will have a feeding card for feeding service 
+	 * 
+	 * @return the StudentLimit at the moment or -1 upon failure as a String
+	 */
+	public static String getStudentLimit() {
+		
+		Properties prop = new Properties();
+		String studentlimit;
+		
+		try (FileInputStream in = new FileInputStream("city.properties")){
+			 prop.load(in);
+			 studentlimit = prop.getProperty("limit");
+		} catch (IOException e) {
+			studentlimit = "-1";
+			e.printStackTrace();
+		}
 
+		return studentlimit;
+	}
+	
+	/**
+	 * Updates the max-students that will be able to have a feeding card for feeding service
+	 * 
+	 * @param String
+	 * 
+	 * @return true if update was success or false upon failure 
+	 */
+	public static boolean updateStudentLimit (String limit) {
+		
+		Properties prop = new Properties();
+		boolean studentlimitupdated = true;
+		
+		try(FileInputStream in = new FileInputStream("city.properties")) {
+			 //FileInputStream in = new FileInputStream("city.properties");
+			 prop.load(in);
+		} catch (FileNotFoundException e) {
+			studentlimitupdated = false;
+			e.printStackTrace();
+		} catch (IOException e) {
+			studentlimitupdated = false;
+			e.printStackTrace();
+		}
+		
+		try (FileOutputStream out = new FileOutputStream("city.properties")) {
+			prop.setProperty("limit", limit);
+			prop.store(out, null);
+		} catch (FileNotFoundException e) {
+			studentlimitupdated = false;
+			e.printStackTrace();
+		} catch (IOException e) {
+			studentlimitupdated = false;
+			e.printStackTrace();
+		}
+		return studentlimitupdated;
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

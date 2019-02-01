@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,12 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import gr.hua.dit.feeding_service_app.Objects.StudentLimit;
 import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
+import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 
 @Controller
@@ -36,8 +35,15 @@ public class ClerkController {
 	@Autowired
 	private StudentService studentService;
 	
-	@GetMapping
-	public String ClerkHomePage() {
+	@RequestMapping
+	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
+		
+		//checks if the limit was updated when the updateStudentLimit was called
+		if (params.containsKey("studentLimitUpdated")) 
+			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
+		//model attribute to show current student limit
+		model.addAttribute("limit", Utilities.getStudentLimit());
+	
 		return "clerk-home";
 	}
 		
@@ -74,7 +80,6 @@ public class ClerkController {
 		
 		userService.updateUser(modStudent);
 		// make redirection string when finished
-		//String mod_username = username;
 		String userUpdated = "true";
 		try {
 			username = URLEncoder.encode(username, "UTF-8"); //encode username to UTF-8 so usernames with greek characters are supported in redirect link
@@ -87,42 +92,61 @@ public class ClerkController {
 						+ "username=" + username
 						+ "&studentUpdated=";
 		return  redStr + userUpdated;
-	}
-	
-	
-	/**
-	 * @return change-student-limit
-	 */
-	
-	@GetMapping("/change-student-limit")
-	public String ChangeLimit(Model model) {
-		model.addAttribute("change-student-limit", new StudentLimit());
-		return "change-student-limit";
-	
-	}
-	
-	/**
-	 * @return changed-student-limit
-	 */
-	
-	@PostMapping("/changed-student-limit")
-	public String ChangedLimit(@ModelAttribute StudentLimit limit,ModelMap model) {
-		model.addAttribute("newLimit",limit.getNewLimit());
-		return "changed-student-limit";
-	}
-	
-
-
-	/**
-	 * @return show-student-marking
-	 */
-	
-	@GetMapping("/student-marking")
-	public String CardCreated(Model model) {
-	String marking = "50";
-	model.addAttribute("marking", marking);
-	return "show-student-marking";
 		
 	}
+	
+	@PostMapping ("/update_student_limit")
+	public String updateStudentLimit(@RequestParam Map<String, String> params) {
+		String newlimit;
+		boolean studentLimitUpdated;
+		
+		//checks if params contain limit and the updateStudentLimit returns true/false 
+		if (params.containsKey("limit")) { 
+			newlimit = params.get("limit");
+			studentLimitUpdated = Utilities.updateStudentLimit(newlimit);
+		} else studentLimitUpdated = false;
+		
+		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
+		return redStr + studentLimitUpdated;
+	}
+	
+	
+	
+//	/**
+//	 * @return change-student-limit
+//	 */
+//	
+//	
+//	
+//	@GetMapping("/change-student-limit")
+//	public String ChangeLimit(Model model) {
+//		model.addAttribute("change-student-limit", new StudentLimit());
+//		return "change-student-limit";
+//	
+//	}
+//	
+//	/**
+//	 * @return changed-student-limit
+//	 */
+//	
+//	@PostMapping("/changed-student-limit")
+//	public String ChangedLimit(@ModelAttribute StudentLimit limit,ModelMap model) {
+//		model.addAttribute("newLimit",limit.getNewLimit());
+//		return "changed-student-limit";
+//	}
+//	
+//
+//
+//	/**
+//	 * @return show-student-marking
+//	 */
+//	
+//	@GetMapping("/student-marking")
+//	public String CardCreated(Model model) {
+//	String marking = "50";
+//	model.addAttribute("marking", marking);
+//	return "show-student-marking";
+//		
+//	}
 	
 }

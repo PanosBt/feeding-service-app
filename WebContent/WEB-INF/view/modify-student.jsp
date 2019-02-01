@@ -12,11 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4>
-		Τροποποίηση στοιχείων χρήστη
-		</h5>
-		<br />
-
+	
+		<h4>Τροποποίηση στοιχείων χρήστη</h4>
 		<form:form method="POST"
 			action="${pageContext.request.contextPath}/clerk/modify_student/${student.username}"
 			modelAttribute="mod_student">
