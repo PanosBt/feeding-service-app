@@ -6,32 +6,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Student List</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-
 	<form method="POST"
-		action="${pageContext.request.contextPath}/clerk/modify_student_search">
+		action="${pageContext.request.contextPath}/clerk/getapplication">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 		<table border=1>
 			<tr>
-				<th>Username</th>
+				<th>ID Αίτησης</th>
 			</tr>
-			<!-- loop over and print our students -->
-			<c:forEach var="tempStudent" items="${students}">
+			<c:forEach var="tempΑpplication" items="${applications}">
 				<tr>
-					<td>${tempStudent.username}</td>
-					<td><button type="submit" name="username"
-							value=${tempStudent.username }  class="ui button">Επεξεργασία</button></td>
+					<td>${tempΑpplication.appl_id}</td>
+					<td><button type="submit" name="appl_id"
+							value=${tempΑpplication.appl_id }  class="ui button">Επεξεργασία</button></td>
 				</tr>
 			</c:forEach>
 		</table>
-	</form>
-	<form action="${pageContext.request.contextPath}/clerk"
-		method="get">
-		<button type="submit">Πίσω</button>
-		<br>
 	</form>
 </body>
 </html>

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import gr.hua.dit.feeding_service_app.entities.Application;
 import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
+import gr.hua.dit.feeding_service_app.services.ApplicationService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
@@ -34,6 +36,8 @@ public class ClerkController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired ApplicationService applicationService;
 	
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
@@ -108,6 +112,22 @@ public class ClerkController {
 		
 		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
 		return redStr + studentLimitUpdated;
+	}
+	
+	@GetMapping ("/applicationlist")
+	public String applicationList (Model model) {
+		//Change it to a query that returns applications that need to be checked
+		List<Application> applications = applicationService.getAllApplications();
+		model.addAttribute("applications", applications);
+		
+		return "application-list";
+	}
+	
+	@PostMapping ("/getapplication")
+	public String getApplication(Model model, @RequestParam Map<String, String> params) {
+		
+		
+		return "unimplemented";
 	}
 	
 	
