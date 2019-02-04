@@ -29,12 +29,12 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	}
 	
 	
-	public Application searchApplication(int appl_id) {
-
-		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Application WHERE appl_id = :appl_id", Application.class)
-				.setParameter("appl_id", appl_id)
-				.uniqueResult();
-	}
+//	public Application searchApplication(int appl_id) {
+//
+//		return sessionFactory.getCurrentSession()
+//				.createQuery("FROM Application WHERE appl_id = :appl_id", Application.class)
+//				.setParameter("appl_id", appl_id)
+//				.uniqueResult();
+//	}
 
 }

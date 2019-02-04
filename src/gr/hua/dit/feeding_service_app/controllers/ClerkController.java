@@ -5,6 +5,8 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -117,15 +119,18 @@ public class ClerkController {
 	@GetMapping ("/applicationlist")
 	public String applicationList (Model model) {
 		//Change it to a query that returns applications that need to be checked
-		List<Application> applications = applicationService.getAllApplications();
-		model.addAttribute("applications", applications);
+		List<Application> application = applicationService.getAllApplications();
+		model.addAttribute("application", application);
 		
 		return "application-list";
 	}
 	
 	@PostMapping ("/getapplication")
-	public String getApplication(Model model, @RequestParam Map<String, String> params) {
+	public String getApplication( @ModelAttribute("application") Application application ,Model model ,@RequestParam Map<String, String> params) {
 		
+		Student student = application.getStudent();
+		model.addAttribute("application", application);
+		model.addAttribute("student", student);
 		
 		return "unimplemented";
 	}
