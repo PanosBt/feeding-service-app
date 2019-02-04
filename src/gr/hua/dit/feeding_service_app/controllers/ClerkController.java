@@ -5,8 +5,6 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -126,7 +124,9 @@ public class ClerkController {
 	}
 	
 	@PostMapping ("/getapplication")
-	public String getApplication( @ModelAttribute("application") Application application ,Model model ,@RequestParam Map<String, String> params) {
+	public String getApplication( @ModelAttribute("application") Application application,
+			Model model, @RequestParam Map<String, String> params) {
+		
 		
 		Student student = application.getStudent();
 		model.addAttribute("application", application);

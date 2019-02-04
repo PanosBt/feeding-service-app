@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,12 +23,12 @@ public class Application {
 	@Column(name = "appl_id")
 	private int appl_id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "student_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "student_id", nullable = true)
 	private Student student;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "clerk_checked_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "clerk_checked_id", nullable = true)
 	private Clerk clerk;
 
 	@Column(name = "familyIncome")
@@ -53,7 +53,7 @@ public class Application {
 	private int score;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
-	private Set<AccompanyingDocument> authorities = new HashSet<>();
+	private Set<AccompanyingDocument> accompanyingDocuments = new HashSet<>();
 
 	public Application() {
 	}
@@ -159,7 +159,7 @@ public class Application {
 
 	@Override
 	public String toString() {
-		return "Application [appl_id=" + appl_id + ", student=" + student + ", clerk=" + clerk + ", familyIncome="
+		return "Application [appl_id=" + appl_id + ", student_id=" + student.getId() + ", clerk=" + clerk + ", familyIncome="
 				+ familyIncome + ", num_siblings=" + num_siblings + ", origin_city=" + origin_city
 				+ ", mother_employeed=" + mother_employeed + ", father_employeed=" + father_employeed + ", approved="
 				+ approved + ", score=" + score + "]";
