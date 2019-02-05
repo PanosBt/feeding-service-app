@@ -22,9 +22,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return applicationdao.getAllApplications();
 	}
 	
-//	public Application searchApplication(int appl_id) {
-//		
-//		return applicationdao.searchApplication(appl_id);
-//	}
+	@Override
+	@Transactional
+	public Application searchApplication(int appl_id) {
+		
+		return applicationdao.searchApplication(appl_id);
+	}
 
 }

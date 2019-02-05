@@ -9,7 +9,6 @@
 <title>Student List</title>
 </head>
 <body>
-
 	<form method="POST"
 		action="${pageContext.request.contextPath}/clerk/modify_student_search">
 		<input type="hidden" name="${_csrf.parameterName}"

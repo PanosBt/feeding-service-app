@@ -10,21 +10,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form method="POST"
-		action="${pageContext.request.contextPath}/clerk/getapplication"
-		modelAttribute="application">
+	<form method="POST"
+		action="${pageContext.request.contextPath}/clerk/applicationinfo">
+		<input type="hidden" name="${_csrf.parameterName}"
+		value="${_csrf.token}" />
 		<table border=1>
 			<tr>
 				<th>ID Αίτησης</th>
 			</tr>
-			<c:forEach var="tempΑpplication" items="${application}">
+			<c:forEach var="application" items="${applications}">
 				<tr>
-					<td>${tempΑpplication.appl_id}</td>
+					<td>${application.appl_id}</td>
 					<td><button type="submit" name="appl_id"
-							value=${tempΑpplication.appl_id }  class="ui button">Επεξεργασία</button></td>
+							value=${application.appl_id }  class="ui button">Επεξεργασία</button></td>
 				</tr>
 			</c:forEach>
 		</table>
-	</form:form>
+	</form>
 </body>
 </html>

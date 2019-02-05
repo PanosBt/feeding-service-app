@@ -11,7 +11,7 @@
 	<br />
 	Definitely in my TODO list.
 	<br />
-	Worry not ${student.username}
-	${application.appl_id}
+	Worry not 
+	${appl_id}
 </body>
 </html>

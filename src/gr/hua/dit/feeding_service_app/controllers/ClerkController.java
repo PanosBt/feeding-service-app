@@ -37,7 +37,8 @@ public class ClerkController {
 	@Autowired
 	private StudentService studentService;
 	
-	@Autowired ApplicationService applicationService;
+	@Autowired
+	private ApplicationService applicationService;
 	
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
@@ -114,54 +115,32 @@ public class ClerkController {
 		return redStr + studentLimitUpdated;
 	}
 	
+	//return all applications that need to be checked
 	@GetMapping ("/applicationlist")
 	public String applicationList (Model model) {
 		//Change it to a query that returns applications that need to be checked
-		List<Application> application = applicationService.getAllApplications();
-		model.addAttribute("application", application);
+		List<Application> applications = applicationService.getAllApplications();
+		model.addAttribute("applications", applications);
 		
 		return "application-list";
 	}
 	
-	@PostMapping ("/getapplication")
-	public String getApplication( @ModelAttribute("application") Application application,
-			Model model, @RequestParam Map<String, String> params) {
+	@PostMapping ("/applicationinfo")
+	public String getApplication( Model model, @RequestParam Map<String, String> params) {
 		
-		
+		int appl_id = Integer.parseInt(params.get("appl_id"));
+		Application application = applicationService.searchApplication(appl_id);
 		Student student = application.getStudent();
 		model.addAttribute("application", application);
 		model.addAttribute("student", student);
 		
-		return "unimplemented";
+		return "application-info";
 	}
 	
 	
 	
-//	/**
-//	 * @return change-student-limit
-//	 */
-//	
-//	
-//	
-//	@GetMapping("/change-student-limit")
-//	public String ChangeLimit(Model model) {
-//		model.addAttribute("change-student-limit", new StudentLimit());
-//		return "change-student-limit";
-//	
-//	}
-//	
-//	/**
-//	 * @return changed-student-limit
-//	 */
-//	
-//	@PostMapping("/changed-student-limit")
-//	public String ChangedLimit(@ModelAttribute StudentLimit limit,ModelMap model) {
-//		model.addAttribute("newLimit",limit.getNewLimit());
-//		return "changed-student-limit";
-//	}
-//	
-//
-//
+
+
 //	/**
 //	 * @return show-student-marking
 //	 */

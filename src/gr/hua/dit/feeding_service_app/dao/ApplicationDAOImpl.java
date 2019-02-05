@@ -19,8 +19,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Override
-	@Transactional	
+	@Override	
 	public List<Application> getAllApplications() {
 		Session curSession = sessionFactory.getCurrentSession();
 		
@@ -28,13 +27,13 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		return query.getResultList();
 	}
 	
-	
-//	public Application searchApplication(int appl_id) {
-//
-//		return sessionFactory.getCurrentSession()
-//				.createQuery("FROM Application WHERE appl_id = :appl_id", Application.class)
-//				.setParameter("appl_id", appl_id)
-//				.uniqueResult();
-//	}
+	@Override
+	public Application searchApplication(int appl_id) {
+
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM Application WHERE appl_id = :appl_id", Application.class)
+				.setParameter("appl_id", appl_id)
+				.uniqueResult();
+	}
 
 }
