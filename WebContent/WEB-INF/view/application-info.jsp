@@ -22,7 +22,8 @@
 		</tr>
 		<tr>
 			<td>Ημ/νία Γέννησης</td>
-			<td><fmt:formatDate pattern="dd-MM-yyyy" value="${student.dateOfBirth}" /></td>
+			<td><fmt:formatDate pattern="dd-MM-yyyy"
+					value="${student.dateOfBirth}" /></td>
 		</tr>
 		<tr>
 			<td>Αριθμός Ταυτότητας</td>
@@ -49,8 +50,7 @@
 	<table border="1">
 		<tr>
 			<td>Οικογενιακό Εισόδημα</td>
-			<td>${application.familyIncome}
-		</td>
+			<td>${application.familyIncome}</td>
 		<tr>
 			<td>Αριθμός Αδερφών</td>
 			<td>${application.num_siblings}</td>
@@ -62,26 +62,42 @@
 		<tr>
 			<td>Μητέρα</td>
 			<td><c:choose>
-				<c:when test="${application.mother_employeed}">
+					<c:when test="${application.mother_employeed}">
 					Εργαζόμενη
-				</c:when>  
-				<c:otherwise>
+				</c:when>
+					<c:otherwise>
 					Άνεργη
 				</c:otherwise>
-			</c:choose>
-			</td>
+				</c:choose></td>
 		<tr>
 			<td>Πατέρας</td>
 			<td><c:choose>
-				<c:when test="${application.father_employeed}">
+					<c:when test="${application.father_employeed}">
 					Εργαζόμενος
-				</c:when>  
-				<c:otherwise>
+				</c:when>
+					<c:otherwise>
 					Άνεργος
 				</c:otherwise>
-			</c:choose>
-			</td>
+				</c:choose></td>
 	</table>
+	<form method="POST"
+		action="${pageContext.request.contextPath}/clerk/pdf"
+		target="_blank">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+		<table>
+			<tr>
+				<th>Τύπος εγγράφου</th>
+			</tr>
+			<c:forEach var="accompanyingDocuments" items="${accompanyingDocuments}">
+				<tr>
+					<td>${accompanyingDocuments.doc_type}</td>
+					<td><button type="submit" name="file_path"
+							value=${accompanyingDocuments.file_path } class="ui button">Έλεγχος</button></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</form>
 </body>
 </html>
 

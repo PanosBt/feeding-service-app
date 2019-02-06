@@ -1,11 +1,20 @@
 package gr.hua.dit.feeding_service_app.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +25,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import gr.hua.dit.feeding_service_app.entities.AccompanyingDocument;
 import gr.hua.dit.feeding_service_app.entities.Application;
 import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
+import gr.hua.dit.feeding_service_app.services.AccompanyingDocumentService;
 import gr.hua.dit.feeding_service_app.services.ApplicationService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
@@ -39,6 +50,9 @@ public class ClerkController {
 	
 	@Autowired
 	private ApplicationService applicationService;
+	
+	@Autowired
+	private AccompanyingDocumentService accompanyingDocumentService;
 	
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
@@ -128,16 +142,49 @@ public class ClerkController {
 	@PostMapping ("/applicationinfo")
 	public String getApplication( Model model, @RequestParam Map<String, String> params) {
 		
+		//Load Application info, Student info and Documents to model
 		int appl_id = Integer.parseInt(params.get("appl_id"));
 		Application application = applicationService.searchApplication(appl_id);
 		Student student = application.getStudent();
+		List<AccompanyingDocument> accompanyingDocuments = accompanyingDocumentService.getAccompanyingDocument(appl_id);
+		
 		model.addAttribute("application", application);
 		model.addAttribute("student", student);
+		model.addAttribute("accompanyingDocuments", accompanyingDocuments);
+		
 		
 		return "application-info";
 	}
 	
-	
+	@PostMapping("/pdf")
+	public ResponseEntity<byte[]> getPDF(@RequestParam Map<String, String> params)  {
+
+		File file = new File(params.get("file_path"));
+		FileInputStream fis = null;
+		
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		byte[] contents = null;
+		try {
+			contents = IOUtils.toByteArray(fis);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
+	    //If you want to download file and choose a name use this:
+	    //String filename = "output.pdf";
+	    //headers.setContentDispositionFormData(filename, filename);
+	    headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+	    ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
+	    return response;
+	}
 	
 
 
