@@ -9,7 +9,6 @@
 <title>Student List</title>
 </head>
 <body>
-
 	<form method="POST"
 		action="${pageContext.request.contextPath}/clerk/modify_student_search">
 		<input type="hidden" name="${_csrf.parameterName}"
@@ -18,7 +17,7 @@
 			<tr>
 				<th>Username</th>
 			</tr>
-			<!-- loop over and print our customers -->
+			<!-- loop over and print our students -->
 			<c:forEach var="tempStudent" items="${students}">
 				<tr>
 					<td>${tempStudent.username}</td>

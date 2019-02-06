@@ -1,12 +1,15 @@
 package gr.hua.dit.feeding_service_app.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,6 +50,9 @@ public class Student {
 
 	@Column(name = "dept")
 	private String dept;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+	private List<Application> applications;
 
 	public Student() {
 	}
@@ -130,5 +136,14 @@ public class Student {
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
+	
 
 }

@@ -9,10 +9,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h4>Clerk Home Page</h4>
+	<h4>Καλώς ήρθατε!</h4>
+	<h4>Επιλογές χρήστη:</h4>
 	<br />
 	<br />
 	<a href="${pageContext.request.contextPath}/clerk/studentlist">Νέα Καρτέλα Φοιτητή</a>
+	<br />
+	<br />
+	<hr style="border: 1px solid black;" />
+	<br />
+	<br />
+	<a href="${pageContext.request.contextPath}/clerk/applicationlist">Έλεγχος Αιτήσεων</a>
 	<br />
 	<br />
 	<hr style="border: 1px solid black;" />
