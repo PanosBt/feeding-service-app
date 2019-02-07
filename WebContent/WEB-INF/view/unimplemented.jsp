@@ -12,6 +12,5 @@
 	Definitely in my TODO list.
 	<br />
 	Worry not 
-	${appl_id}
 </body>
 </html>

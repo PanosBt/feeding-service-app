@@ -80,12 +80,13 @@
 				</c:otherwise>
 				</c:choose></td>
 	</table>
+	<br>
 	<form method="POST"
-		action="${pageContext.request.contextPath}/clerk/pdf"
+		action="${pageContext.request.contextPath}/clerk/document"
 		target="_blank">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-		<table>
+		<table border=1>
 			<tr>
 				<th>Τύπος εγγράφου</th>
 			</tr>
