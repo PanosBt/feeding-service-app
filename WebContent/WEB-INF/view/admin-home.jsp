@@ -27,7 +27,7 @@
 					<tr>
 						<td><form:label path="username">Όνομα χρήστη</form:label></td>
 						<td><form:input path="username" /></td>
-						<c:if test="${not empty userCreated && not userCreated}">
+						<c:if test="${not empty userExists && userExists}">
 							<td><div class="error">Αυτό το username
 									χρησιμοποιείται ήδη.</div></td>
 						</c:if>
@@ -58,24 +58,28 @@
 				<td>Ο χρήστης δημιουργήθηκε!</td>
 			</tr>
 		</c:if>
+		<c:if test="${not empty userCreated && not userCreated}">
+			<tr>
+				<td><div class="error">Η δημιουργία του χρήστη απέτυχε.</div></td>
+			</tr>
+		</c:if>
 		<br />
 		<hr>
 		<h5>Τροποποίηση Στοιχείων Χρήστη</h5>
 
 		<div class="admin-search-user-for-mod">
-			<form method="POST" action="${pageContext.request.contextPath}/admin/modify_user_search">
+			<form method="POST"
+				action="${pageContext.request.contextPath}/admin/modify_user_search">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<table>
 					<tr>
 						<td>Όνομα χρήστη</td>
 						<td><input type="text" required name="username"></td>
-						<td>
-							<c:if
+						<td><c:if
 								test="${not empty modUserFound && not modUserFound}">
 								<div class="error">Ο χρήστης δεν βρέθηκε</div>
-							</c:if>
-						</td>
+							</c:if></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="ΑΝΑΖΗΤΗΣΗ"></td>
@@ -87,7 +91,8 @@
 		<hr>
 		<h5>Διαγραφή Χρήση</h5>
 		<div class="admin-delete-user">
-			<form method="POST" action="${pageContext.request.contextPath}/admin/delete_user">
+			<form method="POST"
+				action="${pageContext.request.contextPath}/admin/delete_user">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<table>
@@ -98,16 +103,14 @@
 					<tr>
 						<td><input type="submit" value="ΔΙΑΓΡΑΦΗ"></td>
 						<c:if test="${not empty delUserFound}">
-							<td>
-								<c:choose>
+							<td><c:choose>
 									<c:when test="${not delUserFound}">
 										<div class="error">Ο χρήστης δεν βρέθηκε</div>
 									</c:when>
 									<c:otherwise>
 										<div class="success">Ο χρήστης διαγράφηκε!</div>
 									</c:otherwise>
-								</c:choose>
-							</td>
+								</c:choose></td>
 
 						</c:if>
 					</tr>

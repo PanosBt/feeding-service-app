@@ -64,6 +64,10 @@ public class AdminController {
 		String delUserFound;
 		if ((delUserFound = params.get("delUserFound")) != null)
 			model.addAttribute("delUserFound", Boolean.parseBoolean(delUserFound));
+		String userExists;
+		if ((userExists = params.get("userExists")) != null)
+			model.addAttribute("userExists", Boolean.parseBoolean(userExists));
+		
 		
 		return "admin-home";
 	}
@@ -72,6 +76,9 @@ public class AdminController {
 	public String createUser(@Valid @ModelAttribute("user") NewUserHelper newUser, BindingResult result, Model model) {
 		if (result.hasErrors())
 			return "admin-home";
+		
+		if (userService.searchUser(newUser.getUsername()) != null)
+			return "redirect:/admin?userExists=" + true;
 
 		return "redirect:/admin?userCreated=" + userService.createUser(newUser);
 

@@ -13,4 +13,6 @@ public interface UserDAO {
 	
 	public void createUser(User user);
 	public void delete(User user);
+
+	public boolean authenticateUser(String username, String password);
 }

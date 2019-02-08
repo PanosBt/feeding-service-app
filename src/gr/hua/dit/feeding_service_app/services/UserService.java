@@ -21,4 +21,12 @@ public interface UserService {
 	public boolean deleteUser(String username);
 	
 	public void updateUser(ModUserHelper modUser);
+	
+	/**
+	 * Authenticate a user based on given username and password
+	 * @param username
+	 * @param pass
+	 * @return true if user is authenticated else false
+	 */
+	public boolean authenticateUser(String username, String pass);
 }

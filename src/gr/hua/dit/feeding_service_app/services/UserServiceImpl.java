@@ -65,6 +65,9 @@ public class UserServiceImpl implements UserService {
 		case "admin":
 			autorityDAO.createAuthority(new Authority(user, AuthorityUtilities.ADMIN_ROLE));
 			adminDAO.createAdmin(newUser.getUsername());
+			break;
+		default:
+			return false;
 		}
 
 		return true;
@@ -149,6 +152,13 @@ public class UserServiceImpl implements UserService {
 		default:
 			//return false;
 		}
+		
+	}
+
+	@Override
+	@Transactional
+	public boolean authenticateUser(String username, String pass) {
+		return userDAO.authenticateUser(username, pass);
 		
 	}
 	
