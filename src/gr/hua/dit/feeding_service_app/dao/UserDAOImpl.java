@@ -37,14 +37,12 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean authenticateUser(String username, String password) {
-		PasswordEncoder encoder = new BCryptPasswordEncoder(10);
-		System.out.println("In userDAO.authenticateUser: " 
-							+ "\nusername: " + username + " password: " + password);
-		
 		User user = sessionFactory.getCurrentSession()
 				.createQuery("FROM User WHERE username = :username", User.class)
 				.setParameter("username", username)
 				.uniqueResult();
+		
+		PasswordEncoder encoder = new BCryptPasswordEncoder(10);
 		
 		return user != null && encoder.matches(password, user.getPassword());
 		
