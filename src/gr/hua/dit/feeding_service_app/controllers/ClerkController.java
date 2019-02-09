@@ -85,7 +85,7 @@ public class ClerkController {
 
 		// add check if needed for username
 		Student student;
-		student = studentService.searchForStudent(params.get("username"));
+		student = studentService.getStudent(params.get("username"));
 
 		model.addAttribute("student", student);
 		model.addAttribute("mod_student", new ModUserHelper(params.get("username")));
@@ -143,9 +143,9 @@ public class ClerkController {
 
 		// Load Application info, Student info and Documents to model
 		int appl_id = Integer.parseInt(params.get("appl_id"));
-		Application application = applicationService.searchApplication(appl_id);
+		Application application = applicationService.getApplication(appl_id);
 		Student student = application.getStudent();
-		List<AccompanyingDocument> accompanyingDocuments = accompanyingDocumentService.getAccompanyingDocument(appl_id);
+		List<AccompanyingDocument> accompanyingDocuments = accompanyingDocumentService.getAccompanyingDocuments(appl_id);
 
 		model.addAttribute("application", application);
 		model.addAttribute("student", student);
@@ -160,12 +160,12 @@ public class ClerkController {
 		boolean applApproved = Boolean.parseBoolean(params.get("approve"));
 		if (applApproved == true) {
 			//Get application and update it
-			Application application = applicationService.searchApplication(appl_id);
+			Application application = applicationService.getApplication(appl_id);
 			application.setApproved(applApproved);
 			application.setScore(Utilities.scoreApplication(application));
 			applicationService.updateApplication(application);	
 		} else 	{
-			Application application = applicationService.searchApplication(appl_id);
+			Application application = applicationService.getApplication(appl_id);
 			application.setApproved(applApproved);
 			applicationService.updateApplication(application);
 		}

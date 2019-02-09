@@ -39,7 +39,7 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public Student searchForStudent(String username) {
+	public Student getStudent(String username) {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM Student WHERE username = :username", Student.class)
 				.setParameter("username", username)
@@ -58,7 +58,7 @@ public class StudentDAOImpl implements StudentDAO {
 	public boolean update(ModUserHelper modUser) {
 		Student student;
 
-		if ((student = searchForStudent(modUser.getUsername())) == null)
+		if ((student = getStudent(modUser.getUsername())) == null)
 			return false;
 		
 		fetchModUserToStudent(modUser, student);

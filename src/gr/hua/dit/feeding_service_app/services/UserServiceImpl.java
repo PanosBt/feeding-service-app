@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
-		if (userDAO.searchForUser(newUser.getUsername()) != null)
+		if (userDAO.getUser(newUser.getUsername()) != null)
 			return false;
 
 		// create and save new enabled user
@@ -77,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public User searchUser(String username) {
-		return userDAO.searchForUser(username);
+		return userDAO.getUser(username);
 
 	}
 

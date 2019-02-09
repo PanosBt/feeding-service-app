@@ -18,9 +18,9 @@ public class AccompanyingDocumentServiceImpl implements AccompanyingDocumentServ
 
 	@Override
 	@Transactional
-	public List<AccompanyingDocument> getAccompanyingDocument(int appl_id) {
+	public List<AccompanyingDocument> getAccompanyingDocuments(int appl_id) {
 	
-		return accompanyDoccumentDAO.getAccompanyingDocument(appl_id);
+		return accompanyDoccumentDAO.getAccompanyingDocuments(appl_id);
 	}
 
 }

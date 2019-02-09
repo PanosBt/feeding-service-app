@@ -7,6 +7,6 @@ public interface ApplicationService {
 	
 	public List<Application> getAllApplications();
 	
-	public Application searchApplication(int appl_id);
+	public Application getApplication(int appl_id);
 	public void updateApplication(Application application);
 }

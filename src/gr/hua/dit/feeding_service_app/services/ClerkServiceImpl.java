@@ -16,8 +16,8 @@ public class ClerkServiceImpl implements ClerkService {
 
 	@Override
 	@Transactional
-	public Clerk searchForClerk(String username) {
-		return clerkDAO.searchForClerk(username);
+	public Clerk getClerk(String username) {
+		return clerkDAO.getClerk(username);
 	}
 
 }

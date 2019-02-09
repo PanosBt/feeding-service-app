@@ -17,7 +17,7 @@ public class AccompanyDoccumentDAOImpl implements AccompanyDoccumentDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<AccompanyingDocument> getAccompanyingDocument(int appl_id) {
+	public List<AccompanyingDocument> getAccompanyingDocuments(int appl_id) {
 		
 		Session curSession = sessionFactory.getCurrentSession();
 		return curSession

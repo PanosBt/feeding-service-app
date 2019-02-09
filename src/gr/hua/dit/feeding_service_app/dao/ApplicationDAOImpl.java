@@ -28,7 +28,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	}
 	
 	@Override
-	public Application searchApplication(int appl_id) {
+	public Application getApplication(int appl_id) {
 
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM Application WHERE appl_id = :appl_id", Application.class)

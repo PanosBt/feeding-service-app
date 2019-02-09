@@ -112,20 +112,20 @@ public class AdminController {
 		switch (role) {
 		case AuthorityUtilities.ADMIN_ROLE:
 			Admin admin;
-			if ((admin = adminService.searchForAdmin(username)) == null)
+			if ((admin = adminService.getAdmin(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", admin);
 			break;
 		case AuthorityUtilities.CLERK_ROLE:
 		case AuthorityUtilities.SUPERVISOR_ROLE:
 			Clerk clerk;
-			if ((clerk = clerkService.searchForClerk(username)) == null)
+			if ((clerk = clerkService.getClerk(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", clerk);
 			break;
 		case AuthorityUtilities.STUDENT_ROLE:
 			Student student;
-			if ((student = studentService.searchForStudent(username)) == null)
+			if ((student = studentService.getStudent(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", student);
 			break;

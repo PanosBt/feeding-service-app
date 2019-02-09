@@ -22,7 +22,7 @@ public class ClerkDAOImpl implements ClerkDAO {
 	}
 
 	@Override
-	public Clerk searchForClerk(String username) {
+	public Clerk getClerk(String username) {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM Clerk WHERE username = :username", Clerk.class)
 				.setParameter("username", username)
@@ -41,7 +41,7 @@ public class ClerkDAOImpl implements ClerkDAO {
 	public boolean update(ModUserHelper modUser) {
 		Clerk clerk;
 
-		if ((clerk = searchForClerk(modUser.getUsername())) == null)
+		if ((clerk = getClerk(modUser.getUsername())) == null)
 			return false;
 		
 		fetchModUserToClerk(modUser, clerk);

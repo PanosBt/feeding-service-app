@@ -22,7 +22,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Admin searchForAdmin(String username) {
+	public Admin getAdmin(String username) {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM Admin WHERE username = :username", Admin.class)
 				.setParameter("username", username)
@@ -41,7 +41,7 @@ public class AdminDAOImpl implements AdminDAO {
 	public boolean update(ModUserHelper modUser) {
 		Admin admin;
 
-		if ((admin = searchForAdmin(modUser.getUsername())) == null)
+		if ((admin = getAdmin(modUser.getUsername())) == null)
 			return false;
 		
 		fetchModUserToAdmin(modUser, admin);

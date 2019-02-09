@@ -15,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
-	public User searchForUser(String username) {
+	public User getUser(String username) {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM User WHERE username = :username", User.class)
 				.setParameter("username", username)

@@ -9,7 +9,7 @@ public interface UserDAO {
 	 * @param username
 	 * @return the corresponding User or null
 	 */
-	public User searchForUser(String username);
+	public User getUser(String username);
 	
 	public void createUser(User user);
 	public void delete(User user);

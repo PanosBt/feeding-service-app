@@ -18,8 +18,8 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	@Transactional
-	public Student searchForStudent(String username) {
-		return studentDAO.searchForStudent(username);
+	public Student getStudent(String username) {
+		return studentDAO.getStudent(username);
 	}
 	
 	@Override
@@ -27,4 +27,5 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getAllStudents() {
 		return studentDAO.getAllStudents();
 	}
+
 }

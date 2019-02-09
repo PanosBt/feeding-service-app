@@ -24,9 +24,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 	
 	@Override
 	@Transactional
-	public Application searchApplication(int appl_id) {
+	public Application getApplication(int appl_id) {
 		
-		return applicationdao.searchApplication(appl_id);
+		return applicationdao.getApplication(appl_id);
 	}
 	
 	@Override
