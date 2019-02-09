@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS application (
 	father_employeed BOOLEAN NOT NULL,
 	approved BOOLEAN DEFAULT NULL,
 	score INT(3) UNSIGNED DEFAULT NULL,
+	subm_date DATE NOT NULL,
 	PRIMARY KEY (appl_id),
 	FOREIGN KEY (student_id) REFERENCES student(id),
 	FOREIGN KEY (clerk_checked_id) REFERENCES clerk(id)
