@@ -102,7 +102,7 @@
 	<br>
 	<br>
 	<form method="POST"
-	action="${pageContext.request.contextPath}/clerk/applcationapprove/${application.appl_id}">
+	action="${pageContext.request.contextPath}/clerk/applcationchecked/${application.appl_id}">
 	<input type="hidden" name="${_csrf.parameterName}"
 	value="${_csrf.token}" />
 	<button type="submit" name="approve"

@@ -154,23 +154,22 @@ public class ClerkController {
 		return "application-info";
 	}
 	
-	@PostMapping("/applcationapprove/{appl_id}")
-	public String applicationApprove(Model model, @RequestParam Map<String, String> params, @PathVariable("appl_id") int appl_id) {
+	@PostMapping("/applcationchecked/{appl_id}")
+	public String applcationChecked(Model model, @RequestParam Map<String, String> params, @PathVariable("appl_id") int appl_id) {
 		
+		Application application = applicationService.getApplication(appl_id);
 		boolean applApproved = Boolean.parseBoolean(params.get("approve"));
 		if (applApproved == true) {
 			//Get application and update it
-			Application application = applicationService.getApplication(appl_id);
 			application.setApproved(applApproved);
 			application.setScore(Utilities.scoreApplication(application));
 			applicationService.updateApplication(application);	
 		} else 	{
-			Application application = applicationService.getApplication(appl_id);
 			application.setApproved(applApproved);
 			applicationService.updateApplication(application);
 		}
 		
-		return "unimplemented";
+		return "application-checked";
 	}	
 	
 	@PostMapping("/document")
