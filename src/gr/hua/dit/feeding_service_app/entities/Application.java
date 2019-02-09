@@ -78,13 +78,14 @@ public class Application {
 	}
 
 	public Application(Student student, int familyIncome, int num_siblings, String origin_city,
-			boolean mother_employeed, boolean father_employeed) {
+			boolean mother_employeed, boolean father_employeed, Date subm_date) {
 		this.student = student;
 		this.familyIncome = familyIncome;
 		this.num_siblings = num_siblings;
 		this.origin_city = origin_city;
 		this.mother_employeed = mother_employeed;
 		this.father_employeed = father_employeed;
+		this.subm_date = subm_date;
 	}
 
 	public int getAppl_id() {

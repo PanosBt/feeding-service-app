@@ -50,4 +50,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 		return 0;
 	}
 
+	@Override
+	public void save(Application application) {
+		
+		applicationdao.save(application);
+		
+	}
+
 }

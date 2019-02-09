@@ -11,4 +11,6 @@ public interface ApplicationDAO {
 	public void updateApplication(Application application);
 
 	public List<Application> getApplicationsByYearOrderedByRank(int year);
+
+	public void save(Application application);
 }

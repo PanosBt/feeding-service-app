@@ -11,4 +11,6 @@ public interface ApplicationService {
 	public void updateApplication(Application application);
 
 	public int getRank(Application application);
+
+	public void save(Application application);
 }

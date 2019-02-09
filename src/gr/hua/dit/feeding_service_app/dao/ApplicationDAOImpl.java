@@ -53,4 +53,13 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		.getResultList();
 	}
 
+	@Override
+	@Transactional
+	public void save(Application application) {
+		
+		sessionFactory.getCurrentSession()
+		.save(application);
+		
+	}
+
 }
