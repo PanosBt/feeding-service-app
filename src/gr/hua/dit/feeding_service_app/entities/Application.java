@@ -1,7 +1,7 @@
 package gr.hua.dit.feeding_service_app.entities;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "application")
@@ -47,19 +49,23 @@ public class Application {
 	private boolean father_employeed;
 
 	@Column(name = "approved")
-	private boolean approved;
+	private Boolean approved;
 
 	@Column(name = "score")
-	private int score;
-	
+	private Integer score;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
-	private Set<AccompanyingDocument> accompanyingDocuments = new HashSet<>();
+	private List<AccompanyingDocument> accompanyingDocuments;
+
+	@Column(name = "subm_date")
+	@Temporal(TemporalType.DATE)
+	private Date subm_date;
 
 	public Application() {
 	}
 
 	public Application(Student student, Clerk clerk, int familyIncome, int num_siblings, String origin_city,
-			boolean mother_employeed, boolean father_employeed, boolean approved, int score) {
+			boolean mother_employeed, boolean father_employeed, Boolean approved, Integer score) {
 		this.student = student;
 		this.clerk = clerk;
 		this.familyIncome = familyIncome;
@@ -141,26 +147,43 @@ public class Application {
 		this.father_employeed = father_employeed;
 	}
 
-	public boolean isApproved() {
+	public Boolean isApproved() {
 		return approved;
 	}
 
-	public void setApproved(boolean approved) {
+	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 
+	public List<AccompanyingDocument> getAccompanyingDocuments() {
+		return accompanyingDocuments;
+	}
+
+	public void setAccompanyingDocuments(List<AccompanyingDocument> accompanyingDocuments) {
+		this.accompanyingDocuments = accompanyingDocuments;
+	}
+
+	public Date getSubm_date() {
+		return subm_date;
+	}
+
+	public void setSubm_date(Date subm_date) {
+		this.subm_date = subm_date;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Application [appl_id=" + appl_id + ", student_id=" + student.getId() + ", clerk=" + clerk + ", familyIncome="
-				+ familyIncome + ", num_siblings=" + num_siblings + ", origin_city=" + origin_city
+		return "Application [appl_id=" + appl_id + ", student_id=" + student.getId() + ", clerk=" + clerk
+				+ ", familyIncome=" + familyIncome + ", num_siblings=" + num_siblings + ", origin_city=" + origin_city
 				+ ", mother_employeed=" + mother_employeed + ", father_employeed=" + father_employeed + ", approved="
 				+ approved + ", score=" + score + "]";
 	}

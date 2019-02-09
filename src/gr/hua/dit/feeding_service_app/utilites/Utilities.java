@@ -23,7 +23,7 @@ public class Utilities {
 	 * = 10000 the score that an application gets when the student who submitted it
 	 * deserves feeding no matter what
 	 */
-	public static final int ABSOLUTE_SCORE = 10000;
+	public static final Integer ABSOLUTE_SCORE = 10000;
 
 	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -56,8 +56,8 @@ public class Utilities {
 	 *                    updated upon success
 	 * @return the applied score upon success, or -1 upon failure
 	 */
-	public static int scoreApplication(Application application) {
-		int score = 0;
+	public static Integer scoreApplication(Application application) {
+		Integer score = 0;
 
 		if ((application.getFamilyIncome() == 0) && !application.isMother_employeed()
 				&& !application.isFather_employeed())

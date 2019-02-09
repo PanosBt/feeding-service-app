@@ -23,7 +23,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	public List<Application> getAllApplications() {
 		Session curSession = sessionFactory.getCurrentSession();
 		
-		Query<Application> query = curSession.createQuery("from Application", Application.class);
+		Query<Application> query = curSession.createQuery("from Application WHERE approved IS NULL", Application.class);
 		return query.getResultList();
 	}
 	

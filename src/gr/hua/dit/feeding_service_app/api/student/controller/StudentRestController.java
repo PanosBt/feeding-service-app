@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.api.student;
+package gr.hua.dit.feeding_service_app.api.student.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +18,11 @@ public class StudentRestController {
 	
 	@GetMapping("/{username}")
 	public Student getStudent(@PathVariable String username) {
-		
-		studentService.getStudent(username);
-		return null;
+		Student student;
+		if ((student = studentService.getStudent(username)) == null)
+			return null;
+		else
+			return student;
 		
 		
 	}
