@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.api.response_helper;
+package gr.hua.dit.feeding_service_app.api.authorize.response_helper;
 
 public class AuthorizeResponse {
 
