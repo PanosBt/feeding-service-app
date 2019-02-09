@@ -35,5 +35,13 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 				.setParameter("appl_id", appl_id)
 				.uniqueResult();
 	}
+	
+	@Override
+	public void updateApplication(Application application) {
+		
+		sessionFactory.getCurrentSession()
+		.update(application);
+		
+	}
 
 }

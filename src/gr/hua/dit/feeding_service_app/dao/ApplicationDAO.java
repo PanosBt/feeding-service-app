@@ -8,4 +8,5 @@ public interface ApplicationDAO {
 	public List<Application> getAllApplications();
 	
 	public Application searchApplication(int appl_id);
+	public void updateApplication(Application application);
 }

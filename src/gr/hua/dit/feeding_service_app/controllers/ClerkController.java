@@ -153,7 +153,26 @@ public class ClerkController {
 
 		return "application-info";
 	}
-
+	
+	@PostMapping("/applcationapprove/{appl_id}")
+	public String applicationApprove(Model model, @RequestParam Map<String, String> params, @PathVariable("appl_id") int appl_id) {
+		
+		boolean applApproved = Boolean.parseBoolean(params.get("approve"));
+		if (applApproved == true) {
+			//Get application and update it
+			Application application = applicationService.searchApplication(appl_id);
+			application.setApproved(applApproved);
+			application.setScore(Utilities.scoreApplication(application));
+			applicationService.updateApplication(application);	
+		} else 	{
+			Application application = applicationService.searchApplication(appl_id);
+			application.setApproved(applApproved);
+			applicationService.updateApplication(application);
+		}
+		
+		return "unimplemented";
+	}	
+	
 	@PostMapping("/document")
 	public ResponseEntity<byte[]> getDocument(@RequestParam Map<String, String> params) {
 		//Get filepath from params
@@ -181,16 +200,5 @@ public class ClerkController {
 		return response;
 	}
 
-//	/**
-//	 * @return show-student-marking
-//	 */
-//	
-//	@GetMapping("/student-marking")
-//	public String CardCreated(Model model) {
-//	String marking = "50";
-//	model.addAttribute("marking", marking);
-//	return "show-student-marking";
-//		
-//	}
 
 }

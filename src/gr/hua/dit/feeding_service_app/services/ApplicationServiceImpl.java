@@ -28,5 +28,13 @@ public class ApplicationServiceImpl implements ApplicationService {
 		
 		return applicationdao.searchApplication(appl_id);
 	}
+	
+	@Override
+	@Transactional
+	public void updateApplication(Application application) {
+		
+		applicationdao.updateApplication(application);
+		
+	}
 
 }

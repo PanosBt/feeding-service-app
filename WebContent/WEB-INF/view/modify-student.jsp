@@ -61,13 +61,13 @@
 			<tr>
 				<td><form:label path="dept">Τμήμα</form:label></td>
 				<td><c:out value="${student.dept}" /></td>
-				<td><form:select path="dept">
+			<!-- 	<td><form:select path="dept">
 						<form:option value="DIT">Πληροφορικής και Τηλεματικής</form:option>
 						<form:option value="GEO">Γεωγραφίας</form:option>
 						<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
 						<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
-					</form:select></td>
-			</tr>
+					</form:select></td> -->
+			</tr>  
 		</table>
 		<br />
 		<input type="submit" value="ΑΠΟΘΗΚΕΥΣΗ" />

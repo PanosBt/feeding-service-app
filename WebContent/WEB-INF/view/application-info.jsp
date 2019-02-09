@@ -99,6 +99,17 @@
 			</c:forEach>
 		</table>
 	</form>
+	<br>
+	<br>
+	<form method="POST"
+	action="${pageContext.request.contextPath}/clerk/applcationapprove/${application.appl_id}">
+	<input type="hidden" name="${_csrf.parameterName}"
+	value="${_csrf.token}" />
+	<button type="submit" name="approve"
+		value=true class="ui button">Αποδοχή</button>
+	<button type="submit" name="approve"
+		value=true class="ui button">Απόρριψη</button>
+	</form>
 </body>
 </html>
 
