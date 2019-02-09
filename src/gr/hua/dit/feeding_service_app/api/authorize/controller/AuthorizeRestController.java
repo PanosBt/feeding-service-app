@@ -1,4 +1,4 @@
-package gr.hua.dit.feeding_service_app.api.authorize;
+package gr.hua.dit.feeding_service_app.api.authorize.controller;
 
 import java.util.Map;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import gr.hua.dit.feeding_service_app.api.response_helper.AuthorizeResponse;
+import gr.hua.dit.feeding_service_app.api.authorize.response_helper.AuthorizeResponse;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
 

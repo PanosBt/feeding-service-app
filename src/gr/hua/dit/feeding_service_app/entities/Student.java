@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "student")
 public class Student {
@@ -51,7 +53,9 @@ public class Student {
 	@Column(name = "dept")
 	private String dept;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+	@JsonIgnore
 	private List<Application> applications;
 
 	public Student() {
