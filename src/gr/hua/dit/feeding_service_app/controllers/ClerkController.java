@@ -60,7 +60,7 @@ public class ClerkController {
 		if (params.containsKey("studentLimitUpdated"))
 			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
 		// model attribute to show current student limit
-		model.addAttribute("limit", Utilities.getStudentLimit());
+		model.addAttribute("limit", Utilities.getStudentLimitStr());
 
 		return "clerk-home";
 	}

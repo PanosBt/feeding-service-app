@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gr.hua.dit.feeding_service_app.entities.Application;
-import gr.hua.dit.feeding_service_app.entities.Student;
 
 @Repository
 public class ApplicationDAOImpl implements ApplicationDAO {
@@ -42,6 +41,16 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		sessionFactory.getCurrentSession()
 		.update(application);
 		
+	}
+
+	@Override
+	@Transactional
+	public List<Application> getApplicationsByYearOrderedByRank(int year) {
+		
+		return sessionFactory.getCurrentSession()
+		.createQuery("FROM Application WHERE year(subm_date) = :year ORDER BY score DESC", Application.class)
+		.setParameter("year", year)
+		.getResultList();
 	}
 
 }

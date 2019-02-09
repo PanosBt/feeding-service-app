@@ -9,4 +9,6 @@ public interface ApplicationDAO {
 	
 	public Application getApplication(int appl_id);
 	public void updateApplication(Application application);
+
+	public List<Application> getApplicationsByYearOrderedByRank(int year);
 }

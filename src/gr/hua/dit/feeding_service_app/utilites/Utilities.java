@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
@@ -47,6 +48,22 @@ public class Utilities {
 		if (date != null)
 			return formatter.format(date);
 		return null;
+	}
+	
+	/**
+	 * extract year from a Date object the non-deprecated way
+	 * @param date the Date object
+	 * @return the year in the Date object
+	 */
+	public static int getYearFromDate(Date date) {
+		// here I use Calendar instead of LocalDate because date can be either
+		// java.util.Date or java.sql.Date (tnx Hibernate)
+		// DESPITE the fact that Application.subm_date (where this method is mostly used)
+		// is declared as a java.util.Date
+		// apparently Hibernate downcasts to java.sql.Date when it fetches it
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal.get(Calendar.YEAR);
 	}
 
 	/**
@@ -92,11 +109,11 @@ public class Utilities {
 	}
 	
 	/**
-	 * Returns the max students that will have a feeding card for feeding service 
+	 * Returns the max students that will have a feeding card for feeding service as a string 
 	 * 
 	 * @return the StudentLimit at the moment or -1 upon failure as a String
 	 */
-	public static String getStudentLimit() {
+	public static String getStudentLimitStr() {
 		
 		Properties prop = new Properties();
 		String studentlimit;
@@ -110,6 +127,14 @@ public class Utilities {
 		}
 
 		return studentlimit;
+	}
+	
+	/**
+	 * Returns the max students that will have a feeding card for feeding service as an Integer
+	 * @return the StudentLimit at the moment or -1 upon failure as an Integer
+	 */
+	public static Integer getStudentLimit() {
+		return Integer.parseInt(getStudentLimitStr());
 	}
 	
 	/**

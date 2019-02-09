@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import gr.hua.dit.feeding_service_app.dao.ApplicationDAO;
 import gr.hua.dit.feeding_service_app.entities.Application;
+import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -35,6 +36,18 @@ public class ApplicationServiceImpl implements ApplicationService {
 		
 		applicationdao.updateApplication(application);
 		
+	}
+
+	@Override
+	@Transactional
+	public int getRank(Application application) {
+		int year = Utilities.getYearFromDate(application.getSubm_date());
+		List<Application> applications = applicationdao.getApplicationsByYearOrderedByRank(year);
+		//TODO Reconsider the above TOO MUCH HEAVY QUERIES!!!
+		for (Application app : applications)
+			if (app.getAppl_id() == application.getAppl_id())
+				return applications.indexOf(app) + 1;
+		return 0;
 	}
 
 }

@@ -14,6 +14,7 @@ public class StudentRestExceptionHandler {
 	
 	@ExceptionHandler
 	public ResponseEntity<StudentErrorResponse> handleException(StudentNotFoundException ex) {
+		ex.printStackTrace();
 		errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
 		errorResponse.setMessage(ex.getMessage());
 		errorResponse.setTimeStamp(System.currentTimeMillis());
@@ -23,6 +24,7 @@ public class StudentRestExceptionHandler {
 	
 	@ExceptionHandler
 	public ResponseEntity<StudentErrorResponse> handleException(Exception ex) {
+		ex.printStackTrace();
 		errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
 		//Don't show message if unpredicted Exception is thrown
 //		errorResponse.setMessage(ex.getMessage());

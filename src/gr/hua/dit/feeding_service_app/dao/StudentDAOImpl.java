@@ -37,6 +37,13 @@ public class StudentDAOImpl implements StudentDAO {
 		.save(new Student(username));
 
 	}
+	
+
+	@Override
+	public Student getStudent(int id) {
+		return sessionFactory.getCurrentSession()
+				.get(Student.class, id);
+	}
 
 	@Override
 	public Student getStudent(String username) {
@@ -100,6 +107,7 @@ public class StudentDAOImpl implements StudentDAO {
 			student.setDept(modUser.getDept());
 
 	}
+
 
 
 }

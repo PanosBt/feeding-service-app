@@ -9,4 +9,6 @@ public interface ApplicationService {
 	
 	public Application getApplication(int appl_id);
 	public void updateApplication(Application application);
+
+	public int getRank(Application application);
 }
