@@ -11,7 +11,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import gr.hua.dit.feeding_service_app.api.exceptions.response_helper.RestErrorResponse;
 import gr.hua.dit.feeding_service_app.api.student.exception.StudentNotFoundException;
 
-@ControllerAdvice
+@ControllerAdvice(basePackages = "gr.hua.dit.feeding_service_app.api")
 public class RestExceptionHandler {
 
 	RestErrorResponse errorResponse = new RestErrorResponse();
