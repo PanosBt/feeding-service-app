@@ -70,7 +70,7 @@ public class ClerkController {
 	public String StudentList(Model model) {
 
 		// Change it to a query that returns students with no card
-		List<Student> students = studentService.getAllStudents();
+		List<Student> students = studentService.getStudentsWithNoData();
 
 		model.addAttribute("students", students);
 		return "student-list";
@@ -95,18 +95,19 @@ public class ClerkController {
 	@PostMapping("/modify_student/{username}")
 	public String StudentModified(@ModelAttribute("mod_student") ModUserHelper modStudent,
 			@PathVariable("username") String username) {
-
-		userService.updateUser(modStudent);
-		// make redirection string when finished
+		
+		//userService.updateUser(modStudent);
 		String userUpdated = "true";
 		try {
 			username = URLEncoder.encode(username, "UTF-8"); // encode username to UTF-8 so usernames with greek
 																// characters are supported in redirect link
+			modStudent.setData_init(true);
+			userService.updateUser(modStudent);
 		} catch (UnsupportedEncodingException e) {
 			userUpdated = "false";
 			e.printStackTrace();
 		}
-
+		// make redirection string when finished
 		String redStr = "redirect:/clerk/modify_student_search?" + "username=" + username + "&studentUpdated=";
 		return redStr + userUpdated;
 

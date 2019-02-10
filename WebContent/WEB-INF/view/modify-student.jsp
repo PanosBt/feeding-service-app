@@ -67,7 +67,7 @@
 						<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
 						<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
 					</form:select></td> -->
-			</tr>  
+			</tr>
 		</table>
 		<br />
 		<input type="submit" value="ΑΠΟΘΗΚΕΥΣΗ" />

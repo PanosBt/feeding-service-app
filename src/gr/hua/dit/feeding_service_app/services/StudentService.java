@@ -8,7 +8,7 @@ public interface StudentService {
 	
 	public Student getStudent(String username);
 	
-	public List<Student> getAllStudents();
+	public List<Student> getStudentsWithNoData();
 
 	public Student getStudent(int id);
 	

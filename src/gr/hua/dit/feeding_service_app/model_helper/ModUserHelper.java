@@ -31,9 +31,16 @@ public class ModUserHelper {
 	private int academicID;
 
 	private String dept;
+	
+	private boolean data_init;
+	
+	public ModUserHelper() {
+		this.data_init = false;
+	}
 
 	public ModUserHelper(String username) {
 		this.username = username;
+		this.data_init = false;
 	}
 
 	public String getUsername() {
@@ -125,6 +132,14 @@ public class ModUserHelper {
 				.atStartOfDay(ZoneId.systemDefault())
 				.toInstant()
 				);
+	}
+
+	public boolean getData_init() {
+		return data_init;
+	}
+
+	public void setData_init(boolean data_init) {
+		this.data_init = data_init;
 	}
 	
 }

@@ -24,7 +24,7 @@ public class StudentController {
 	@RequestMapping("/list")
 	public String testListStudents(Model model) {
 		
-		List<Student> students = studentDAO.getAllStudents();
+		List<Student> students = studentDAO.getStudentsWithNoData();
 		model.addAttribute("students", students);
 		return "list-students";
 	}
