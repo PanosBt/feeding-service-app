@@ -20,7 +20,7 @@ public class StudentDAOImpl implements StudentDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	//TODO Probably not needed, delete it if that's so
+	
 	@Override
 	@Transactional
 	public List<Student> getStudentsWithNoData(String dept) {
@@ -28,7 +28,17 @@ public class StudentDAOImpl implements StudentDAO {
 		Session curSession = sessionFactory.getCurrentSession();
 
 		Query<Student> query = curSession.createQuery("from Student WHERE data_init = false AND dept = :dept", Student.class)
-											.setParameter("dept", dept);
+										 .setParameter("dept", dept);
+		return query.getResultList();
+	}
+	
+	@Override
+	public List<Student> getStudentsByDpt(String dept) {
+		
+		Session curSession = sessionFactory.getCurrentSession();
+		Query<Student> query = curSession.createQuery("from Student WHERE dept = :dept", Student.class)
+										 .setParameter("dept", dept);
+		
 		return query.getResultList();
 	}
 
@@ -117,6 +127,8 @@ public class StudentDAOImpl implements StudentDAO {
 		
 		student.setData_init(modUser.getData_init());
 	}
+
+
 
 
 

@@ -75,9 +75,9 @@ public class ClerkController {
 	@GetMapping("/studentlist")
 	public String StudentList(Model model, Principal principal) {
 		
+		//Gets user info about the clerk that has logged in
 		Clerk clerk = clerkService.getClerk(principal.getName());
-		
-		// Change it to a query that returns students with no card
+		//Gets a list of students that the logged in clerk has to modify
 		List<Student> students = studentService.getStudentsWithNoData(clerk.getSupervising_dept());
 
 		model.addAttribute("students", students);
@@ -104,7 +104,6 @@ public class ClerkController {
 	public String StudentModified(@ModelAttribute("mod_student") ModUserHelper modStudent,
 			@PathVariable("username") String username) {
 		
-		//userService.updateUser(modStudent);
 		String userUpdated = "true";
 		try {
 			username = URLEncoder.encode(username, "UTF-8"); // encode username to UTF-8 so usernames with greek
@@ -139,9 +138,13 @@ public class ClerkController {
 
 	// return all applications that need to be checked
 	@GetMapping("/applicationlist")
-	public String applicationList(Model model) {
-		// Change it to a query that returns applications that need to be checked
-		List<Application> applications = applicationService.getAllApplications();
+	public String applicationList(Model model, Principal principal) {
+		
+		//Gets user info about the clerk that has logged in
+		Clerk clerk = clerkService.getClerk(principal.getName());
+		
+		//returns unchecked applications for clerk's dpt
+		List<Application> applications = applicationService.getUncheckedApplicationsByDpt(clerk.getSupervising_dept());
 		model.addAttribute("applications", applications);
 
 		return "application-list";

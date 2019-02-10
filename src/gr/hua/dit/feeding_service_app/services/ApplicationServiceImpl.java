@@ -1,5 +1,6 @@
 package gr.hua.dit.feeding_service_app.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gr.hua.dit.feeding_service_app.dao.ApplicationDAO;
+import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.entities.Application;
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
+import gr.hua.dit.feeding_service_app.entities.Student;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -17,10 +20,26 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Autowired
 	private ApplicationDAO applicationdao;
 	
+	@Autowired
+	private StudentDAO studentDAO;
+	
+	
 	@Override
 	@Transactional
-	public List<Application> getAllApplications() {
-		return applicationdao.getAllApplications();
+	public List<Application> getUncheckedApplicationsByDpt(String dept) {
+		List<Application> uncheckedApplicationsList = new ArrayList<Application>();
+		//Get all students from the dept to check their applications
+		List<Student> students = studentDAO.getStudentsByDpt(dept);
+		//for each student checks its applications if its already checked
+		for (Student student: students) {
+			 List<Application> applications = student.getApplications();		 
+			 for(Application application: applications) {
+				 if (application.isApproved() == null) {	 
+					 uncheckedApplicationsList.add(application);
+				 }
+			 }	
+		}	
+		return uncheckedApplicationsList;
 	}
 	
 	@Override
