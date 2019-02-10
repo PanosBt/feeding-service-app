@@ -34,6 +34,7 @@ import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
 import gr.hua.dit.feeding_service_app.services.AccompanyingDocumentService;
 import gr.hua.dit.feeding_service_app.services.ApplicationService;
 import gr.hua.dit.feeding_service_app.services.ClerkService;
+import gr.hua.dit.feeding_service_app.services.FileService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
@@ -58,6 +59,9 @@ public class ClerkController {
 
 	@Autowired
 	private AccompanyingDocumentService accompanyingDocumentService;
+	
+	@Autowired
+	private FileService fileService;
 	
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
@@ -188,20 +192,13 @@ public class ClerkController {
 	
 	@PostMapping("/document")
 	public ResponseEntity<byte[]> getDocument(@RequestParam Map<String, String> params) {
-		//Get filepath from params
-		File file = new File(params.get("file_path"));
-		byte[] contents = null;
-
-		try (FileInputStream in = new FileInputStream(file)) {
-			contents = IOUtils.toByteArray(in);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		byte[] contents = fileService.fetchFile(params.get("file_path"));
+		
+		if (contents == null) {
 			return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
 		}
-		
+
 		//Create response
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.parseMediaType("application/pdf"));
