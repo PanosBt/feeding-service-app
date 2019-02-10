@@ -1,6 +1,5 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 	<h4>Τροποποίηση στοιχείων χρήστη</h4>
 	<form:form method="POST"
 		action="${pageContext.request.contextPath}/clerk/modify_student/${student.username}"
