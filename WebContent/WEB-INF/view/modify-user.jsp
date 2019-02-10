@@ -1,6 +1,6 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<h4>Τροποποίηση στοιχείων χρήστη</h5>
+	<h4>Τροποποίηση στοιχείων χρήστη</h4>
 	<br />
 	
 	<form:form method="POST"
