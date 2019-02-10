@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import gr.hua.dit.feeding_service_app.api.application.request_helper.ApplicationSubmitRequestHelper;
+import gr.hua.dit.feeding_service_app.api.application.request_helper.ApplicationSubmitRequest;
 import gr.hua.dit.feeding_service_app.api.application.response_helper.ApplicationSubmitResponse;
 import gr.hua.dit.feeding_service_app.api.student.exception.StudentNotFoundException;
 import gr.hua.dit.feeding_service_app.entities.Application;
@@ -27,7 +27,7 @@ public class ApplicationRestController {
 	StudentService studentService;
 
 	@PostMapping
-	public ApplicationSubmitResponse submitApplication(@RequestBody ApplicationSubmitRequestHelper applicationReq) {
+	public ApplicationSubmitResponse submitApplication(@RequestBody ApplicationSubmitRequest applicationReq) {
 
 		//TODO Add file support
 		//TODO Add validation (not null etc) on fields

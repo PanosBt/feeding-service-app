@@ -1,14 +1,14 @@
-package gr.hua.dit.feeding_service_app.api.student.response_helper;
+package gr.hua.dit.feeding_service_app.api.exceptions.response_helper;
 
-public class StudentErrorResponse {
+public class RestErrorResponse {
 	private int status;
 	private String message;
 	private long timeStamp;
 
-	public StudentErrorResponse() {
+	public RestErrorResponse() {
 	}
 
-	public StudentErrorResponse(int status, String message, long timeStamp) {
+	public RestErrorResponse(int status, String message, long timeStamp) {
 		this.status = status;
 		this.message = message;
 		this.timeStamp = timeStamp;

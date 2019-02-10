@@ -1,6 +1,6 @@
 package gr.hua.dit.feeding_service_app.api.application.request_helper;
 
-public class ApplicationSubmitRequestHelper {
+public class ApplicationSubmitRequest {
 
 	private Integer student_id;
 	private Integer familyIncome;
@@ -9,10 +9,10 @@ public class ApplicationSubmitRequestHelper {
 	private Boolean mother_employeed;
 	private Boolean father_employeed;
 
-	public ApplicationSubmitRequestHelper() {
+	public ApplicationSubmitRequest() {
 	}
 
-	public ApplicationSubmitRequestHelper(Integer student_id, Integer familyIncome, Integer num_siblings,
+	public ApplicationSubmitRequest(Integer student_id, Integer familyIncome, Integer num_siblings,
 			String origin_city, Boolean mother_employeed, Boolean father_employeed) {
 		this.student_id = student_id;
 		this.familyIncome = familyIncome;
