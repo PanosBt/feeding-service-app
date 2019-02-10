@@ -58,7 +58,7 @@ public class ClerkController {
 
 	@Autowired
 	private AccompanyingDocumentService accompanyingDocumentService;
-
+	
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
 		
@@ -167,9 +167,11 @@ public class ClerkController {
 	}
 	
 	@PostMapping("/applcationchecked/{appl_id}")
-	public String applcationChecked(Model model, @RequestParam Map<String, String> params, @PathVariable("appl_id") int appl_id) {
+	public String applcationChecked(Model model, @RequestParam Map<String, String> params, @PathVariable("appl_id") int appl_id, Principal principal) {
 		
+		Clerk clerk = clerkService.getClerk(principal.getName());
 		Application application = applicationService.getApplication(appl_id);
+		application.setClerk(clerk);
 		boolean applApproved = Boolean.parseBoolean(params.get("approve"));
 		if (applApproved == true) {
 			//Get application and update it

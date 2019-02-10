@@ -1,6 +1,8 @@
 package gr.hua.dit.feeding_service_app.services;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -30,11 +32,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 		List<Application> uncheckedApplicationsList = new ArrayList<Application>();
 		//Get all students from the dept to check their applications
 		List<Student> students = studentDAO.getStudentsByDpt(dept);
-		//for each student checks its applications if its already checked
+		
+		
+		//for each student checks its applications if its already checked and the date os submision
 		for (Student student: students) {
 			 List<Application> applications = student.getApplications();		 
 			 for(Application application: applications) {
-				 if (application.isApproved() == null) {	 
+				 Calendar cal = Calendar.getInstance();
+				 if (application.isApproved() == null && Utilities.getYearFromDate(application.getSubm_date()) == cal.get(Calendar.YEAR)) {	 
 					 uncheckedApplicationsList.add(application);
 				 }
 			 }	
