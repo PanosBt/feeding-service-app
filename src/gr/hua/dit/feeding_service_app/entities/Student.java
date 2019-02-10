@@ -26,7 +26,7 @@ public class Student {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "username")
+	@Column(name = "username", nullable = false)
 	private String username;
 
 	@Column(name = "firstName")
@@ -53,17 +53,21 @@ public class Student {
 
 	@Column(name = "dept")
 	private String dept;
-	
-	
+
+	@Column(name = "data_init", nullable = false)
+	private boolean data_init;
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "student")
 	@JsonIgnore
 	private List<Application> applications;
 
 	public Student() {
+		this.data_init = false;
 	}
-	
+
 	public Student(String username) {
 		this.username = username;
+		this.data_init = false;
 	}
 
 	public int getId() {
@@ -142,6 +146,14 @@ public class Student {
 		this.dept = dept;
 	}
 
+	public boolean isData_init() {
+		return data_init;
+	}
+
+	public void setData_init(boolean data_init) {
+		this.data_init = data_init;
+	}
+
 	public List<Application> getApplications() {
 		return applications;
 	}
@@ -149,6 +161,5 @@ public class Student {
 	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
-	
 
 }

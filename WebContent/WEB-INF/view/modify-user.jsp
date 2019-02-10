@@ -73,7 +73,14 @@
 				<tr>
 					<td><form:label path="dept">Τμήμα</form:label></td>
 					<td><c:out value="${user.dept}" /></td>
-					<td><form:input path="dept" /></td>
+					<td><form:select path="dept">
+							<form:option value="DIT">Πληροφορικής και Τηλεματικής</form:option>
+							<form:option value="GEO">Γεωγραφίας</form:option>
+							<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
+							<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
+						</form:select>
+					</td>
+					<!-- <td><form:input path="dept" /></td>-->
 				</tr>
 			</c:if>
 

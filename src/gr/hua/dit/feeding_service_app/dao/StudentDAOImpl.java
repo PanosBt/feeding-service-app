@@ -60,6 +60,14 @@ public class StudentDAOImpl implements StudentDAO {
 				.setParameter("username", username)
 				.executeUpdate();
 	}
+	
+
+	@Override
+	public void update(Student student) {
+		sessionFactory.getCurrentSession()
+		.update(student);
+		
+	}
 
 	@Override
 	public boolean update(ModUserHelper modUser) {
@@ -107,6 +115,7 @@ public class StudentDAOImpl implements StudentDAO {
 			student.setDept(modUser.getDept());
 
 	}
+
 
 
 

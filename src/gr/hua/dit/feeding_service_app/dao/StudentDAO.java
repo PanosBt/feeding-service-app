@@ -12,5 +12,6 @@ public interface StudentDAO {
 	public int delete(String username);
 	
 	public boolean update(ModUserHelper modUser);
+	public void update(Student student);
 	public Student getStudent(int id);
 }

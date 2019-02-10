@@ -11,5 +11,7 @@ public interface StudentService {
 	public List<Student> getAllStudents();
 
 	public Student getStudent(int id);
+	
+	public void update(Student student);
 
 }

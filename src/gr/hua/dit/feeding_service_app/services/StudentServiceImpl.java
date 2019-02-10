@@ -34,4 +34,11 @@ public class StudentServiceImpl implements StudentService {
 		return studentDAO.getStudent(id);
 	}
 
+	@Override
+	@Transactional
+	public void update(Student student) {
+		studentDAO.update(student);
+		
+	}
+
 }
