@@ -21,13 +21,13 @@ public class StudentController {
 	@Autowired
 	private StudentDAO studentDAO;
 	
-	@RequestMapping("/list")
-	public String testListStudents(Model model) {
-		
-		List<Student> students = studentDAO.getStudentsWithNoData();
-		model.addAttribute("students", students);
-		return "list-students";
-	}
+//	@RequestMapping("/list")
+//	public String testListStudents(Model model) {
+//		
+//		List<Student> students = studentDAO.getStudentsWithNoData();
+//		model.addAttribute("students", students);
+//		return "list-students";
+//	}
 	
 //	@RequestMapping("/addtest")
 //	public String insertTestStudent() {

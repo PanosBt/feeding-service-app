@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import gr.hua.dit.feeding_service_app.entities.AccompanyingDocument;
 import gr.hua.dit.feeding_service_app.entities.Application;
+import gr.hua.dit.feeding_service_app.entities.Clerk;
 import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
 import gr.hua.dit.feeding_service_app.services.AccompanyingDocumentService;
 import gr.hua.dit.feeding_service_app.services.ApplicationService;
+import gr.hua.dit.feeding_service_app.services.ClerkService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
@@ -43,6 +46,9 @@ public class ClerkController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ClerkService clerkService;
 
 	@Autowired
 	private StudentService studentService;
@@ -55,7 +61,7 @@ public class ClerkController {
 
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
-
+		
 		// checks if the limit was updated when the updateStudentLimit was called
 		if (params.containsKey("studentLimitUpdated"))
 			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
@@ -67,10 +73,12 @@ public class ClerkController {
 
 	// returns all the students that need a new card
 	@GetMapping("/studentlist")
-	public String StudentList(Model model) {
-
+	public String StudentList(Model model, Principal principal) {
+		
+		Clerk clerk = clerkService.getClerk(principal.getName());
+		
 		// Change it to a query that returns students with no card
-		List<Student> students = studentService.getStudentsWithNoData();
+		List<Student> students = studentService.getStudentsWithNoData(clerk.getSupervising_dept());
 
 		model.addAttribute("students", students);
 		return "student-list";

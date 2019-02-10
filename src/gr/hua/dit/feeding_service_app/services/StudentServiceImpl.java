@@ -24,8 +24,8 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	@Transactional
-	public List<Student> getStudentsWithNoData() {
-		return studentDAO.getStudentsWithNoData();
+	public List<Student> getStudentsWithNoData(String dept) {
+		return studentDAO.getStudentsWithNoData(dept);
 	}
 
 	@Override

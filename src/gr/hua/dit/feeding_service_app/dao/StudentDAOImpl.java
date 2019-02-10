@@ -23,11 +23,12 @@ public class StudentDAOImpl implements StudentDAO {
 	//TODO Probably not needed, delete it if that's so
 	@Override
 	@Transactional
-	public List<Student> getStudentsWithNoData() {
+	public List<Student> getStudentsWithNoData(String dept) {
 
 		Session curSession = sessionFactory.getCurrentSession();
 
-		Query<Student> query = curSession.createQuery("from Student WHERE data_init = false ", Student.class);
+		Query<Student> query = curSession.createQuery("from Student WHERE data_init = false AND dept = :dept", Student.class)
+											.setParameter("dept", dept);
 		return query.getResultList();
 	}
 
