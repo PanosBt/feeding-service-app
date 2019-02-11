@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.rounded-box {
+  border-radius: 15px;
+  background: white;
+  padding: 2%; 
+  margin: auto;
+  width: 60%;
+  border: 1px solid black;
+} 

@@ -1,16 +1,18 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<div class = "rounded-box">
+	<div class = "center">
 	<h4>Καλώς ήρθατε!</h4>
 	<h4>Επιλογές χρήστη:</h4>
 	<br />
 	<br />
-	<a href="${pageContext.request.contextPath}/clerk/studentlist">Νέα Καρτέλα Φοιτητή</a>
+	<a href="${pageContext.request.contextPath}/clerk/studentlist" class="button1">Νέα Καρτέλα Φοιτητή</a>
 	<br />
 	<br />
 	<hr style="border: 1px solid black;" />
 	<br />
 	<br />
-	<a href="${pageContext.request.contextPath}/clerk/applicationlist">Έλεγχος Αιτήσεων</a>
+	<a href="${pageContext.request.contextPath}/clerk/applicationlist" class="button1">Έλεγχος Αιτήσεων</a>
 	<br />
 	<br />
 	<hr style="border: 1px solid black;" />
@@ -43,3 +45,5 @@
 			</c:otherwise>
 		</c:choose>
 	</c:if>
+	</div>
+	</div>
