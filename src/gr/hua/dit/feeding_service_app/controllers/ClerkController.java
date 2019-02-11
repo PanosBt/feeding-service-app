@@ -64,7 +64,12 @@ public class ClerkController {
 	private FileService fileService;
 	
 	@RequestMapping
-	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params) {
+	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params, Principal principal) {
+		
+		Clerk clerk = clerkService.getClerk(principal.getName());
+		
+		model.addAttribute("userFirstName", clerk.getFirstName());
+		model.addAttribute("userLastName", clerk.getLastName());
 		
 		// checks if the limit was updated when the updateStudentLimit was called
 		if (params.containsKey("studentLimitUpdated"))
