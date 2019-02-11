@@ -1,11 +1,8 @@
 @charset "UTF-8";
 
 
-input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
-    cursor:pointer;
-    -webkit-border-radius: 5px;
-    border-radius: 5px; }
-/*input[type=submit] {
+
+.submit-button {
 	 background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -17,10 +14,12 @@ input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
   border-radius: 16px;
   font-family: Arial;
   color: #ffffff;
-  font-size: 20px;
-  padding-top: 12px;
-  padding-bottom:12px;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-bottom:5px;
+  padding-left:45px;
+  padding-right:45px;
   margin-left:auto;
   margin-right:auto;
   text-decoration: none;
-}*/
+}

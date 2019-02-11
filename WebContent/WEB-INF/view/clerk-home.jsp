@@ -25,8 +25,10 @@
 						value="${_csrf.token}" />
 						<div class='center'>
 							<input type="text" required name="limit" class="text-input" > 
-							<button type="submit">Εισαγωγή</button>
-					</div>
+							<br />
+							<br />
+							<button type="submit" class="submit-button">Εισαγωγή</button>
+						</div>
 				</form>
 				<c:if test="${not empty studentLimitUpdated}">
 					<c:choose>
