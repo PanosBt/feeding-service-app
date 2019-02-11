@@ -83,7 +83,25 @@
 			</tr>
 			<c:forEach var="accompanyingDocuments" items="${accompanyingDocuments}">
 				<tr>
-					<td>${accompanyingDocuments.doc_type}</td>
+					<td>
+					  <c:choose>
+					  	<c:when test="${accompanyingDocuments.doc_type == 'EKK'}">
+					  		Εκκαθαριστικό Εφορίας
+					  	</c:when>
+					  	<c:when test="${accompanyingDocuments.doc_type == 'POK'}">
+					  		Πιστοποιητικό Οικογενιακής Κατάστασης
+					  	</c:when>
+					  	<c:when test="${accompanyingDocuments.doc_type == 'PK'}">
+					  		Πιστοποιητικό Κατοικιας
+					  	</c:when>
+					  	<c:when test="${accompanyingDocuments.doc_type == 'BAM'}">
+					  		Βεβαιωση Ανεργιας - Μητέρα
+					  	</c:when>
+					  	<c:when test="${accompanyingDocuments.doc_type == 'BAP'}">
+					  		Βεβαιωση Ανεργιας - Πατέρας
+					  	</c:when>
+					  </c:choose>
+					</td>
 					<td><button type="submit" name="file_path"
 							value=${accompanyingDocuments.file_path } class="ui button">Έλεγχος</button></td>
 				</tr>
