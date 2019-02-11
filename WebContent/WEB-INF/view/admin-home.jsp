@@ -44,6 +44,7 @@
 								<form:option value="GEO">Γεωγραφίας</form:option>
 								<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
 								<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
+								<form:option value="AIRENG">Μηχανικών Αεροσκαφών</form:option>
 							</form:select>
 						</td>
 					</tr>

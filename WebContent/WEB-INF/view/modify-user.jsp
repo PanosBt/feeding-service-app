@@ -60,12 +60,35 @@
 				</tr>
 				<tr>
 					<td><form:label path="dept">Τμήμα</form:label></td>
-					<td><c:out value="${user.dept}" /></td>
+					<td>
+						<c:choose>
+						  	<c:when test="${user.dept == 'DIT'}">
+						  		Πληροφορικής και Τηλεματικής
+						  	</c:when>
+						  	<c:when test="${user.dept == 'GEO'}">
+						  		Γεωγραφίας
+						  	</c:when>
+						  	<c:when test="${user.dept == 'DHEE'}">
+						  		Οικιακής Οικονομίας
+						  	</c:when>
+						  	<c:when test="${user.dept == 'DDNS'}">
+						  		Επιστήμης Διαιτολογίας – Διατροφής
+						  	</c:when>
+						  	<c:when test="${user.dept == 'AIRENG'}">
+						  		Μηχανικών Αεροσκαφών
+						  	</c:when>
+						  	<c:otherwise>
+						  		<c:out value="${user.dept}" /><br/>
+						  		Yeah you should have removed me from the DB...						  		
+						  	</c:otherwise>
+					  </c:choose>
+					</td>
 					<td><form:select path="dept">
 							<form:option value="DIT">Πληροφορικής και Τηλεματικής</form:option>
 							<form:option value="GEO">Γεωγραφίας</form:option>
 							<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
 							<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
+							<form:option value="AIRENG">Μηχανικών Αεροσκαφών</form:option>
 						</form:select>
 					</td>
 					<!-- <td><form:input path="dept" /></td>-->
