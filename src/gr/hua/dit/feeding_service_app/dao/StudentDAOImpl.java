@@ -43,9 +43,9 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
-	public void createStudent(String username) {
+	public void createStudent(String username, String dept) {
 		sessionFactory.getCurrentSession()
-		.save(new Student(username));
+		.save(new Student(username, dept));
 
 	}
 	

@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 		switch (newUser.getUserType()) {
 		case "student":
 			autorityDAO.createAuthority(new Authority(user, AuthorityUtilities.STUDENT_ROLE));
-			studentDAO.createStudent(newUser.getUsername());
+			studentDAO.createStudent(newUser.getUsername(), newUser.getDept());
 			break;
 		case "clerk":
 			autorityDAO.createAuthority(new Authority(user, AuthorityUtilities.CLERK_ROLE));

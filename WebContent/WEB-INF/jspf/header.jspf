@@ -6,31 +6,40 @@
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="<c:url value="/resources/css/test.css"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/rounded-box.css"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/center.css"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/button1.css"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/text-input.css"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/resources/css/submit-button.css"/>" rel="stylesheet" type="text/css">
-</head>
-<body>
-	<!-- Get last part of URI -->
-	<c:set var="full_uri" value="${requestScope['javax.servlet.forward.request_uri']}" />
-	<c:set var="uri_parts" value="${fn:split(full_uri, '/') }" />
-	<c:set var="uri_parts_last" value="${uri_parts[fn:length(uri_parts)-1]}" />
-	<br />
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link href="<c:url value="/resources/css/test.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/rounded-box.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/center.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/button1.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/text-input.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/submit-button.css"/>" rel="stylesheet" type="text/css">
+		
+		<!-- Get last part of URI -->
+		<c:set var="full_uri" value="${requestScope['javax.servlet.forward.request_uri']}" />
+		<c:set var="uri_parts" value="${fn:split(full_uri, '/') }" />
+		<c:set var="uri_parts_last" value="${uri_parts[fn:length(uri_parts)-1]}" />
+		
+		
+		
+		<c:if test="${uri_parts_last == 'admin'}">
+			<script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/admin.js"/>"></script>
+		</c:if>
 	
-	<!-- show logout button only if last part of URI (w/o parameters) is admin or clerk -->
-	<c:if test="${uri_parts_last == 'admin' or uri_parts_last == 'clerk'}">
-		<form method="POST" action="${pageContext.request.contextPath}/logout">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-			<button class="ui button">Αποσύνδεση</button>
-		</form>
-	</c:if>
+	</head>
+	
+	<body>
+		<br />
+		<!-- show logout button only if last part of URI (w/o parameters) is admin or clerk -->
+		<c:if test="${uri_parts_last == 'admin' or uri_parts_last == 'clerk'}">
+			<form method="POST" action="${pageContext.request.contextPath}/logout">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+				<button class="ui button">Αποσύνδεση</button>
+			</form>
+		</c:if>
 	
 	
 	

@@ -8,7 +8,7 @@ import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
 public interface StudentDAO {
 	public List<Student> getStudentsWithNoData(String dept);
 	public List<Student> getStudentsByDpt(String dept);
-	public void createStudent(String username);
+	public void createStudent(String username, String dept);
 	public Student getStudent(String username);
 	public int delete(String username);
 	

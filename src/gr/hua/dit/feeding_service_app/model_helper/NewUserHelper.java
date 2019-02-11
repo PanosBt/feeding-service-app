@@ -5,27 +5,24 @@ import javax.validation.constraints.Size;
 
 /**
  * Helper class for admin new user form
+ * 
  * @author panos
  *
  */
 public class NewUserHelper {
-	
+
 	@NotBlank(message = "Please enter a username")
 	private String username;
-	
+
 	@NotBlank(message = "Please enter a password")
 	@Size(min = 6, max = 15, message = "Your password must be between 6 and 15 characters")
 	private String password;
 
 	private String userType;
 
-	public NewUserHelper() {
-	}
+	private String dept;
 
-	public NewUserHelper(String username, String password, String userType) {
-		this.username = username;
-		this.password = password;
-		this.userType = userType;
+	public NewUserHelper() {
 	}
 
 	public String getUsername() {
@@ -52,9 +49,12 @@ public class NewUserHelper {
 		this.userType = userType;
 	}
 
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", userType=" + userType + "]";
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
 	}
 
 }
