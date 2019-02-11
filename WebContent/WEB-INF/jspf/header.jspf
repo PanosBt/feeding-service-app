@@ -15,12 +15,13 @@ pageEncoding="UTF-8"%>
 <link href="<c:url value="/resources/css/button1.css"/>" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<!-- Get last part of URI -->
 	<c:set var="full_uri" value="${requestScope['javax.servlet.forward.request_uri']}" />
 	<c:set var="uri_parts" value="${fn:split(full_uri, '/') }" />
 	<c:set var="uri_parts_last" value="${uri_parts[fn:length(uri_parts)-1]}" />
 	<br />
-
 	
+	<!-- show logout button only if last part of URI (w/o parameters) is admin or clerk -->
 	<c:if test="${uri_parts_last == 'admin' or uri_parts_last == 'clerk'}">
 		<form method="POST" action="${pageContext.request.contextPath}/logout">
 			<input type="hidden" name="${_csrf.parameterName}"
