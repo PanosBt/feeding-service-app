@@ -37,12 +37,12 @@ import gr.hua.dit.feeding_service_app.services.ClerkService;
 import gr.hua.dit.feeding_service_app.services.FileService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
-import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
+import gr.hua.dit.feeding_service_app.utilites.CustomAuthorityUtilities;
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Controller
 @RequestMapping("/clerk")
-@Secured(AuthorityUtilities.CLERK_ROLE)
+@Secured(CustomAuthorityUtilities.CLERK_ROLE)
 public class ClerkController {
 
 	@Autowired

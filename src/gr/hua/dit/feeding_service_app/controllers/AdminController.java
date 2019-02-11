@@ -27,11 +27,11 @@ import gr.hua.dit.feeding_service_app.services.AdminService;
 import gr.hua.dit.feeding_service_app.services.ClerkService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
-import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
+import gr.hua.dit.feeding_service_app.utilites.CustomAuthorityUtilities;
 
 @Controller
 @RequestMapping("/admin")
-@Secured(AuthorityUtilities.ADMIN_ROLE)
+@Secured(CustomAuthorityUtilities.ADMIN_ROLE)
 public class AdminController {
 
 	@Autowired
@@ -110,20 +110,20 @@ public class AdminController {
 		// depending on user role, get user from the corresponding service
 		// and add the user to the model
 		switch (role) {
-		case AuthorityUtilities.ADMIN_ROLE:
+		case CustomAuthorityUtilities.ADMIN_ROLE:
 			Admin admin;
 			if ((admin = adminService.getAdmin(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", admin);
 			break;
-		case AuthorityUtilities.CLERK_ROLE:
-		case AuthorityUtilities.SUPERVISOR_ROLE:
+		case CustomAuthorityUtilities.CLERK_ROLE:
+		case CustomAuthorityUtilities.SUPERVISOR_ROLE:
 			Clerk clerk;
 			if ((clerk = clerkService.getClerk(username)) == null)
 				return userNotFoundRed;
 			model.addAttribute("user", clerk);
 			break;
-		case AuthorityUtilities.STUDENT_ROLE:
+		case CustomAuthorityUtilities.STUDENT_ROLE:
 			Student student;
 			if ((student = studentService.getStudent(username)) == null)
 				return userNotFoundRed;
@@ -143,8 +143,8 @@ public class AdminController {
 
 	// Normalize role names for prettier output
 	private String normalizeRole(String role) {
-		return AuthorityUtilities.NORMALIZED_ROLES.containsKey(role) 
-				? AuthorityUtilities.NORMALIZED_ROLES.get(role)
+		return CustomAuthorityUtilities.NORMALIZED_ROLES.containsKey(role) 
+				? CustomAuthorityUtilities.NORMALIZED_ROLES.get(role)
 				: "";
 	}
 	

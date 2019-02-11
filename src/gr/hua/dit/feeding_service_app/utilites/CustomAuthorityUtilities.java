@@ -3,7 +3,7 @@ package gr.hua.dit.feeding_service_app.utilites;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AuthorityUtilities {
+public class CustomAuthorityUtilities {
 	public static final String STUDENT_ROLE = "ROLE_STUDENT";
 	public static final String CLERK_ROLE = "ROLE_CLERK";
 	public static final String SUPERVISOR_ROLE = "ROLE_SUPERVISOR";

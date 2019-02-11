@@ -24,6 +24,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
 	
+	@Autowired
+	CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder encoder = new BCryptPasswordEncoder(10); /*
@@ -57,6 +60,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated()
         .and()
         .formLogin()//.loginPage("/login")	//TODO Comment this out for custom login form
+        .successHandler(customAuthenticationSuccessHandler)
         .loginProcessingUrl("/authUser")
         .permitAll()
         //TODO Comment this out for custom 403 page when implemented

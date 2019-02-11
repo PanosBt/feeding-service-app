@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gr.hua.dit.feeding_service_app.api.authorize.response_helper.AuthorizeResponse;
 import gr.hua.dit.feeding_service_app.api.exceptions.BadRequestException;
 import gr.hua.dit.feeding_service_app.services.UserService;
-import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
+import gr.hua.dit.feeding_service_app.utilites.CustomAuthorityUtilities;
 
 @RestController
 @RequestMapping("/api/authorize")
@@ -39,7 +39,7 @@ public class AuthorizeRestController {
 		
 		// check if user is student, only if he/she is authenticated
 		if (authenticated)
-			isStudent = userService.getUserHigherRole(username).equals(AuthorityUtilities.STUDENT_ROLE);
+			isStudent = userService.getUserHigherRole(username).equals(CustomAuthorityUtilities.STUDENT_ROLE);
 		
 		return new AuthorizeResponse(username, authenticated, isStudent);
 		
