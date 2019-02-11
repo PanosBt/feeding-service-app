@@ -1,13 +1,12 @@
 package gr.hua.dit.feeding_service_app.services;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,30 +19,18 @@ public class FileServiceImpl implements FileService {
 	public static String DOCS_PATH = System.getProperty("user.home") + "/feed/documents/";
 //	public static String DOCS_PATH = "/media/panos/BACK UP/feed/documents";
 
-	/*
-	 * Gets filePath as String. If file is found returns a byte array of the file else returns null
-	 * 
-	 * @param String
-	 * 
-	 * @return byte array of file or null
-	 */
 	@Override
 	public byte[] fetchFile(String filePath) {
 		
-		File file = new File(filePath);
 		byte[] contents = null;
-
-		try (FileInputStream in = new FileInputStream(file)) {
+		Path path = Paths.get(DOCS_PATH, filePath);
+		try (InputStream in = Files.newInputStream(path, StandardOpenOption.READ)) {
 			contents = IOUtils.toByteArray(in);
 			return contents;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
+			return contents;
 		}
-		
 	}
 
 	@Override

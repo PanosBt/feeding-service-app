@@ -6,6 +6,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileService {
 	
+	/*
+	 * Gets filePath as String. If file is found returns a byte array of the file else returns null
+	 * 
+	 * @param String
+	 * 
+	 * @return byte array of file or null
+	 */
 	public byte[] fetchFile(String filePath);
 
 	public String store(MultipartFile doc);
