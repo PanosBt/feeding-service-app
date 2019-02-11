@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<div class = "rounded-box">
+	<div class = "center">
+	
 	<h3>Σύνδεση</h3>
 	
-	
+
 	<form:form action="${pageContext.request.contextPath}/authUser"
 		method="POST">
 		<table>
@@ -13,14 +16,15 @@
 			</c:if>
 			<tr>
 				<td><label>Όνομα Χρήστη</label></td>
-				<td><input type="text" name="username" /></td>
+				<td><input type="text" class = "text-input" name="username" /></td>
 			</tr>
 			<tr>
 				<td><label>Κωδικός</label></td>
-				<td><input type="password" name="password" /></td>
+				<td><input type="password" class = "text-input" name="password" /></td>
 			</tr>
-			<tr>
-				<td><input type="submit" value="ΣΥΝΔΕΣΗ" /></td>
-			</tr>
+			
 		</table>
+		<input type="submit" class = "submit-button" value="ΣΥΝΔΕΣΗ" />
 	</form:form>
+	</div>
+	</div>
