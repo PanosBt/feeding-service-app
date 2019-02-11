@@ -68,6 +68,7 @@ public class ClerkController {
 		
 		Clerk clerk = clerkService.getClerk(principal.getName());
 		
+		model.addAttribute("curUserUsername", principal.getName());
 		model.addAttribute("userFirstName", clerk.getFirstName());
 		model.addAttribute("userLastName", clerk.getLastName());
 		

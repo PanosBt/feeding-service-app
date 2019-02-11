@@ -52,6 +52,7 @@ public class AdminController {
 		
 		Admin admin = adminService.getAdmin(principal.getName());
 		
+		model.addAttribute("curUserUsername", principal.getName());
 		model.addAttribute("userFirstName", admin.getFirstName());
 		model.addAttribute("userLastName", admin.getLastName());
 		NewUserHelper newUser = new NewUserHelper();
