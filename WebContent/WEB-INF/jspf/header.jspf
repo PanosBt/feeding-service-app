@@ -3,8 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,6 +15,12 @@ pageEncoding="UTF-8"%>
 		<link href="<c:url value="/resources/css/button1.css"/>" rel="stylesheet" type="text/css">
 		<link href="<c:url value="/resources/css/text-input.css"/>" rel="stylesheet" type="text/css">
 		<link href="<c:url value="/resources/css/submit-button.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/striped-table.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/center-stuff.css"/>" rel="stylesheet" type="text/css">
+		<link href="<c:url value="/resources/css/signout-button.css"/>" rel="stylesheet" type="text/css">
+		
+		
+		
 		
 		<!-- Get last part of URI -->
 		<c:set var="full_uri" value="${requestScope['javax.servlet.forward.request_uri']}" />
@@ -38,7 +43,7 @@ pageEncoding="UTF-8"%>
 			<form method="POST" action="${pageContext.request.contextPath}/logout">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<button class="ui button">Αποσύνδεση</button>
+				<button class="signout-button">Αποσύνδεση</button>
 			</form>
 		</c:if>
 	

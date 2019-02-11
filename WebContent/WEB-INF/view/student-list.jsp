@@ -3,13 +3,15 @@
 	
 	<div class = "rounded-box">
 		<div class = "center">
+		
 			<form method="POST"
 				action="${pageContext.request.contextPath}/clerk/modify_student_search">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<table border=1>
+				<table class="striped-table">
 					<tr>
 						<th>Username</th>
+						<th></th>
 					</tr>
 					<!-- loop over and print our students -->
 					<c:forEach var="tempStudent" items="${students}">
