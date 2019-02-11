@@ -31,11 +31,21 @@
 					<tr>
 						<td><form:label path="userType">Τύπος χρήστη</form:label></td>
 						<td><form:select path="userType">
-								<form:option value="student">Student</form:option>
 								<form:option value="clerk">Clerk</form:option>
+								<form:option id="student_option" value="student">Student</form:option>
 								<form:option value="supervisor">Supervisor</form:option>
 								<form:option value="admin">Administrator</form:option>
 							</form:select></td>
+					<tr id= "student_dept" hidden> 
+						<td><form:label path="dept">Τμήμα</form:label></td>
+						<td>
+							<form:select path="dept">
+								<form:option value="DIT">Πληροφορικής και Τηλεματικής</form:option>
+								<form:option value="GEO">Γεωγραφίας</form:option>
+								<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
+								<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
+							</form:select>
+						</td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="ΔΗΜΙΟΥΡΓΙΑ" /></td>

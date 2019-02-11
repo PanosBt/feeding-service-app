@@ -65,8 +65,9 @@ public class Student {
 		this.data_init = false;
 	}
 
-	public Student(String username) {
+	public Student(String username, String dept) {
 		this.username = username;
+		this.dept = dept;
 		this.data_init = false;
 	}
 
