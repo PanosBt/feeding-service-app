@@ -2,6 +2,7 @@ package gr.hua.dit.feeding_service_app.controllers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.Principal;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -47,7 +48,13 @@ public class AdminController {
 	private StudentService studentService;
 
 	@GetMapping
-	public String getAdminHomePage(Model model, @RequestParam Map<String, String> params) {
+	public String getAdminHomePage(Model model, @RequestParam Map<String, String> params, Principal principal) {
+		
+		Admin admin = adminService.getAdmin(principal.getName());
+		
+		model.addAttribute("curUserUsername", principal.getName());
+		model.addAttribute("userFirstName", admin.getFirstName());
+		model.addAttribute("userLastName", admin.getLastName());
 		NewUserHelper newUser = new NewUserHelper();
 		// modelAttribute used for new user creation
 		model.addAttribute("user", newUser);

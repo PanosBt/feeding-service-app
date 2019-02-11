@@ -1,7 +1,7 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<div class="welcome-admin-text">
-		<h4>Καλώς ήρθατε ${firstName} ${lastname}!</h4>
+		<h4>Καλώς ήρθατε ${userFirstName} ${userLastName}!</h4>
 		<br />
 	</div>
 
