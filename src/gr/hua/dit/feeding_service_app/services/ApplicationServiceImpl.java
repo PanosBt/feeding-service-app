@@ -2,7 +2,6 @@ package gr.hua.dit.feeding_service_app.services;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,14 +12,14 @@ import org.springframework.stereotype.Service;
 import gr.hua.dit.feeding_service_app.dao.ApplicationDAO;
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.entities.Application;
-import gr.hua.dit.feeding_service_app.utilites.Utilities;
 import gr.hua.dit.feeding_service_app.entities.Student;
+import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
 	
 	@Autowired
-	private ApplicationDAO applicationdao;
+	private ApplicationDAO applicationDAO;
 	
 	@Autowired
 	private StudentDAO studentDAO;
@@ -51,14 +50,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Transactional
 	public Application getApplication(int appl_id) {
 		
-		return applicationdao.getApplication(appl_id);
+		return applicationDAO.getApplication(appl_id);
 	}
 	
 	@Override
 	@Transactional
-	public void updateApplication(Application application) {
+	public void update(Application application) {
 		
-		applicationdao.updateApplication(application);
+		applicationDAO.update(application);
 		
 	}
 
@@ -66,7 +65,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	@Transactional
 	public int getRank(Application application) {
 		int year = Utilities.getYearFromDate(application.getSubm_date());
-		List<Application> applications = applicationdao.getApplicationsByYearOrderedByRank(year);
+		List<Application> applications = applicationDAO.getApplicationsByYearOrderedByRank(year);
 		//TODO Reconsider the above TOO MUCH HEAVY QUERIES!!!
 		for (Application app : applications)
 			if (app.getAppl_id() == application.getAppl_id())
@@ -75,9 +74,10 @@ public class ApplicationServiceImpl implements ApplicationService {
 	}
 
 	@Override
-	public void save(Application application) {
+	@Transactional
+	public Integer save(Application application) {
 		
-		applicationdao.save(application);
+		return applicationDAO.save(application);
 		
 	}
 

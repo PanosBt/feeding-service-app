@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import gr.hua.dit.feeding_service_app.api.authorize.response_helper.AuthorizeResponse;
+import gr.hua.dit.feeding_service_app.api.exceptions.BadRequestException;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.AuthorityUtilities;
 
 @RestController
-@RequestMapping("/api/student/authorize")
+@RequestMapping("/api/authorize")
 public class AuthorizeRestController {
 	
 	@Autowired
@@ -26,13 +27,11 @@ public class AuthorizeRestController {
 		if(params.containsKey("username"))
 			username = params.get("username");
 		else
-			//TODO Throw Exception!
-			return null;
+			throw new BadRequestException("username is mandatory");
 		if(params.containsKey("password"))
 			password = params.get("password");
 		else
-			//TODO Throw Exception!
-			return null;
+			throw new BadRequestException("password is mandatory");
 			
 		boolean authenticated = userService.authenticateUser(username, password);
 		

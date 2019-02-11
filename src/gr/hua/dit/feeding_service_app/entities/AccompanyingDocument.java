@@ -12,22 +12,39 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "accompanying_document")
 public class AccompanyingDocument {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "doc_id")
 	private int doc_id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "appl_id", nullable = false)
 	private Application application;
-	
+
 	@Column(name = "doc_type", nullable = false)
 	private String doc_type;
-	
+
 	@Column(name = "file_path", nullable = false)
 	private String file_path;
+
+	public AccompanyingDocument() {
+
+	}
+
+	public AccompanyingDocument(String doc_type, String file_path) {
+		this.doc_type = doc_type;
+		this.file_path = file_path;
+	}
+
 	
+
+	public AccompanyingDocument(Application application, String doc_type, String file_path) {
+		this.application = application;
+		this.doc_type = doc_type;
+		this.file_path = file_path;
+	}
+
 	public int getDoc_id() {
 		return doc_id;
 	}
@@ -59,7 +76,5 @@ public class AccompanyingDocument {
 	public void setFile_path(String file_path) {
 		this.file_path = file_path;
 	}
-
-
 
 }

@@ -2,8 +2,6 @@ package gr.hua.dit.feeding_service_app.dao;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -36,7 +34,7 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	}
 	
 	@Override
-	public void updateApplication(Application application) {
+	public void update(Application application) {
 		
 		sessionFactory.getCurrentSession()
 		.update(application);
@@ -44,7 +42,6 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	}
 
 	@Override
-	@Transactional
 	public List<Application> getApplicationsByYearOrderedByRank(int year) {
 		
 		return sessionFactory.getCurrentSession()
@@ -54,10 +51,9 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 	}
 
 	@Override
-	@Transactional
-	public void save(Application application) {
+	public Integer save(Application application) {
 		
-		sessionFactory.getCurrentSession()
+		return (Integer) sessionFactory.getCurrentSession()
 		.save(application);
 		
 	}

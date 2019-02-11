@@ -181,10 +181,10 @@ public class ClerkController {
 			//Get application and update it
 			application.setApproved(applApproved);
 			application.setScore(Utilities.scoreApplication(application));
-			applicationService.updateApplication(application);	
+			applicationService.update(application);	
 		} else 	{
 			application.setApproved(applApproved);
-			applicationService.updateApplication(application);
+			applicationService.update(application);
 		}
 		
 		return "application-checked";

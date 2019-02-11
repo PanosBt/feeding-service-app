@@ -23,4 +23,11 @@ public class AccompanyingDocumentServiceImpl implements AccompanyingDocumentServ
 		return accompanyDoccumentDAO.getAccompanyingDocuments(appl_id);
 	}
 
+	@Override
+	@Transactional
+	public Integer save(AccompanyingDocument accDoc) {
+		return accompanyDoccumentDAO.save(accDoc);
+		
+	}
+
 }

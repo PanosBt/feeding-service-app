@@ -1,11 +1,13 @@
 package gr.hua.dit.feeding_service_app.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,8 +56,8 @@ public class Application {
 	@Column(name = "score")
 	private Integer score;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "application")
-	private List<AccompanyingDocument> accompanyingDocuments;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "application")
+	private List<AccompanyingDocument> accompanyingDocuments = new ArrayList<>();
 
 	@Column(name = "subm_date")
 	@Temporal(TemporalType.DATE)
@@ -165,6 +167,8 @@ public class Application {
 	}
 
 	public List<AccompanyingDocument> getAccompanyingDocuments() {
+		if (accompanyingDocuments == null)
+			accompanyingDocuments = new ArrayList<>();
 		return accompanyingDocuments;
 	}
 
