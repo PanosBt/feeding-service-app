@@ -59,10 +59,11 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
         .anyRequest().authenticated()
         .and()
-        .formLogin()//.loginPage("/login")	//TODO Comment this out for custom login form
-        .successHandler(customAuthenticationSuccessHandler)
+        .formLogin()
+        .loginPage("/")
         .loginProcessingUrl("/authUser")
         .permitAll()
+        .successHandler(customAuthenticationSuccessHandler)
         //TODO Comment this out for custom 403 page when implemented
 //            .and()
 //            .exceptionHandling()
@@ -74,14 +75,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     //Allow unauthenticated access for home page, resources and api access
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		
-		web.ignoring().antMatchers("/");
-		
+
 		web.ignoring().antMatchers("/resources/**");
 
-		web.ignoring().antMatchers("/api/**");
-		//Comment this out to exclude /clerk from security check
-//		web.ignoring().antMatchers("/clerk/**");
+		web.ignoring().antMatchers("/api/**");	
 
 	}
 
