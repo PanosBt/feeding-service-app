@@ -23,17 +23,8 @@
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 			<div class='center'>
-		<table>
-			<tr>
-				<td><input type="text" required name="limit" class="text-input" ></td> 
-				
-			</tr>
-			<tr>
-				<td>
-					<button type="submit">Εισαγωγή</button>
-				</td>
-			</tr>
-		</table>
+				<input type="text" required name="limit" class="text-input" > 
+				<button type="submit">Εισαγωγή</button>
 		</div>
 	</form>
 	<c:if test="${not empty studentLimitUpdated}">
