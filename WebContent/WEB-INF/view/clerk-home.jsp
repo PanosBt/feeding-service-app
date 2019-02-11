@@ -1,5 +1,7 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link href="<c:url value="/resources/css/text-input.css"/>" rel="stylesheet" type="text/css">
+
 	<div class = "rounded-box">
 	<div class = "center">
 	<h4>Καλώς ήρθατε!</h4>
@@ -9,13 +11,9 @@
 	<a href="${pageContext.request.contextPath}/clerk/studentlist" class="button1">Νέα Καρτέλα Φοιτητή</a>
 	<br />
 	<br />
-	<hr style="border: 1px solid black;" />
-	<br />
-	<br />
 	<a href="${pageContext.request.contextPath}/clerk/applicationlist" class="button1">Έλεγχος Αιτήσεων</a>
 	<br />
 	<br />
-	<hr style="border: 1px solid black;" />
 	<h4>Τροποποίηση αριθμού επιλέξιμων φοιτητών</h4>
 	<br /> Τρέχον όριο φοιτητών: ${limit}
 	<br />
@@ -24,9 +22,11 @@
 		action="${pageContext.request.contextPath}/clerk/update_student_limit">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
+			<div class='center'>
 		<table>
 			<tr>
-				<td><input type="number" required name="limit"></td>
+				<td><input type="text" required name="limit" class="text-input" ></td> 
+				
 			</tr>
 			<tr>
 				<td>
@@ -34,6 +34,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
 	<c:if test="${not empty studentLimitUpdated}">
 		<c:choose>
