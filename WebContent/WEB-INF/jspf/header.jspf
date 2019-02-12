@@ -37,12 +37,13 @@
 	<body>
 		<br />
 		<!-- show logout button only if last part of URI (w/o parameters) is admin or clerk -->
-		<c:if test="${uri_parts_last == 'admin' or uri_parts_last == 'clerk'}">
+		<c:if test="${uri_parts[1] == 'admin' or uri_parts[1] == 'clerk'}">
 			<form method="POST" action="${pageContext.request.contextPath}/logout">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<button class="submit-button">Αποσύνδεση</button>
 			</form>
+			<a href="<c:url value="/${uri_parts[1]}"/>">Αρχική Σελίδα</a>
 		</c:if>
 	
 	
