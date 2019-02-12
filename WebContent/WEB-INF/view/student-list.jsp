@@ -10,7 +10,8 @@
 				action="${pageContext.request.contextPath}/clerk/modify_student_search">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<table class="striped-table">
+				<div class=center>
+				<table class="striped-table" class="center">
 					<tr>
 						<th>Username</th>
 						<th></th>
@@ -24,6 +25,7 @@
 						</tr>
 					</c:forEach>
 				</table>
+				</div>
 			</form>
 			<form action="${pageContext.request.contextPath}/clerk"
 				method="get">

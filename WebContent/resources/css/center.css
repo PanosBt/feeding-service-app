@@ -4,3 +4,28 @@
   width: 50%;
   padding: 10px;
 }
+
+.center-stuff {
+    margin-left:auto; 
+    margin-right:auto;
+  }
+  
+  .rounded-box {
+  border-radius: 15px;
+  background: #e5f3f9;
+  padding: 2%; 
+  margin: auto;
+  width: 60%;
+  min-height:250px;
+  border: 1px solid black;
+  text-align:center;
+}
+.text-input{
+  border-radius:5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-color{
+	color:#FF0000
+}

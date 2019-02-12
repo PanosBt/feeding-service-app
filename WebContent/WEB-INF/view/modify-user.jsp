@@ -112,7 +112,7 @@
 				<div>Ο χρήστης ενημερώθηκε!</div>
 			</c:when>
 			<c:otherwise>
-				<div class="error">Η ενημέρωση απέτυχε</div>
+				<div class="error error-color">Η ενημέρωση απέτυχε</div>
 			</c:otherwise>
 		</c:choose>
 	</c:if>

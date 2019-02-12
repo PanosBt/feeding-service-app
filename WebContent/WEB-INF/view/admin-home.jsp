@@ -21,7 +21,7 @@
 								<td><form:label path="username">Όνομα χρήστη</form:label></td>
 								<td><form:input class = "text-input" path="username" /></td>
 								<c:if test="${not empty userExists && userExists}">
-									<td><div class="error">Αυτό το username
+									<td><div class="error error-color">Αυτό το username
 											χρησιμοποιείται ήδη.</div></td>
 								</c:if>
 								<td><form:errors path="username" /></td>
@@ -64,7 +64,7 @@
 				</c:if>
 				<c:if test="${not empty userCreated && not userCreated}">
 					<tr>
-						<td><div class="error">Η δημιουργία του χρήστη απέτυχε.</div></td>
+						<td><div class="error error-color">Η δημιουργία του χρήστη απέτυχε.</div></td>
 					</tr>
 				</c:if>
 				<br />
@@ -82,7 +82,7 @@
 								<td><input type="text" class="text-input" required name="username"></td>
 								<td><c:if
 										test="${not empty modUserFound && not modUserFound}">
-										<div class="error">Ο χρήστης δεν βρέθηκε</div>
+										<div class="error error-color">Ο χρήστης δεν βρέθηκε</div>
 									</c:if></td>
 							</tr>
 							<tr>

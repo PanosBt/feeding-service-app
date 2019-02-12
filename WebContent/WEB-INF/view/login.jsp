@@ -8,12 +8,7 @@
 
 	<form:form action="${pageContext.request.contextPath}/authUser"
 		method="POST">
-		<table>
-			<c:if test="${param.error != null}">
-				<tr> 
-					<td><div class="error">Τα στοιχεία σύνδεσης είναι λάθος</div></td>
-				</tr>
-			</c:if>
+		<table class="center-stuff">
 			<tr>
 				<td><label>Όνομα Χρήστη</label></td>
 				<td><input type="text" class = "text-input" name="username" /></td>
@@ -26,5 +21,9 @@
 		</table>
 		<input type="submit" class = "submit-button" value="ΣΥΝΔΕΣΗ" />
 	</form:form>
+	<br />
+	<c:if test="${param.error != null}">
+				<div class="error"><p class="error-color">Τα στοιχεία σύνδεσης είναι λάθος</p></div>
+			</c:if>
 	</div>
 	</div>
