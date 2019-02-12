@@ -3,7 +3,7 @@
 	<div class = "rounded-box">
 	<div class = "center">
 	
-	<h3>Σύνδεση</h3>
+	<h2>Σύνδεση</h2>
 	
 
 	<form:form action="${pageContext.request.contextPath}/authUser"

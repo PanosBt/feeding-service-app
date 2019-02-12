@@ -4,7 +4,7 @@
 
 	<div class = "rounded-box">
 		<div class = "center">
-			<h1><b>Καλώς ήρθατε!</b></h1>
+			<h1><b>Καλώς ήρθατε</b> <b> ${userFirstName}</b> <b> ${userLastName}!</b></h1>
 			<br />
 			<br />
 			<a href="${pageContext.request.contextPath}/clerk/studentlist" class="button1">Νέα Καρτέλα Φοιτητή</a>

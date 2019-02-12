@@ -3,6 +3,7 @@
 	<link href="<c:url value="/resources/css/striped-table.css"/>" rel="stylesheet" type="text/css">
 	
 	<div class = "rounded-box">
+	<div class = "rounded-box">
 		<div class = "center">
 		
 			<form method="POST"
@@ -31,4 +32,5 @@
 				<br>
 			</form>
 		</div>
+	</div>
 	</div>
