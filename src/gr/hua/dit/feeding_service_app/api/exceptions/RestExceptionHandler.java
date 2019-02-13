@@ -27,7 +27,7 @@ public class RestExceptionHandler {
 		ex.printStackTrace();
 
 		errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-		errorResponse.setMessage("Bad Request");
+		errorResponse.setMessage(ex.getMessage());
 		errorResponse.setTimeStamp(System.currentTimeMillis());
 
 		return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
