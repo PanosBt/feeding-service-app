@@ -7,7 +7,7 @@
 		action="${pageContext.request.contextPath}/clerk/applicationinfo">
 		<input type="hidden" name="${_csrf.parameterName}"
 		value="${_csrf.token}" />
-		<table class="striped-table">
+		<table class="striped-table center-stuff">
 			<tr>
 				<th>ID Αίτησης</th>
 				<th></th>

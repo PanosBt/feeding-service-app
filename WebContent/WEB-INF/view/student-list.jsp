@@ -3,7 +3,6 @@
 	<link href="<c:url value="/resources/css/striped-table.css"/>" rel="stylesheet" type="text/css">
 	
 	<div class = "rounded-box">
-	<div class = "rounded-box">
 		<div class = "center">
 		
 			<form method="POST"
@@ -11,7 +10,7 @@
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
 				<div class=center>
-				<table class="striped-table" class="center">
+				<table class="striped-table center-stuff" class="center">
 					<tr>
 						<th>Username</th>
 						<th></th>
@@ -34,5 +33,4 @@
 				<br>
 			</form>
 		</div>
-	</div>
 	</div>

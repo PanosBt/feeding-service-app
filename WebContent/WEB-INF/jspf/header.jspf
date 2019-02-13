@@ -40,7 +40,7 @@
 					value="${_csrf.token}" />
 				<button class="submit-button">Αποσύνδεση</button>
 			</form>
-			<a href="<c:url value="/${uri_parts[0]}"/>">Αρχική Σελίδα</a>
+			<a class="submit-button" href="<c:url value="/${uri_parts[0]}"/>">Αρχική Σελίδα</a>
 		</c:if>
 	
 	
