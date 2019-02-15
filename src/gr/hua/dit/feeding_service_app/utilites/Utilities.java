@@ -11,6 +11,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
+import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
+
 import gr.hua.dit.feeding_service_app.entities.Application;
 
 /**
@@ -117,7 +119,7 @@ public class Utilities {
 		
 		Properties prop = new Properties();
 		String studentlimit;
-		
+			
 		try (FileInputStream in = new FileInputStream("city.properties")){
 			 prop.load(in);
 			 studentlimit = prop.getProperty("limit");
