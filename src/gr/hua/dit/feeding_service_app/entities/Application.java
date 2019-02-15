@@ -31,7 +31,7 @@ public class Application {
 	@JoinColumn(name = "student_id", nullable = true)
 	private Student student;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "clerk_checked_id", nullable = true)
 	private Clerk clerk;
 

@@ -1,17 +1,18 @@
 package gr.hua.dit.feeding_service_app.utilites;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
-
-import org.hibernate.validator.internal.util.privilegedactions.GetClassLoader;
 
 import gr.hua.dit.feeding_service_app.entities.Application;
 
@@ -29,6 +30,8 @@ public class Utilities {
 	public static final Integer ABSOLUTE_SCORE = 10000;
 
 	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	
+	private static final String CITY_PROPERTIES_PATH = "/main/resources/city.properties";
 
 	
 	/**
@@ -94,7 +97,7 @@ public class Utilities {
 			Properties prop = new Properties();
 			String city;
 
-			try (InputStream in = Utilities.class.getClassLoader().getResourceAsStream("city.properties")) {
+			try (InputStream in = Utilities.class.getResourceAsStream(CITY_PROPERTIES_PATH)) {
 				prop.load(in);
 				city = prop.getProperty("city");
 			} catch (IOException e) {
@@ -120,7 +123,8 @@ public class Utilities {
 		Properties prop = new Properties();
 		String studentlimit;
 			
-		try (FileInputStream in = new FileInputStream("city.properties")){
+		
+		try (InputStream in = Utilities.class.getResourceAsStream(CITY_PROPERTIES_PATH)){
 			 prop.load(in);
 			 studentlimit = prop.getProperty("limit");
 		} catch (IOException e) {
@@ -151,7 +155,7 @@ public class Utilities {
 		Properties prop = new Properties();
 		boolean studentlimitupdated = true;
 		
-		try(FileInputStream in = new FileInputStream("city.properties")) {
+		try(InputStream in = Utilities.class.getResourceAsStream(CITY_PROPERTIES_PATH)) {
 			 //FileInputStream in = new FileInputStream("city.properties");
 			 prop.load(in);
 		} catch (FileNotFoundException e) {
@@ -162,8 +166,21 @@ public class Utilities {
 			e.printStackTrace();
 		}
 		
-		try (FileOutputStream out = new FileOutputStream("city.properties")) {
+		// this is a terrbile hack, sorry
+		// TODO city.properties should not be a resource...
+		URL resourceUrl = Utilities.class.getResource(CITY_PROPERTIES_PATH);
+		
+		File file = null;
+		try {
+			file = new File(resourceUrl.toURI());
+		} catch (URISyntaxException e) {
+			studentlimitupdated = false;
+			e.printStackTrace();
+		}
+
+		try (OutputStream out = new FileOutputStream(file)) {
 			prop.setProperty("limit", limit);
+			
 			prop.store(out, null);
 		} catch (FileNotFoundException e) {
 			studentlimitupdated = false;

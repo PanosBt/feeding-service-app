@@ -1,16 +1,11 @@
 package gr.hua.dit.feeding_service_app.controllers;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,11 +25,13 @@ import gr.hua.dit.feeding_service_app.entities.AccompanyingDocument;
 import gr.hua.dit.feeding_service_app.entities.Application;
 import gr.hua.dit.feeding_service_app.entities.Clerk;
 import gr.hua.dit.feeding_service_app.entities.Student;
+import gr.hua.dit.feeding_service_app.entities.StudentLimit;
 import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
 import gr.hua.dit.feeding_service_app.services.AccompanyingDocumentService;
 import gr.hua.dit.feeding_service_app.services.ApplicationService;
 import gr.hua.dit.feeding_service_app.services.ClerkService;
 import gr.hua.dit.feeding_service_app.services.FileService;
+import gr.hua.dit.feeding_service_app.services.StudentLimitService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.services.UserService;
 import gr.hua.dit.feeding_service_app.utilites.CustomAuthorityUtilities;
@@ -63,6 +60,9 @@ public class ClerkController {
 	@Autowired
 	private FileService fileService;
 	
+	@Autowired
+	private StudentLimitService studentLimitService;
+	
 	@RequestMapping
 	public String ClerkHomePage(Model model, @RequestParam Map<String, String> params, Principal principal) {
 		
@@ -76,7 +76,8 @@ public class ClerkController {
 		if (params.containsKey("studentLimitUpdated"))
 			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
 		// model attribute to show current student limit
-		model.addAttribute("limit", Utilities.getStudentLimitStr());
+		
+		model.addAttribute("limit", studentLimitService.getStudentLimit().getStudent_limit());
 
 		return "clerk-home";
 	}
@@ -132,15 +133,23 @@ public class ClerkController {
 
 	@PostMapping("/update_student_limit")
 	public String updateStudentLimit(@RequestParam Map<String, String> params) {
-		String newlimit;
-		boolean studentLimitUpdated;
+		Integer newlimit;
+		boolean studentLimitUpdated = false;
 
 		// checks if params contain limit and the updateStudentLimit returns true/false
 		if (params.containsKey("limit")) {
-			newlimit = params.get("limit");
-			studentLimitUpdated = Utilities.updateStudentLimit(newlimit);
-		} else
-			studentLimitUpdated = false;
+			try {
+				newlimit = Integer.parseInt(params.get("limit"));
+				StudentLimit studentLimit = studentLimitService.getStudentLimit();
+				studentLimit.setStudent_limit(newlimit);
+				studentLimitService.update(studentLimit);
+				studentLimitUpdated = true;
+			
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+
+		}
 
 		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
 		return redStr + studentLimitUpdated;
@@ -177,7 +186,8 @@ public class ClerkController {
 	}
 	
 	@PostMapping("/applcationchecked/{appl_id}")
-	public String applcationChecked(Model model, @RequestParam Map<String, String> params, @PathVariable("appl_id") int appl_id, Principal principal) {
+	public String applcationChecked(Model model, @RequestParam Map<String, String> params, 
+			@PathVariable("appl_id") int appl_id, Principal principal) {
 		
 		Clerk clerk = clerkService.getClerk(principal.getName());
 		Application application = applicationService.getApplication(appl_id);
