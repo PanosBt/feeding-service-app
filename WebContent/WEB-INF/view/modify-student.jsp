@@ -1,10 +1,20 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		<link href="<c:url value="/resources/css/striped-table.css"/>" rel="stylesheet" type="text/css">
+	
+	
+	<div class="rounded-box">
+	<div class="center">
 	<h4>Τροποποίηση στοιχείων χρήστη</h4>
 	<form:form method="POST"
 		action="${pageContext.request.contextPath}/clerk/modify_student/${student.username}"
 		modelAttribute="mod_student">
-		<table border="1">
+		<table class="striped-table center-stuff">
+			<tr>
+			<th><h4>Τροποποίηση στοιχείων χρήστη</h4></th>
+			<th></th>
+			<th></th>
+			</tr>
 			<tr>
 				<td>Username</td>
 				<td>${student.username}</td>
@@ -57,11 +67,11 @@
 			</tr>
 		</table>
 		<br />
-		<input type="submit" value="ΑΠΟΘΗΚΕΥΣΗ" />
+		<input type="submit" class="submit-button" value="ΑΠΟΘΗΚΕΥΣΗ" />
 	</form:form>
 	<form action="${pageContext.request.contextPath}/clerk/studentlist"
 		method="get">
-		<button type="submit">Πίσω</button>
+		<button type="submit" class="submit-button">Πίσω</button>
 		<br>
 	</form>
 	<c:if test="${not empty studentUpdated}">
@@ -74,3 +84,5 @@
 			</c:otherwise>
 		</c:choose>
 	</c:if>
+	</div>
+	</div>

@@ -1,8 +1,15 @@
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link href="<c:url value="/resources/css/striped-table.css"/>" rel="stylesheet" type="text/css">
 
-	<h4>Στοιχεία Φοιτητή</h4>
-	<table border="1">
+<div class="rounded-box">
+<div class="center">	
+	
+	<table class="striped-table center-stuff">
+		<tr>
+		<th><h4>Στοιχεία Φοιτητή</h4></th>
+		<th></th>
+		</tr>
 		<tr>
 			<td>Όνομα</td>
 			<td>${student.firstName}</td>
@@ -37,8 +44,13 @@
 			<td>${student.dept}</td>
 		</tr>
 	</table>
-	<h4>Στοιχεία Αίτησης</h4>
-	<table border="1">
+	<br />
+	<br/>
+	<table class="striped-table center-stuff">
+		<tr>
+		<th><h4>Στοιχεία Αίτησης</h4></th>
+		<th></th>
+		</tr>
 		<tr>
 			<td>Οικογενιακό Εισόδημα</td>
 			<td>${application.familyIncome}</td>
@@ -71,15 +83,17 @@
 				</c:otherwise>
 				</c:choose></td>
 	</table>
-	<br>
+	<br/>
+	<br/>
 	<form method="POST"
 		action="${pageContext.request.contextPath}/clerk/document"
 		target="_blank">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
-		<table border=1>
+		<table class="striped-table center-stuff">
 			<tr>
 				<th>Τύπος εγγράφου</th>
+				<th></th>
 			</tr>
 			<c:forEach var="accompanyingDocuments" items="${accompanyingDocuments}">
 				<tr>
@@ -102,8 +116,8 @@
 					  	</c:when>
 					  </c:choose>
 					</td>
-					<td><button type="submit" name="file_path"
-							value=${accompanyingDocuments.file_path } class="ui button">Έλεγχος</button></td>
+					<td><button type="submit" class="submit-button" name="file_path"
+							value=${accompanyingDocuments.file_path } >Έλεγχος</button></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -115,11 +129,12 @@
 	<input type="hidden" name="${_csrf.parameterName}"
 	value="${_csrf.token}" />
 	<button type="submit" name="approve"
-		value=true class="ui button">Αποδοχή</button>
+		value=true class="submit-button">Αποδοχή</button>
 	<button type="submit" name="approve"
-		value=true class="ui button">Απόρριψη</button>
+		value=true class="submit-button">Απόρριψη</button>
 	</form>
-
+</div>
+</div>
 
 
 
