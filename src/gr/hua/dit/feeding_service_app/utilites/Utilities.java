@@ -14,6 +14,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
 import gr.hua.dit.feeding_service_app.entities.Application;
 
 /**
@@ -31,8 +34,8 @@ public class Utilities {
 
 	private static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 	
-	private static final String CITY_PROPERTIES_PATH = "/main/resources/city.properties";
-
+	private static final String CITY_PROPERTIES_PATH = "classpath:/resources/city.properties";
+	
 	
 	/**
 	 * read a date string formated as "dd/MM/yyyy" and parse/convert to a date
@@ -96,8 +99,10 @@ public class Utilities {
 			// read university city to compare w/ student's origin city
 			Properties prop = new Properties();
 			String city;
+			
+			Resource resource = new ClassPathResource("city.properties");
 
-			try (InputStream in = Utilities.class.getResourceAsStream(CITY_PROPERTIES_PATH)) {
+			try (InputStream in = resource.getInputStream()) {
 				prop.load(in);
 				city = prop.getProperty("city");
 			} catch (IOException e) {
