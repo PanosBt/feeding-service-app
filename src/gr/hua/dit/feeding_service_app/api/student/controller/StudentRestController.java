@@ -16,6 +16,7 @@ import gr.hua.dit.feeding_service_app.api.student.response_helper.ApplicationSta
 import gr.hua.dit.feeding_service_app.entities.Application;
 import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.services.ApplicationService;
+import gr.hua.dit.feeding_service_app.services.StudentLimitService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
 import gr.hua.dit.feeding_service_app.utilites.Utilities;
 
@@ -28,6 +29,9 @@ public class StudentRestController {
 
 	@Autowired
 	ApplicationService applicationService;
+	
+	@Autowired
+	StudentLimitService studentLimitService;
 	
 	@GetMapping("/{id}")
 	public Student getStudent(@PathVariable Integer id) {
@@ -88,12 +92,13 @@ public class StudentRestController {
 				if (application.isApproved()) {
 					rank = applicationService.getRank(application);
 					score = application.getScore();
-					feed_qualified = rank.intValue() <= Utilities.getStudentLimit().intValue();
+					feed_qualified = rank.intValue() <= studentLimitService.getStudentLimit().getStudent_limit();
 				}
 
 		return new ApplicationStatusResponse(
 				submited, checked, rank, score,
-				Utilities.getStudentLimit(),feed_qualified);
+				studentLimitService.getStudentLimit().getStudent_limit()
+				,feed_qualified);
 
 	}
 	
