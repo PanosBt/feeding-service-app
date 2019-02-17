@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<div class = "container">
 	<div class = "rounded-box">
 	<div class = "center">
 	
@@ -25,5 +26,6 @@
 	<c:if test="${param.error != null}">
 				<div class="error"><p class="error-color">Τα στοιχεία σύνδεσης είναι λάθος</p></div>
 			</c:if>
+	</div>
 	</div>
 	</div>

@@ -9,10 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
-		<link href="<c:url value="/resources/css/background.css"/>" rel="stylesheet" type="text/css">
 		<link href="<c:url value="/resources/css/center.css"/>" rel="stylesheet" type="text/css">
-		<link href="<c:url value="/resources/css/button1.css"/>" rel="stylesheet" type="text/css">
-		<link href="<c:url value="/resources/css/submit-button.css"/>" rel="stylesheet" type="text/css">
 		
 		
 		
@@ -34,6 +31,7 @@
 	<body>
 		<br />
 		<!-- show logout button only if second part of URI (w/o parameters) is admin or clerk -->
+		<div class="floatRight">
 		<c:if test="${uri_parts[0] == 'admin' or uri_parts[0] == 'clerk'}">
 			<form method="POST" action="${pageContext.request.contextPath}/logout">
 				<input type="hidden" name="${_csrf.parameterName}"
@@ -41,8 +39,9 @@
 				<button class="submit-button">Αποσύνδεση</button>
 			</form>
 			<br />
-			<a class="submit-button" href="<c:url value="/${uri_parts[0]}"/>">Αρχική Σελίδα</a>
+			<a class="asubmit-button" href="<c:url value="/${uri_parts[0]}"/>">Αρχική Σελίδα</a>
 		</c:if>
+		</div>
 	
 	
 	
