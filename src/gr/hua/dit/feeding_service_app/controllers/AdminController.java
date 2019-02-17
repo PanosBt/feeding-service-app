@@ -175,6 +175,7 @@ public class AdminController {
 						+ "&userUpdated=";
 	
 		modUser.setUsername(username);
+		modUser.setIdentityCardNO(modUser.getIdentityCardNO().replaceAll("\\s+", ""));
 		userService.updateUser(modUser);
 		return redStr + userUpdated;
 	}

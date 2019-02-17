@@ -120,6 +120,8 @@ public class ClerkController {
 			username = URLEncoder.encode(username, "UTF-8"); // encode username to UTF-8 so usernames with greek
 																// characters are supported in redirect link
 			modStudent.setData_init(true);
+			modStudent.setIdentityCardNO(modStudent.getIdentityCardNO().replaceAll("\\s+", ""));
+			System.out.println(modStudent.getIdentityCardNO());
 			userService.updateUser(modStudent);
 		} catch (UnsupportedEncodingException e) {
 			userUpdated = "false";
