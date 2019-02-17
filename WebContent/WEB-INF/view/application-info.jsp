@@ -132,7 +132,7 @@
 			<button type="submit" name="approve"
 				value=true class="submit-button">Αποδοχή</button>
 			<button type="submit" name="approve"
-				value=true class="submit-button">Απόρριψη</button>
+				value=false class="submit-button">Απόρριψη</button>
 			</form>
 		</div>
 	</div>
