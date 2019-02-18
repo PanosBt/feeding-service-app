@@ -9,4 +9,5 @@ public interface ClerkDAO {
 	public int delete(String username);
 	
 	public boolean update(ModUserHelper modUser);
+	public void delete(Clerk clerk);
 }

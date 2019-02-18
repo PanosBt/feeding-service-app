@@ -9,11 +9,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import gr.hua.dit.feeding_service_app.dao.AdminDAO;
+import gr.hua.dit.feeding_service_app.dao.ApplicationDAO;
 import gr.hua.dit.feeding_service_app.dao.AuthorityDAO;
 import gr.hua.dit.feeding_service_app.dao.ClerkDAO;
 import gr.hua.dit.feeding_service_app.dao.StudentDAO;
 import gr.hua.dit.feeding_service_app.dao.UserDAO;
 import gr.hua.dit.feeding_service_app.entities.Authority;
+import gr.hua.dit.feeding_service_app.entities.Clerk;
+import gr.hua.dit.feeding_service_app.entities.Student;
 import gr.hua.dit.feeding_service_app.entities.User;
 import gr.hua.dit.feeding_service_app.model_helper.ModUserHelper;
 import gr.hua.dit.feeding_service_app.model_helper.NewUserHelper;
@@ -32,6 +35,9 @@ public class UserServiceImpl implements UserService {
 	private ClerkDAO clerkDAO;
 	@Autowired
 	private AdminDAO adminDAO;
+		
+	@Autowired
+	private ApplicationDAO applicationDAO;
 
 	@Override
 	@Transactional
@@ -120,10 +126,16 @@ public class UserServiceImpl implements UserService {
 			break;
 		case CustomAuthorityUtilities.CLERK_ROLE:
 		case CustomAuthorityUtilities.SUPERVISOR_ROLE:
-			clerkDAO.delete(username);
+//			clerkDAO.delete(username);
+			Clerk clerk = clerkDAO.getClerk(username);
+			applicationDAO.removeApplicationChecks(clerk);
+			clerkDAO.delete(clerk);
 			break;
 		case CustomAuthorityUtilities.STUDENT_ROLE:
-			studentDAO.delete(username);
+			Student student = studentDAO.getStudent(username);
+//			applicationDAO.delete();
+//			studentDAO.delete(username);
+			studentDAO.delete(student);
 			break;
 		default:
 			return false;

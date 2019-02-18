@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gr.hua.dit.feeding_service_app.entities.Application;
+import gr.hua.dit.feeding_service_app.entities.Clerk;
 
 @Repository
 public class ApplicationDAOImpl implements ApplicationDAO {
@@ -55,6 +56,23 @@ public class ApplicationDAOImpl implements ApplicationDAO {
 		
 		return (Integer) sessionFactory.getCurrentSession()
 		.save(application);
+		
+	}
+	
+	private List<Application> getApplicationsForClerk(int clerk_id) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM Application WHERE clerk_checked_id = :clerk_id", Application.class)
+				.setParameter("clerk_id", clerk_id)
+				.getResultList();
+	}
+
+	@Override
+	public void removeApplicationChecks(Clerk clerk) {
+		List<Application> applications = getApplicationsForClerk(clerk.getId());
+		for (Application application : applications) {
+			application.setClerk(null);
+			update(application);
+		}
 		
 	}
 
