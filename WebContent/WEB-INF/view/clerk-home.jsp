@@ -14,9 +14,53 @@
 				<br />
 				<br />
 				<sec:authorize access="hasRole('ROLE_SUPERVISOR')">
-					<h4>Τροποποίηση αριθμού επιλέξιμων φοιτητών</h4>
-					<br /> Τρέχον όριο φοιτητών: ${limit}
-					<br />
+					<h4>Τροποποίηση αριθμού επιλέξιμων φοιτητών ανα τμήμα</h4>
+					<table class="striped-table center-stuff">
+						<tr>
+							<th>Όρια τμημάτων</th>
+						</tr>
+						<tr>
+							<td>Τμήμα</td>
+							<td>Τρέχων Όριο</td>
+							<td>Νέο Όριο</td>
+						</tr>
+						<tr>
+							<td>Πληροφορικής και Τηλεματικής</td>
+							<td>20</td>
+							<td><input type="text" required name="limit" class="text-input" ></td>
+							<td><button type="submit" class="submit-button">Εισαγωγή</button></td>
+						</tr>
+						<tr>
+							<td>Οικιακής Οικονομίας</td>
+							<td>20</td>
+							<td><input type="text" required name="limit" class="text-input" ></td>
+							<td><button type="submit" class="submit-button">Εισαγωγή</button></td>
+						</tr>
+						<tr>
+							<td>Γεωγραφίας</td>
+							<td>20</td>
+							<td><input type="text" required name="limit" class="text-input" ></td>
+							<td><button type="submit" class="submit-button">Εισαγωγή</button></td>
+						</tr>
+						<tr>
+							<td>Επιστήμης Διαιτολογίας – Διατροφής</td>
+							<td>25</td>
+							<td><input type="text" required name="limit" class="text-input" ></td>
+							<td><button type="submit" class="submit-button">Εισαγωγή</button></td>
+						</tr>
+						<tr>
+							<td>Μηχανικών Αεροσκαφών</td>
+							<td>20</td>
+							<td><input type="text" required name="limit" class="text-input" ></td>
+							<td><button type="submit" class="submit-button">Εισαγωγή</button></td>
+						</tr>
+					</table>
+					
+					
+					
+<!--
+ 				<br /> Τρέχον όριο φοιτητών: ${limit}
+ 					<br />
 					<br />
 					<form method="POST"
 						action="${pageContext.request.contextPath}/clerk/update_student_limit">
@@ -38,8 +82,10 @@
 								<div class="error error-color">Η ενημέρωση απέτυχε</div>
 							</c:otherwise>
 						</c:choose>
-					</c:if>
+					</c:if> 
+-->
 				</sec:authorize>
 			</div>
 		</div>
 	</div>
+
