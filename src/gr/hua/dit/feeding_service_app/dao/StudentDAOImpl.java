@@ -128,6 +128,12 @@ public class StudentDAOImpl implements StudentDAO {
 		student.setData_init(modUser.getData_init());
 	}
 
+	@Override
+	public void delete(Student student) {
+		sessionFactory.getCurrentSession()
+		.delete(student);
+	}
+
 
 
 

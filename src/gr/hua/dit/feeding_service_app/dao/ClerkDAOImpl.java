@@ -80,4 +80,11 @@ public class ClerkDAOImpl implements ClerkDAO {
 			clerk.setSupervising_dept(modUser.getSupervising_dept());
 	}
 
+	@Override
+	public void delete(Clerk clerk) {
+		sessionFactory.getCurrentSession()
+		.delete(clerk);
+		
+	}
+
 }
