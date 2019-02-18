@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Σύστημα Διαχείρισης Αιτήσεων Σίτισης</title>
 		<link href="<c:url value="/resources/css/center.css"/>" rel="stylesheet" type="text/css">
 		
 		
