@@ -1,6 +1,10 @@
 package gr.hua.dit.feeding_service_app.dao;
 
+import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +27,16 @@ public class StudentLimitDAOImpl implements StudentLimitDAO {
 		sessionFactory.getCurrentSession()
 		.update(studentLimit);
 
+	}
+	
+	@Override
+	public List<StudentLimit> getAllStudentLimits() {
+		
+		Session curSession = sessionFactory.getCurrentSession();
+		
+		Query<StudentLimit> query = curSession.createQuery("from StudentLimit", StudentLimit.class);
+		
+		return query.getResultList();
 	}
 
 }

@@ -6,6 +6,8 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -77,8 +79,9 @@ public class ClerkController {
 			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
 		// model attribute to show current student limit
 		
-		model.addAttribute("limit", studentLimitService.getStudentLimit().getStudent_limit());
-
+//		model.addAttribute("limit", studentLimitService.getStudentLimit().getStudent_limit());
+		model.addAttribute("limits", studentLimitService.getAllStudentLimits());
+		
 		return "clerk-home";
 	}
 
@@ -134,27 +137,31 @@ public class ClerkController {
 	}
 
 	@PostMapping("/update_student_limit")
-	public String updateStudentLimit(@RequestParam Map<String, String> params) {
-		Integer newlimit;
-		boolean studentLimitUpdated = false;
-
-		// checks if params contain limit and the updateStudentLimit returns true/false
-		if (params.containsKey("limit")) {
-			try {
-				newlimit = Integer.parseInt(params.get("limit"));
-				StudentLimit studentLimit = studentLimitService.getStudentLimit();
-				studentLimit.setStudent_limit(newlimit);
-				studentLimitService.update(studentLimit);
-				studentLimitUpdated = true;
-			
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			}
-
-		}
-
-		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
-		return redStr + studentLimitUpdated;
+	public String updateStudentLimit(@ModelAttribute("updatedLimit") StudentLimit newStudentLimit) {
+		
+		System.out.println(newStudentLimit.getDept());
+		System.out.println(newStudentLimit.getStudent_limit());
+		return "unimplemented";
+//		Integer newlimit;
+//		boolean studentLimitUpdated = false;
+//
+//		// checks if params contain limit and the updateStudentLimit returns true/false
+//		if (params.containsKey("limit")) {
+//			try {
+//				newlimit = Integer.parseInt(params.get("limit"));
+//				StudentLimit studentLimit = studentLimitService.getStudentLimit();
+//				studentLimit.setStudent_limit(newlimit);
+//				studentLimitService.update(studentLimit);
+//				studentLimitUpdated = true;
+//			
+//			} catch (NumberFormatException e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
+//
+//		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
+//		return redStr + studentLimitUpdated;
 	}
 
 	// return all applications that need to be checked
