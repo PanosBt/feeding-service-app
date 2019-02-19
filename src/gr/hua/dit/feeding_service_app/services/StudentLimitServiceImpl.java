@@ -1,5 +1,7 @@
 package gr.hua.dit.feeding_service_app.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,18 @@ public class StudentLimitServiceImpl implements StudentLimitService {
 	public void update(StudentLimit studentLimit) {
 		studentLimitDAO.update(studentLimit);
 
+	}
+	
+	@Override
+	@Transactional
+	public List<StudentLimit> getAllStudentLimits() {
+		return studentLimitDAO.getAllStudentLimits();
+	}
+
+	@Override
+	@Transactional
+	public StudentLimit getStudentLimitOf(String dept) {
+		return studentLimitDAO.getStudentLimitOf(dept);
 	}
 
 }

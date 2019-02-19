@@ -18,6 +18,9 @@ public class StudentLimit {
 
 	@Column(name = "student_limit")
 	private int student_limit;
+	
+	@Column(name = "dept")
+	private String dept;
 
 	public StudentLimit() {
 	}
@@ -38,4 +41,12 @@ public class StudentLimit {
 		this.student_limit = student_limit;
 	}
 
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package gr.hua.dit.feeding_service_app.api.exceptions;
 
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
 import gr.hua.dit.feeding_service_app.api.application.exception.ApplicationNotFoundException;
@@ -22,7 +24,8 @@ public class RestExceptionHandler {
 
 	@ExceptionHandler({ BadRequestException.class, MissingServletRequestParameterException.class,
 			MethodArgumentTypeMismatchException.class, HttpMessageConversionException.class,
-			MissingServletRequestPartException.class})
+			MissingServletRequestPartException.class, MaxUploadSizeExceededException.class,
+			SizeLimitExceededException.class})
 	public ResponseEntity<RestErrorResponse> handleBadRequestException(Exception ex) {
 		ex.printStackTrace();
 
@@ -63,8 +66,6 @@ public class RestExceptionHandler {
 		return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	
-
 	// Handler for unpredicted exceptions
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<RestErrorResponse> handleException(Exception ex) {

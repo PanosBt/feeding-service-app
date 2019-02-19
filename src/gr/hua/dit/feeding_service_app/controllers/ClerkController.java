@@ -76,9 +76,13 @@ public class ClerkController {
 		if (params.containsKey("studentLimitUpdated"))
 			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
 		// model attribute to show current student limit
+		if (params.containsKey("limitUpd"))
+			model.addAttribute("limitUpd", Boolean.parseBoolean(params.get("limitUpd")));
 		
-		model.addAttribute("limit", studentLimitService.getStudentLimit().getStudent_limit());
-
+		
+//		model.addAttribute("limit", studentLimitService.getStudentLimit().getStudent_limit());
+		model.addAttribute("limits", studentLimitService.getAllStudentLimits());
+		
 		return "clerk-home";
 	}
 
@@ -134,27 +138,78 @@ public class ClerkController {
 	}
 
 	@PostMapping("/update_student_limit")
-	public String updateStudentLimit(@RequestParam Map<String, String> params) {
-		Integer newlimit;
-		boolean studentLimitUpdated = false;
-
-		// checks if params contain limit and the updateStudentLimit returns true/false
-		if (params.containsKey("limit")) {
-			try {
-				newlimit = Integer.parseInt(params.get("limit"));
-				StudentLimit studentLimit = studentLimitService.getStudentLimit();
-				studentLimit.setStudent_limit(newlimit);
-				studentLimitService.update(studentLimit);
-				studentLimitUpdated = true;
-			
-			} catch (NumberFormatException e) {
-				e.printStackTrace();
-			}
-
+	public String updateStudentLimit(@RequestParam(name="dept") String dept, @RequestParam(name="newLimit") String[] newLimitarr,
+			Model model) {
+		
+		boolean limitUpdated = false;
+		
+//		String dept = null;
+//		Integer newLimit = null;
+//		ArrayList<Integer> newLimitArr = new ArrayList<>();
+		int newLimit = -1;
+		
+		for(int i=0; i<newLimitarr.length; i++) {
+			if(!newLimitarr[i].isEmpty())
+				try {
+					newLimit = Integer.parseInt(newLimitarr[i]);
+					break;
+				} catch (NumberFormatException ex) {
+					ex.printStackTrace();
+				}
 		}
-
-		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
-		return redStr + studentLimitUpdated;
+		
+		StudentLimit studentLimit;
+		
+		if (newLimit != -1) {
+			studentLimit = studentLimitService.getStudentLimitOf(dept);
+			if (studentLimit != null) {
+				studentLimit.setStudent_limit(newLimit);
+				studentLimitService.update(studentLimit);
+				limitUpdated = true;
+			}
+			
+		}
+		
+		return "redirect:/clerk?limitUpd=" + limitUpdated;
+		
+		
+//		if (params.containsKey("dept"))
+//			dept = (String) params.get("dept");
+//		
+//		if (dept != null) {
+//			if (params.containsKey("newLimit")) {
+//				newLimitArr = params.get("newLimit");
+//				for (int limit : )
+//			}
+//		}
+//		
+//		StudentLimit stud = new StudentLimit();
+//		stud.gets
+//		
+//		
+//		System.out.println(newStudentLimit.getDept());
+//		System.out.println(newStudentLimit.getStudent_limit());
+//		return "unimplemented";
+//		Integer newlimit;
+//		boolean studentLimitUpdated = false;
+//
+//		// checks if params contain limit and the updateStudentLimit returns true/false
+//		if (params.containsKey("limit")) {
+//			try {
+//				newlimit = Integer.parseInt(params.get("limit"));
+//				StudentLimit studentLimit = studentLimitService.getStudentLimit();
+//				studentLimit.setStudent_limit(newlimit);
+//				studentLimitService.update(studentLimit);
+//				studentLimitUpdated = true;
+//			
+//			} catch (NumberFormatException e) {
+//				e.printStackTrace();
+//			}
+//
+//		}
+//
+//		String redStr = "redirect:/clerk?" + "&studentLimitUpdated=";
+//		return redStr + studentLimitUpdated;
 	}
 
 	// return all applications that need to be checked
