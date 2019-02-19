@@ -6,8 +6,6 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -78,6 +76,9 @@ public class ClerkController {
 		if (params.containsKey("studentLimitUpdated"))
 			model.addAttribute("studentLimitUpdated", Boolean.parseBoolean(params.get("studentLimitUpdated")));
 		// model attribute to show current student limit
+		if (params.containsKey("limitUpd"))
+			model.addAttribute("limitUpd", Boolean.parseBoolean(params.get("limitUpd")));
+		
 		
 //		model.addAttribute("limit", studentLimitService.getStudentLimit().getStudent_limit());
 		model.addAttribute("limits", studentLimitService.getAllStudentLimits());
@@ -137,11 +138,58 @@ public class ClerkController {
 	}
 
 	@PostMapping("/update_student_limit")
-	public String updateStudentLimit(@ModelAttribute("updatedLimit") StudentLimit newStudentLimit) {
+	public String updateStudentLimit(@RequestParam(name="dept") String dept, @RequestParam(name="newLimit") String[] newLimitarr,
+			Model model) {
 		
-		System.out.println(newStudentLimit.getDept());
-		System.out.println(newStudentLimit.getStudent_limit());
-		return "unimplemented";
+		boolean limitUpdated = false;
+		
+//		String dept = null;
+//		Integer newLimit = null;
+//		ArrayList<Integer> newLimitArr = new ArrayList<>();
+		int newLimit = -1;
+		
+		for(int i=0; i<newLimitarr.length; i++) {
+			if(!newLimitarr[i].isEmpty())
+				try {
+					newLimit = Integer.parseInt(newLimitarr[i]);
+					break;
+				} catch (NumberFormatException ex) {
+					ex.printStackTrace();
+				}
+		}
+		
+		StudentLimit studentLimit;
+		
+		if (newLimit != -1) {
+			studentLimit = studentLimitService.getStudentLimitOf(dept);
+			if (studentLimit != null) {
+				studentLimit.setStudent_limit(newLimit);
+				studentLimitService.update(studentLimit);
+				limitUpdated = true;
+			}
+			
+		}
+		
+		return "redirect:/clerk?limitUpd=" + limitUpdated;
+		
+		
+//		if (params.containsKey("dept"))
+//			dept = (String) params.get("dept");
+//		
+//		if (dept != null) {
+//			if (params.containsKey("newLimit")) {
+//				newLimitArr = params.get("newLimit");
+//				for (int limit : )
+//			}
+//		}
+//		
+//		StudentLimit stud = new StudentLimit();
+//		stud.gets
+//		
+//		
+//		System.out.println(newStudentLimit.getDept());
+//		System.out.println(newStudentLimit.getStudent_limit());
+//		return "unimplemented";
 //		Integer newlimit;
 //		boolean studentLimitUpdated = false;
 //

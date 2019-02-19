@@ -110,7 +110,7 @@
 									<c:if test="${not empty delUserFound}">
 										<td><c:choose>
 												<c:when test="${not delUserFound}">
-													<div class="error">Ο χρήστης δεν βρέθηκε</div>
+													<div class="error error-color">Ο χρήστης δεν βρέθηκε</div>
 												</c:when>
 												<c:otherwise>
 													<div class="success">Ο χρήστης διαγράφηκε!</div>

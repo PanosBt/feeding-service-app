@@ -15,6 +15,7 @@ import gr.hua.dit.feeding_service_app.api.student.request_helper.UpdateStudentRe
 import gr.hua.dit.feeding_service_app.api.student.response_helper.ApplicationStatusResponse;
 import gr.hua.dit.feeding_service_app.entities.Application;
 import gr.hua.dit.feeding_service_app.entities.Student;
+import gr.hua.dit.feeding_service_app.entities.StudentLimit;
 import gr.hua.dit.feeding_service_app.services.ApplicationService;
 import gr.hua.dit.feeding_service_app.services.StudentLimitService;
 import gr.hua.dit.feeding_service_app.services.StudentService;
@@ -92,7 +93,9 @@ public class StudentRestController {
 				if (application.isApproved()) {
 					rank = applicationService.getRank(application);
 					score = application.getScore();
-					feed_qualified = rank.intValue() <= studentLimitService.getStudentLimit().getStudent_limit();
+					StudentLimit studentLimit = studentLimitService.getStudentLimitOf(student.getDept());
+					feed_qualified = rank.intValue() <= studentLimit.getStudent_limit()
+										|| score >= Utilities.ABSOLUTE_SCORE;
 				}
 
 		return new ApplicationStatusResponse(

@@ -39,4 +39,12 @@ public class StudentLimitDAOImpl implements StudentLimitDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public StudentLimit getStudentLimitOf(String dept) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from StudentLimit WHERE dept = :dept", StudentLimit.class)
+				.setParameter("dept", dept)
+				.getSingleResult();
+	}
+
 }

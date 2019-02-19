@@ -8,4 +8,5 @@ public interface StudentLimitService {
 	public StudentLimit getStudentLimit();
 	public void update(StudentLimit studentLimit);
 	public List<StudentLimit> getAllStudentLimits();
+	public StudentLimit getStudentLimitOf(String dept);
 }

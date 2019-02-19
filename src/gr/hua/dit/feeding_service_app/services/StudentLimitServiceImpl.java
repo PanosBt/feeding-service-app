@@ -35,4 +35,10 @@ public class StudentLimitServiceImpl implements StudentLimitService {
 		return studentLimitDAO.getAllStudentLimits();
 	}
 
+	@Override
+	@Transactional
+	public StudentLimit getStudentLimitOf(String dept) {
+		return studentLimitDAO.getStudentLimitOf(dept);
+	}
+
 }
