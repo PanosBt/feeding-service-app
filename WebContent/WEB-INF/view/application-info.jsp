@@ -1,69 +1,40 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link href="<c:url value="/resources/css/striped-table.css"/>" rel="stylesheet" type="text/css">
 
 <div class="container">
 	<div class="rounded-box">
 		<div class="center">	
-			
-			<table class="striped-table center-stuff">
+		<div>	
+			<table class="striped-table center-stuff" style="margin-top:4%">
 				<tr>
-				<th><h4>Στοιχεία Φοιτητή</h4></th>
+				<th>Στοιχεία Φοιτητή</th>
+				<th></th>
+				<th>Στοιχεία Αίτησης</th>
 				<th></th>
 				</tr>
 				<tr>
 					<td>Όνομα</td>
 					<td>${student.firstName}</td>
+					<td>Οικογενιακό Εισόδημα</td>
+					<td>${application.familyIncome}</td>
 				</tr>
 				<tr>
 					<td>Επίθετο</td>
 					<td>${student.lastName}</td>
+					<td>Αριθμός Αδερφών</td>
+					<td>${application.num_siblings}</td>
 				</tr>
 				<tr>
 					<td>Ημ/νία Γέννησης</td>
 					<td><fmt:formatDate pattern="dd-MM-yyyy"
 							value="${student.dateOfBirth}" /></td>
+							<td>Πόλη Καταγωγής</td>
+					<td>${application.origin_city }</td>
 				</tr>
 				<tr>
 					<td>Αριθμός Ταυτότητας</td>
 					<td>${student.identityCardNO}</td>
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td>${student.email}</td>
-				</tr>
-				<tr>
-					<td>Τηλέφωνο</td>
-					<td>${student.phone}</td>
-				</tr>
-				<tr>
-					<td>Αριθμός Ακαδημαϊκής Ταυτότητας</td>
-					<td>${student.academicID}</td>
-				</tr>
-				<tr>
-					<td>Τμήμα</td>
-					<td>${student.dept}</td>
-				</tr>
-			</table>
-			<br />
-			<br/>
-			<table class="striped-table center-stuff">
-				<tr>
-				<th><h4>Στοιχεία Αίτησης</h4></th>
-				<th></th>
-				</tr>
-				<tr>
-					<td>Οικογενιακό Εισόδημα</td>
-					<td>${application.familyIncome}</td>
-				<tr>
-					<td>Αριθμός Αδερφών</td>
-					<td>${application.num_siblings}</td>
-				</tr>
-				<tr>
-					<td>Πόλη Καταγωγής</td>
-					<td>${application.origin_city }</td>
-				</tr>
-				<tr>
 					<td>Μητέρα</td>
 					<td><c:choose>
 							<c:when test="${application.mother_employeed}">
@@ -72,8 +43,12 @@
 							<c:otherwise>
 							Άνεργη
 						</c:otherwise>
-						</c:choose></td>
+						</c:choose></td>					
+					
+				</tr>
 				<tr>
+					<td>Email</td>
+					<td>${student.email}</td>
 					<td>Πατέρας</td>
 					<td><c:choose>
 							<c:when test="${application.father_employeed}">
@@ -83,6 +58,27 @@
 							Άνεργος
 						</c:otherwise>
 						</c:choose></td>
+				</tr>
+				<tr>
+					<td>Τηλέφωνο</td>
+					<td>${student.phone}</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Αριθμός Ακαδημαϊκής Ταυτότητας</td>
+					<td>${student.academicID}</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Τμήμα</td>
+					<td>${student.dept}</td>
+					<td></td>
+					<td></td>
+				
+				
+					
 			</table>
 			<br/>
 			<br/>
@@ -91,9 +87,9 @@
 				target="_blank">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<table class="striped-table center-stuff">
+				<table class="striped-table inlineTable center-stuff">
 					<tr>
-						<th>Τύπος εγγράφου</th>
+						<th>Δικαιολογητικά Αίτησης</th>
 						<th></th>
 					</tr>
 					<c:forEach var="accompanyingDocuments" items="${accompanyingDocuments}">
@@ -123,8 +119,13 @@
 					</c:forEach>
 				</table>
 			</form>
+			</div>
+
 			<br>
 			<br>
+			<br>
+			
+		
 			<form method="POST"
 			action="${pageContext.request.contextPath}/clerk/applcationchecked/${application.appl_id}">
 			<input type="hidden" name="${_csrf.parameterName}"
@@ -134,32 +135,6 @@
 			<button type="submit" name="approve"
 				value=false class="submit-button">Απόρριψη</button>
 			</form>
+			</div>
 		</div>
 	</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
