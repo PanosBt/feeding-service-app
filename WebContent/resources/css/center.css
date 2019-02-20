@@ -151,11 +151,10 @@ a.button1:hover {
 
 .floatLeft {
 	float: left;
-	margin-top:9.2%;
 	 }
 .floatRight {
 	float: right;
-	margin-top:4.7% }
+}
 
 .inlineTable {
             display: inline-block;

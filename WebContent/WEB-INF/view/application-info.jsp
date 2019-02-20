@@ -5,7 +5,6 @@
 <div class="container">
 	<div class="rounded-box">
 		<div class="center">	
-		<div>	
 			<table class="striped-table center-stuff" style="margin-top:4%">
 				<tr>
 				<th>Στοιχεία Φοιτητή</th>
@@ -119,7 +118,6 @@
 					</c:forEach>
 				</table>
 			</form>
-			</div>
 
 			<br>
 			<br>
