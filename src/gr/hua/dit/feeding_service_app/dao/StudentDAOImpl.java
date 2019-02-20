@@ -125,7 +125,7 @@ public class StudentDAOImpl implements StudentDAO {
 		if (!StringUtils.isBlank(modUser.getDept()))
 			student.setDept(modUser.getDept());
 		
-		student.setData_init(modUser.getData_init());
+//		student.setData_init(modUser.getData_init());
 	}
 
 	@Override
