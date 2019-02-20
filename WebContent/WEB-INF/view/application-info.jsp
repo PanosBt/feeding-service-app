@@ -87,7 +87,7 @@
 				target="_blank">
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" />
-				<table class="striped-table inlineTable center-stuff">
+				<table class="striped-table center-stuff">
 					<tr>
 						<th>Δικαιολογητικά Αίτησης</th>
 						<th></th>
