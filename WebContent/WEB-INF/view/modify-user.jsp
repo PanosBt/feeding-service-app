@@ -58,7 +58,18 @@
 						<tr>
 							<td><form:label path="supervising_dept">Τμήμα Επίβλεψης</form:label></td>
 							<td><c:out value="${user.supervising_dept}" /></td>
+							<!-- 
 							<td><form:input class="text-input" path="supervising_dept" /></td>
+							 -->
+							<td>
+								<form:select class="text-input" path="supervising_dept">
+									<form:option value="DIT">Πληροφορικής και Τηλεματικής</form:option>
+									<form:option value="GEO">Γεωγραφίας</form:option>
+									<form:option value="DHEE">Οικιακής Οικονομίας</form:option>
+									<form:option value="DDNS">Επιστήμης Διαιτολογίας – Διατροφής</form:option>
+									<form:option value="AIRENG">Μηχανικών Αεροσκαφών</form:option>
+								</form:select>
+							</td>
 						</tr>
 					</c:if>
 					<c:if test="${role == 'Student'}">
