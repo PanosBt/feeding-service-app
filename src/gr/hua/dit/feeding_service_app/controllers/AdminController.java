@@ -176,6 +176,10 @@ public class AdminController {
 	
 		modUser.setUsername(username);
 		modUser.setIdentityCardNO(modUser.getIdentityCardNO().replaceAll("\\s+", ""));
+		boolean dataInit = studentService.getStudent(username) != null?
+				studentService.getStudent(username).isData_init()
+				:false;
+		modUser.setData_init(dataInit);
 		userService.updateUser(modUser);
 		return redStr + userUpdated;
 	}
