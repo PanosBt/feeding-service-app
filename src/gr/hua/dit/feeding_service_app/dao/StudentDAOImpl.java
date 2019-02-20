@@ -130,8 +130,9 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public void delete(Student student) {
-		sessionFactory.getCurrentSession()
-		.delete(student);
+		if (student != null)
+			sessionFactory.getCurrentSession()
+			.delete(student);
 	}
 
 

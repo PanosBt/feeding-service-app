@@ -115,9 +115,13 @@ public class UserServiceImpl implements UserService {
 			return false;
 		
 		String role = getUserHigherRole(username);
-		
-		autorityDAO.deleteAuthorities(username);
+				
 		userDAO.delete(user);
+		
+		if (role == null)
+			return true;
+		else
+			autorityDAO.deleteAuthorities(username);
 		
 		// delete user from corresponding table based on his/her higher role
 		switch (role) {
